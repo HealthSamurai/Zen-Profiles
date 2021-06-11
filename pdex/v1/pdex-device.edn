@@ -1,0 +1,526 @@
+{ns pdex.v1.pdex-device,
+ import #{aidbox-fx fhir aidbox},
+ Device
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:patient :type},
+  :type zen/map,
+  :zen/desc
+  "The PDex Device profile is provided to enable payers to record information about devices used by a member that may not have a UDI number.",
+  :resourceType "Device",
+  :keys
+  {:patient {:confirms #{Device.patient}},
+   :definition {:confirms #{Device.definition}},
+   :serialNumber {:confirms #{Device.serialNumber}},
+   :meta {:confirms #{Device.meta}},
+   :parent {:confirms #{Device.parent}},
+   :deviceName {:confirms #{Device.deviceName}},
+   :property {:confirms #{Device.property}},
+   :implicitRules {:confirms #{Device.implicitRules}},
+   :partNumber {:confirms #{Device.partNumber}},
+   :modelNumber {:confirms #{Device.modelNumber}},
+   :type {:confirms #{Device.type}},
+   :statusReason {:confirms #{Device.statusReason}},
+   :resourceType {:type zen/string, :const {:value "Device"}},
+   :specialization {:confirms #{Device.specialization}},
+   :distinctIdentifier {:confirms #{Device.distinctIdentifier}},
+   :note {:confirms #{Device.note}},
+   :extension {:confirms #{Device.extension}},
+   :contained {:confirms #{Device.contained}},
+   :status {:confirms #{Device.status}},
+   :language {:confirms #{Device.language}},
+   :id {:confirms #{Device.id}},
+   :safety {:confirms #{Device.safety}},
+   :lotNumber {:confirms #{Device.lotNumber}},
+   :url {:confirms #{Device.url}},
+   :identifier {:confirms #{Device.identifier}},
+   :manufacturer {:confirms #{Device.manufacturer}},
+   :version {:confirms #{Device.version}},
+   :location {:confirms #{Device.location}},
+   :contact {:confirms #{Device.contact}},
+   :manufactureDate {:confirms #{Device.manufactureDate}},
+   :modifierExtension {:confirms #{Device.modifierExtension}},
+   :owner {:confirms #{Device.owner}},
+   :expirationDate {:confirms #{Device.expirationDate}},
+   :text {:confirms #{Device.text}},
+   :udiCarrier {:confirms #{Device.udiCarrier}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex/StructureDefinition/pdex-device"},
+ Device.contact
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.contact.*}}},
+ Device.contact.*
+ {:confirms #{fhir/ContactPoint},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Contact details for an organization or a particular human that is responsible for the device."},
+ Device.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.contained.*}}},
+ Device.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ Device.definition
+ {:zen/desc "The reference to the definition for the device.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Device.deviceName
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.deviceName.*}}},
+ Device.deviceName.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:name :type},
+  :type zen/map,
+  :zen/desc
+  "This represents the manufacturer's name of the device as provided by the device, from a UDI label, or by a person describing the Device.  This typically would be used when a person provides the name(s) or when the device represents one of the names available from DeviceDefinition.",
+  :keys
+  {:id {:confirms #{Device.deviceName.id}},
+   :type {:confirms #{Device.deviceName.type}},
+   :modifierExtension
+   {:confirms #{Device.deviceName.modifierExtension}},
+   :name {:confirms #{Device.deviceName.name}},
+   :extension {:confirms #{Device.deviceName.extension}}}},
+ Device.deviceName.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.deviceName.extension.*}}},
+ Device.deviceName.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Device.deviceName.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.deviceName.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.deviceName.modifierExtension.*}}},
+ Device.deviceName.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Device.deviceName.name
+ {:zen/desc "The name of the device.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.deviceName.type
+ {aidbox-fx/valueset Device.deviceName.type.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The type of deviceName.\nUDILabelName | UserFriendlyName | PatientReportedName | ManufactureDeviceName | ModelName."},
+ Device.deviceName.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/device-nametype"},
+ Device.distinctIdentifier
+ {:zen/desc
+  "The distinct identification string as required by regulation for a human cell, tissue, or cellular and tissue-based product.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.expirationDate
+ {:zen/desc
+  "The date and time beyond which this device is no longer valid or should not be used (if applicable).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ Device.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.extension.*}}},
+ Device.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Device.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.identifier.*}}},
+ Device.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Unique instance identifiers assigned to a device by manufacturers other organizations or owners."},
+ Device.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Device.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ Device.location
+ {:zen/desc "The place where the device can be found.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Device.lotNumber
+ {:zen/desc "Lot number assigned by the manufacturer.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.manufactureDate
+ {:zen/desc "The date and time when the device was manufactured.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ Device.manufacturer
+ {:zen/desc "A name of the manufacturer.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.meta
+ {:zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Meta}},
+ Device.modelNumber
+ {:zen/desc "The model number for the device.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.modifierExtension.*}}},
+ Device.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Device.note
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.note.*}}},
+ Device.note.*
+ {:confirms #{fhir/Annotation},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Descriptive information, usage information or implantation information that is not captured in an existing element."},
+ Device.owner
+ {:zen/desc
+  "An organization that is responsible for the provision and ongoing maintenance of the device.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Device.parent
+ {:zen/desc "The parent device.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Device.partNumber
+ {:zen/desc "The part number of the device.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.patient
+ {:zen/desc
+  "Patient information, If the device is affixed to a person.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Device.property
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.property.*}}},
+ Device.property.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type},
+  :type zen/map,
+  :zen/desc
+  "The actual configuration settings of a device as it actually operates, e.g., regulation status, time properties.",
+  :keys
+  {:extension {:confirms #{Device.property.extension}},
+   :id {:confirms #{Device.property.id}},
+   :valueQuantity {:confirms #{Device.property.valueQuantity}},
+   :type {:confirms #{Device.property.type}},
+   :modifierExtension {:confirms #{Device.property.modifierExtension}},
+   :valueCode {:confirms #{Device.property.valueCode}}}},
+ Device.property.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.property.extension.*}}},
+ Device.property.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Device.property.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.property.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.property.modifierExtension.*}}},
+ Device.property.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Device.property.type
+ {:zen/desc
+  "Code that specifies the property DeviceDefinitionPropetyCode (Extensible).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Device.property.valueCode
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.property.valueCode.*}}},
+ Device.property.valueCode.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc "Property value as a code, e.g., NTP4 (synced to NTP)."},
+ Device.property.valueQuantity
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.property.valueQuantity.*}}},
+ Device.property.valueQuantity.*
+ {:confirms #{fhir/Quantity},
+  :zen/tags #{zen/schema},
+  :zen/desc "Property value as a quantity."},
+ Device.safety
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.safety.*}}},
+ Device.safety.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Provides additional safety characteristics about a medical device.  For example devices containing latex."},
+ Device.serialNumber
+ {:zen/desc
+  "The serial number assigned by the organization when the device was manufactured.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.specialization
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.specialization.*}}},
+ Device.specialization.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:systemType},
+  :type zen/map,
+  :zen/desc
+  "The capabilities supported on a  device, the standards to which the device conforms for a particular purpose, and used for the communication.",
+  :keys
+  {:extension {:confirms #{Device.specialization.extension}},
+   :id {:confirms #{Device.specialization.id}},
+   :modifierExtension
+   {:confirms #{Device.specialization.modifierExtension}},
+   :systemType {:confirms #{Device.specialization.systemType}},
+   :version {:confirms #{Device.specialization.version}}}},
+ Device.specialization.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.specialization.extension.*}}},
+ Device.specialization.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Device.specialization.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.specialization.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.specialization.modifierExtension.*}}},
+ Device.specialization.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Device.specialization.systemType
+ {:zen/desc "The standard that is used to operate and communicate.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Device.specialization.version
+ {:zen/desc
+  "The version of the standard that is used to operate and communicate.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.status
+ {aidbox-fx/valueset Device.status.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Status of the Device availability."},
+ Device.status.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/device-status"},
+ Device.statusReason
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.statusReason.*}}},
+ Device.statusReason.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc "Reason for the dtatus of the Device availability."},
+ Device.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}},
+ Device.type
+ {:zen/desc "The kind or type of device.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Device.udiCarrier
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.udiCarrier.*}}},
+ Device.udiCarrier.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:deviceIdentifier},
+  :type zen/map,
+  :zen/desc
+  "Unique device identifier (UDI) assigned to device label or package.  Note that the Device may include multiple udiCarriers as it either may include just the udiCarrier for the jurisdiction it is sold, or for multiple jurisdictions it could have been sold.",
+  :keys
+  {:deviceIdentifier {:confirms #{Device.udiCarrier.deviceIdentifier}},
+   :jurisdiction {:confirms #{Device.udiCarrier.jurisdiction}},
+   :entryType {:confirms #{Device.udiCarrier.entryType}},
+   :extension {:confirms #{Device.udiCarrier.extension}},
+   :id {:confirms #{Device.udiCarrier.id}},
+   :issuer {:confirms #{Device.udiCarrier.issuer}},
+   :carrierAIDC {:confirms #{Device.udiCarrier.carrierAIDC}},
+   :carrierHRF {:confirms #{Device.udiCarrier.carrierHRF}},
+   :modifierExtension
+   {:confirms #{Device.udiCarrier.modifierExtension}}}},
+ Device.udiCarrier.carrierAIDC
+ {:zen/desc
+  "The full UDI carrier of the Automatic Identification and Data Capture (AIDC) technology representation of the barcode string as printed on the packaging of the device - e.g., a barcode or RFID.   Because of limitations on character sets in XML and the need to round-trip JSON data through XML, AIDC Formats *SHALL* be base64 encoded.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/base64Binary}},
+ Device.udiCarrier.carrierHRF
+ {:zen/desc
+  "The full UDI carrier as the human readable form (HRF) representation of the barcode string as printed on the packaging of the device.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.udiCarrier.deviceIdentifier
+ {:zen/desc
+  "The device identifier (DI) is a mandatory, fixed portion of a UDI that identifies the labeler and the specific version or model of a device.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.udiCarrier.entryType
+ {aidbox-fx/valueset Device.udiCarrier.entryType.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "A coded entry to indicate how the data was entered."},
+ Device.udiCarrier.entryType.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/udi-entry-type"},
+ Device.udiCarrier.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.udiCarrier.extension.*}}},
+ Device.udiCarrier.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Device.udiCarrier.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.udiCarrier.issuer
+ {:zen/desc
+  "Organization that is charged with issuing UDIs for devices.  For example, the US FDA issuers include :\n1) GS1: \nhttp://hl7.org/fhir/NamingSystem/gs1-di, \n2) HIBCC:\nhttp://hl7.org/fhir/NamingSystem/hibcc-dI, \n3) ICCBBA for blood containers:\nhttp://hl7.org/fhir/NamingSystem/iccbba-blood-di, \n4) ICCBA for other devices:\nhttp://hl7.org/fhir/NamingSystem/iccbba-other-di.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Device.udiCarrier.jurisdiction
+ {:zen/desc
+  "The identity of the authoritative source for UDI generation within a  jurisdiction.  All UDIs are globally unique within a single namespace with the appropriate repository uri as the system.  For example,  UDIs of devices managed in the U.S. by the FDA, the value is  http://hl7.org/fhir/NamingSystem/fda-udi.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Device.udiCarrier.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.udiCarrier.modifierExtension.*}}},
+ Device.udiCarrier.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Device.url
+ {:zen/desc
+  "A network address on which the device may be contacted directly.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Device.version
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.version.*}}},
+ Device.version.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:value},
+  :type zen/map,
+  :zen/desc
+  "The actual design of the device or software version running on the device.",
+  :keys
+  {:value {:confirms #{Device.version.value}},
+   :component {:confirms #{Device.version.component}},
+   :id {:confirms #{Device.version.id}},
+   :type {:confirms #{Device.version.type}},
+   :modifierExtension {:confirms #{Device.version.modifierExtension}},
+   :extension {:confirms #{Device.version.extension}}}},
+ Device.version.component
+ {:zen/desc "A single component of the device version.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Identifier}},
+ Device.version.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.version.extension.*}}},
+ Device.version.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Device.version.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Device.version.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Device.version.modifierExtension.*}}},
+ Device.version.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Device.version.type
+ {:zen/desc "The type of the device version.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Device.version.value
+ {:zen/desc "The version text.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}}}

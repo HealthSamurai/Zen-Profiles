@@ -1,0 +1,346 @@
+{ns pdex.v1.hrex-coverage,
+ import #{aidbox-fx fhir aidbox},
+ Coverage
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:beneficiary :payor :status},
+  :type zen/map,
+  :zen/desc
+  "The HRex Coverage Profile defines the constraints for representing a member's healthcare insurance information to the Payer.  Coverage instances complying with this profile, sometimes together with the Patient which this profile references via `beneficiary`, allows a payer to identify a member in their system.",
+  :resourceType "Coverage",
+  :keys
+  {:policyHolder {:confirms #{Coverage.policyHolder}},
+   :meta {:confirms #{Coverage.meta}},
+   :beneficiary {:confirms #{Coverage.beneficiary}},
+   :contract {:confirms #{Coverage.contract}},
+   :implicitRules {:confirms #{Coverage.implicitRules}},
+   :relationship {:confirms #{Coverage.relationship}},
+   :type {:confirms #{Coverage.type}},
+   :resourceType {:type zen/string, :const {:value "Coverage"}},
+   :extension {:confirms #{Coverage.extension}},
+   :contained {:confirms #{Coverage.contained}},
+   :costToBeneficiary {:confirms #{Coverage.costToBeneficiary}},
+   :subrogation {:confirms #{Coverage.subrogation}},
+   :subscriber {:confirms #{Coverage.subscriber}},
+   :payor {:confirms #{Coverage.payor}},
+   :status {:confirms #{Coverage.status}},
+   :language {:confirms #{Coverage.language}},
+   :id {:confirms #{Coverage.id}},
+   :class {:confirms #{Coverage.class}},
+   :identifier {:confirms #{Coverage.identifier}},
+   :order {:confirms #{Coverage.order}},
+   :network {:confirms #{Coverage.network}},
+   :period {:confirms #{Coverage.period}},
+   :dependent {:confirms #{Coverage.dependent}},
+   :modifierExtension {:confirms #{Coverage.modifierExtension}},
+   :subscriberId {:confirms #{Coverage.subscriberId}},
+   :text {:confirms #{Coverage.text}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex/StructureDefinition/hrex-coverage"},
+ Coverage.beneficiary
+ {:zen/desc
+  "The party who benefits from the insurance coverage; the patient when products and/or services are provided.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Coverage.class
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.class.*}}},
+ Coverage.class.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:value :type},
+  :type zen/map,
+  :zen/desc "A suite of underwriter specific classifiers.",
+  :keys
+  {:name {:confirms #{Coverage.class.name}},
+   :modifierExtension {:confirms #{Coverage.class.modifierExtension}},
+   :extension {:confirms #{Coverage.class.extension}},
+   :value {:confirms #{Coverage.class.value}},
+   :type {:confirms #{Coverage.class.type}},
+   :id {:confirms #{Coverage.class.id}}}},
+ Coverage.class.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.class.extension.*}}},
+ Coverage.class.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Coverage.class.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Coverage.class.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.class.modifierExtension.*}}},
+ Coverage.class.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Coverage.class.name
+ {:zen/desc "A short description for the class.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Coverage.class.type
+ {:zen/desc
+  "The type of classification for which an insurer-specific class label or number and optional name is provided, for example may be used to identify a class of coverage or employer group, Policy, Plan.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Coverage.class.value
+ {:zen/desc
+  "The alphanumeric string value associated with the insurer issued label.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Coverage.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.contained.*}}},
+ Coverage.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ Coverage.contract
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.contract.*}}},
+ Coverage.contract.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc "The policy(s) which constitute this insurance coverage."},
+ Coverage.costToBeneficiary
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.costToBeneficiary.*}}},
+ Coverage.costToBeneficiary.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueQuantity :valueMoney}},
+  :type zen/map,
+  :zen/desc
+  "A suite of codes indicating the cost category and associated amount which have been detailed in the policy and may have been  included on the health card.",
+  :keys
+  {:modifierExtension
+   {:confirms #{Coverage.costToBeneficiary.modifierExtension}},
+   :id {:confirms #{Coverage.costToBeneficiary.id}},
+   :type {:confirms #{Coverage.costToBeneficiary.type}},
+   :extension {:confirms #{Coverage.costToBeneficiary.extension}},
+   :exception {:confirms #{Coverage.costToBeneficiary.exception}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueMoney {:confirms #{fhir/Money}}},
+  :exclusive-keys #{#{:valueQuantity :valueMoney}}},
+ Coverage.costToBeneficiary.exception
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.costToBeneficiary.exception.*}}},
+ Coverage.costToBeneficiary.exception.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type},
+  :type zen/map,
+  :zen/desc
+  "A suite of codes indicating exceptions or reductions to patient costs and their effective periods.",
+  :keys
+  {:modifierExtension
+   {:confirms
+    #{Coverage.costToBeneficiary.exception.modifierExtension}},
+   :id {:confirms #{Coverage.costToBeneficiary.exception.id}},
+   :period {:confirms #{Coverage.costToBeneficiary.exception.period}},
+   :type {:confirms #{Coverage.costToBeneficiary.exception.type}},
+   :extension
+   {:confirms #{Coverage.costToBeneficiary.exception.extension}}}},
+ Coverage.costToBeneficiary.exception.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Coverage.costToBeneficiary.exception.extension.*}}},
+ Coverage.costToBeneficiary.exception.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Coverage.costToBeneficiary.exception.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Coverage.costToBeneficiary.exception.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Coverage.costToBeneficiary.exception.modifierExtension.*}}},
+ Coverage.costToBeneficiary.exception.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Coverage.costToBeneficiary.exception.period
+ {:zen/desc "The timeframe during when the exception is in force.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Coverage.costToBeneficiary.exception.type
+ {:zen/desc "The code for the specific exception.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Coverage.costToBeneficiary.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.costToBeneficiary.extension.*}}},
+ Coverage.costToBeneficiary.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Coverage.costToBeneficiary.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Coverage.costToBeneficiary.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Coverage.costToBeneficiary.modifierExtension.*}}},
+ Coverage.costToBeneficiary.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Coverage.costToBeneficiary.type
+ {:zen/desc
+  "The category of patient centric costs associated with treatment.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Coverage.dependent
+ {:zen/desc "A unique identifier for a dependent under the coverage.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Coverage.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.extension.*}}},
+ Coverage.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Coverage.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Coverage.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.identifier.*}}},
+ Coverage.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :zen/desc "A unique identifier assigned to this coverage."},
+ Coverage.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Coverage.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ Coverage.meta
+ {:zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Meta}},
+ Coverage.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.modifierExtension.*}}},
+ Coverage.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Coverage.network
+ {:zen/desc
+  "The insurer-specific identifier for the insurer-defined network of providers to which the beneficiary may seek treatment which will be covered at the 'in-network' rate, otherwise 'out of network' terms and conditions apply.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Coverage.order
+ {:zen/desc
+  "The order of applicability of this coverage relative to other coverages which are currently in force. Note, there may be gaps in the numbering and this does not imply primary, secondary etc. as the specific positioning of coverages depends upon the episode of care.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ Coverage.payor
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Coverage.payor.*}}},
+ Coverage.payor.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements."},
+ Coverage.period
+ {:zen/desc
+  "Time period during which the coverage is in force. A missing start date indicates the start date isn't known, a missing end date means the coverage is continuing to be in force.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Coverage.policyHolder
+ {:zen/desc "The party who 'owns' the insurance policy.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Coverage.relationship
+ {:zen/desc
+  "The relationship of beneficiary (patient) to the subscriber.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Coverage.status
+ {aidbox-fx/valueset Coverage.status.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The status of the resource instance."},
+ Coverage.status.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/fm-status"},
+ Coverage.subrogation
+ {:zen/desc
+  "When 'subrogation=true' this insurance instance has been included not for adjudication but to provide insurers with the details to recover costs.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ Coverage.subscriber
+ {:zen/desc
+  "The party who has signed-up for or 'owns' the contractual relationship to the policy or to whom the benefit of the policy for services rendered to them or their family is due.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Coverage.subscriberId
+ {:zen/desc "The insurer assigned ID for the Subscriber.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Coverage.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}},
+ Coverage.type
+ {aidbox-fx/valueset Coverage.type.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization."},
+ Coverage.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/coverage-type"}}

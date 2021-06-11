@@ -1,0 +1,402 @@
+{ns plan-net.v1.plannet-OrganizationAffiliation,
+ import #{aidbox-fx fhir aidbox plan-net.v1.qualification},
+ OrganizationAffiliation
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:active},
+  :type zen/map,
+  :zen/desc
+  "The OrganizationAffiliation resource describes relationships between two or more organizations, including the services one organization provides another, the location(s) where they provide services, the availability of those services, electronic endpoints, and other relevant information.",
+  :resourceType "OrganizationAffiliation",
+  :keys
+  {:meta {:confirms #{OrganizationAffiliation.meta}},
+   :specialty {:confirms #{OrganizationAffiliation.specialty}},
+   :implicitRules {:confirms #{OrganizationAffiliation.implicitRules}},
+   :organization {:confirms #{OrganizationAffiliation.organization}},
+   :resourceType
+   {:type zen/string, :const {:value "OrganizationAffiliation"}},
+   :participatingOrganization
+   {:confirms #{OrganizationAffiliation.participatingOrganization}},
+   :extension {:confirms #{OrganizationAffiliation.extension}},
+   :contained {:confirms #{OrganizationAffiliation.contained}},
+   :language {:confirms #{OrganizationAffiliation.language}},
+   :active {:confirms #{OrganizationAffiliation.active}},
+   :id {:confirms #{OrganizationAffiliation.id}},
+   :code {:confirms #{OrganizationAffiliation.code}},
+   :identifier {:confirms #{OrganizationAffiliation.identifier}},
+   :telecom {:confirms #{OrganizationAffiliation.telecom}},
+   :network {:confirms #{OrganizationAffiliation.network}},
+   :period {:confirms #{OrganizationAffiliation.period}},
+   :location {:confirms #{OrganizationAffiliation.location}},
+   :endpoint {:confirms #{OrganizationAffiliation.endpoint}},
+   :healthcareService
+   {:confirms #{OrganizationAffiliation.healthcareService}},
+   :modifierExtension
+   {:confirms #{OrganizationAffiliation.modifierExtension}},
+   :text {:confirms #{OrganizationAffiliation.text}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-OrganizationAffiliation"},
+ OrganizationAffiliation.active
+ {:confirms #{fhir/boolean},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Whether this organization affiliation record is in active use.",
+  :const {:value true}},
+ OrganizationAffiliation.code
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.code.*}}},
+ OrganizationAffiliation.code.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Definition of the role the participatingOrganization plays in the association."},
+ OrganizationAffiliation.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.contained.*}}},
+ OrganizationAffiliation.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ OrganizationAffiliation.endpoint
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.endpoint.*}}},
+ OrganizationAffiliation.endpoint.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Technical endpoints providing access to services operated for this role."},
+ OrganizationAffiliation.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.extension.*}},
+  :slicing
+  {:slices
+   {"qualification"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{OrganizationAffiliation.extension:qualification.*}}},
+     :schema
+     {:confirms
+      #{OrganizationAffiliation.extension:qualification}}}}}},
+ OrganizationAffiliation.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ OrganizationAffiliation.extension:qualification
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{OrganizationAffiliation.extension:qualification.*}}},
+ OrganizationAffiliation.extension:qualification.*
+ {:confirms #{plan-net.v1.qualification/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ OrganizationAffiliation.healthcareService
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.healthcareService.*}}},
+ OrganizationAffiliation.healthcareService.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc "Healthcare services provided through the role."},
+ OrganizationAffiliation.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ OrganizationAffiliation.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.identifier.*}}},
+ OrganizationAffiliation.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Business identifiers that are specific to this role.",
+  :keys
+  {:id {:confirms #{OrganizationAffiliation.identifier.id}},
+   :use {:confirms #{OrganizationAffiliation.identifier.use}},
+   :assigner
+   {:confirms #{OrganizationAffiliation.identifier.assigner}},
+   :value {:confirms #{OrganizationAffiliation.identifier.value}},
+   :system {:confirms #{OrganizationAffiliation.identifier.system}},
+   :type {:confirms #{OrganizationAffiliation.identifier.type}},
+   :period {:confirms #{OrganizationAffiliation.identifier.period}},
+   :extension
+   {:confirms #{OrganizationAffiliation.identifier.extension}}}},
+ OrganizationAffiliation.identifier.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ OrganizationAffiliation.identifier.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.identifier.extension.*}},
+  :slicing {:slices {}}},
+ OrganizationAffiliation.identifier.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ OrganizationAffiliation.identifier.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ OrganizationAffiliation.identifier.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ OrganizationAffiliation.identifier.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ OrganizationAffiliation.identifier.type
+ {:zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ OrganizationAffiliation.identifier.use
+ {aidbox-fx/valueset OrganizationAffiliation.identifier.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ OrganizationAffiliation.identifier.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ OrganizationAffiliation.identifier.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ OrganizationAffiliation.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ OrganizationAffiliation.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ OrganizationAffiliation.location
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.location.*}}},
+ OrganizationAffiliation.location.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc "The location(s) at which the role occurs."},
+ OrganizationAffiliation.meta
+ {:confirms #{fhir/Meta},
+  :zen/tags #{zen/schema},
+  :require #{:lastUpdated},
+  :type zen/map,
+  :zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :keys
+  {:lastUpdated
+   {:confirms #{OrganizationAffiliation.meta.lastUpdated}},
+   :tag {:confirms #{OrganizationAffiliation.meta.tag}},
+   :id {:confirms #{OrganizationAffiliation.meta.id}},
+   :profile {:confirms #{OrganizationAffiliation.meta.profile}},
+   :extension {:confirms #{OrganizationAffiliation.meta.extension}},
+   :versionId {:confirms #{OrganizationAffiliation.meta.versionId}},
+   :source {:confirms #{OrganizationAffiliation.meta.source}},
+   :security {:confirms #{OrganizationAffiliation.meta.security}}}},
+ OrganizationAffiliation.meta.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.meta.extension.*}},
+  :slicing {:slices {}}},
+ OrganizationAffiliation.meta.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ OrganizationAffiliation.meta.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ OrganizationAffiliation.meta.lastUpdated
+ {:zen/desc
+  "When the resource last changed - e.g. when the version changed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/instant}},
+ OrganizationAffiliation.meta.profile
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.meta.profile.*}}},
+ OrganizationAffiliation.meta.profile.*
+ {:confirms #{fhir/canonical},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A list of profiles (references to [StructureDefinition](http://hl7.org/fhir/R4/structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](http://hl7.org/fhir/R4/structuredefinition-definitions.html#StructureDefinition.url)."},
+ OrganizationAffiliation.meta.security
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.meta.security.*}}},
+ OrganizationAffiliation.meta.security.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."},
+ OrganizationAffiliation.meta.source
+ {:zen/desc
+  "A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](http://hl7.org/fhir/R4/provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ OrganizationAffiliation.meta.tag
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.meta.tag.*}}},
+ OrganizationAffiliation.meta.tag.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."},
+ OrganizationAffiliation.meta.versionId
+ {:zen/desc
+  "The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/id}},
+ OrganizationAffiliation.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.modifierExtension.*}}},
+ OrganizationAffiliation.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ OrganizationAffiliation.network
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.network.*}}},
+ OrganizationAffiliation.network.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Health insurance provider network in which the participatingOrganization provides the role's services (if defined) at the indicated locations (if defined)."},
+ OrganizationAffiliation.organization
+ {:zen/desc
+  "Organization where the role is available (primary organization/has members).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ OrganizationAffiliation.participatingOrganization
+ {:zen/desc
+  "The Participating Organization provides/performs the role(s) defined by the code to the Primary Organization (e.g. providing services or is a member of).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ OrganizationAffiliation.period
+ {:zen/desc
+  "The period during which the participatingOrganization is affiliated with the primary organization.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ OrganizationAffiliation.specialty
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.specialty.*}}},
+ OrganizationAffiliation.specialty.*
+ {aidbox-fx/valueset OrganizationAffiliation.specialty.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Specific specialty of the participatingOrganization in the context of the role."},
+ OrganizationAffiliation.specialty.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/SpecialtiesVS"},
+ OrganizationAffiliation.telecom
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.telecom.*}}},
+ OrganizationAffiliation.telecom.*
+ {:confirms #{fhir/ContactPoint},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Contact details at the participatingOrganization relevant to this Affiliation.",
+  :keys
+  {:use {:confirms #{OrganizationAffiliation.telecom.use}},
+   :value {:confirms #{OrganizationAffiliation.telecom.value}},
+   :period {:confirms #{OrganizationAffiliation.telecom.period}},
+   :system {:confirms #{OrganizationAffiliation.telecom.system}},
+   :rank {:confirms #{OrganizationAffiliation.telecom.rank}},
+   :id {:confirms #{OrganizationAffiliation.telecom.id}},
+   :extension
+   {:confirms #{OrganizationAffiliation.telecom.extension}}}},
+ OrganizationAffiliation.telecom.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{OrganizationAffiliation.telecom.extension.*}},
+  :slicing {:slices {}}},
+ OrganizationAffiliation.telecom.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ OrganizationAffiliation.telecom.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ OrganizationAffiliation.telecom.period
+ {:zen/desc "Time period when the contact point was/is in use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ OrganizationAffiliation.telecom.rank
+ {:zen/desc
+  "Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred than those with higher rank values.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ OrganizationAffiliation.telecom.system
+ {aidbox-fx/valueset OrganizationAffiliation.telecom.system.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Telecommunications form for contact point - what communications system is required to make use of the contact."},
+ OrganizationAffiliation.telecom.system.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-system"},
+ OrganizationAffiliation.telecom.use
+ {aidbox-fx/valueset OrganizationAffiliation.telecom.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Identifies the purpose for the contact point."},
+ OrganizationAffiliation.telecom.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-use"},
+ OrganizationAffiliation.telecom.value
+ {:zen/desc
+  "The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ OrganizationAffiliation.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}}}

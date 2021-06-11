@@ -1,0 +1,321 @@
+{ns plan-net.v1.plannet-Endpoint,
+ import #{aidbox-fx fhir aidbox plan-net.v1.endpoint-usecase},
+ Endpoint
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:connectionType :address :payloadType :status},
+  :type zen/map,
+  :zen/desc
+  "The technical details of an endpoint that can be used for electronic services, such as a portal or FHIR REST services, messaging or operations, or DIRECT messaging.",
+  :resourceType "Endpoint",
+  :keys
+  {:connectionType {:confirms #{Endpoint.connectionType}},
+   :address {:confirms #{Endpoint.address}},
+   :meta {:confirms #{Endpoint.meta}},
+   :managingOrganization {:confirms #{Endpoint.managingOrganization}},
+   :name {:confirms #{Endpoint.name}},
+   :payloadMimeType {:confirms #{Endpoint.payloadMimeType}},
+   :implicitRules {:confirms #{Endpoint.implicitRules}},
+   :resourceType {:type zen/string, :const {:value "Endpoint"}},
+   :payloadType {:confirms #{Endpoint.payloadType}},
+   :header {:confirms #{Endpoint.header}},
+   :extension {:confirms #{Endpoint.extension}},
+   :contained {:confirms #{Endpoint.contained}},
+   :status {:confirms #{Endpoint.status}},
+   :language {:confirms #{Endpoint.language}},
+   :id {:confirms #{Endpoint.id}},
+   :identifier {:confirms #{Endpoint.identifier}},
+   :period {:confirms #{Endpoint.period}},
+   :contact {:confirms #{Endpoint.contact}},
+   :modifierExtension {:confirms #{Endpoint.modifierExtension}},
+   :text {:confirms #{Endpoint.text}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Endpoint"},
+ Endpoint.address
+ {:zen/desc
+  "The uri that describes the actual end-point to connect to.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/url}},
+ Endpoint.connectionType
+ {:zen/desc
+  "A coded value that represents the technical details of the usage of this endpoint, such as what WSDLs should be used in what way. (e.g. XDS.b/DICOM/cds-hook).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ Endpoint.contact
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.contact.*}}},
+ Endpoint.contact.*
+ {:confirms #{fhir/ContactPoint},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Contact details for a human to contact about the subscription. The primary use of this for system administrator troubleshooting.",
+  :keys
+  {:period {:confirms #{Endpoint.contact.period}},
+   :system {:confirms #{Endpoint.contact.system}},
+   :rank {:confirms #{Endpoint.contact.rank}},
+   :use {:confirms #{Endpoint.contact.use}},
+   :value {:confirms #{Endpoint.contact.value}},
+   :id {:confirms #{Endpoint.contact.id}},
+   :extension {:confirms #{Endpoint.contact.extension}}}},
+ Endpoint.contact.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.contact.extension.*}},
+  :slicing {:slices {}}},
+ Endpoint.contact.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Endpoint.contact.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Endpoint.contact.period
+ {:zen/desc "Time period when the contact point was/is in use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Endpoint.contact.rank
+ {:zen/desc
+  "Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred than those with higher rank values.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ Endpoint.contact.system
+ {aidbox-fx/valueset Endpoint.contact.system.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Telecommunications form for contact point - what communications system is required to make use of the contact."},
+ Endpoint.contact.system.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-system"},
+ Endpoint.contact.use
+ {aidbox-fx/valueset Endpoint.contact.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Identifies the purpose for the contact point."},
+ Endpoint.contact.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-use"},
+ Endpoint.contact.value
+ {:zen/desc
+  "The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Endpoint.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.contained.*}}},
+ Endpoint.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ Endpoint.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.extension.*}},
+  :slicing
+  {:slices
+   {"endpoint-usecase"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Endpoint.extension:endpoint-usecase.*}}},
+     :schema {:confirms #{Endpoint.extension:endpoint-usecase}}}}}},
+ Endpoint.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Endpoint.extension:endpoint-usecase
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.extension:endpoint-usecase.*}}},
+ Endpoint.extension:endpoint-usecase.*
+ {:confirms #{plan-net.v1.endpoint-usecase/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ Endpoint.header
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.header.*}}},
+ Endpoint.header.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Additional headers / information to send as part of the notification."},
+ Endpoint.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Endpoint.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.identifier.*}}},
+ Endpoint.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Identifier for the organization that is used to identify the endpoint across multiple disparate systems."},
+ Endpoint.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Endpoint.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ Endpoint.managingOrganization
+ {:zen/desc
+  "The organization that manages this endpoint (even if technically another organization is hosting this in the cloud, it is the organization associated with the data).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Endpoint.meta
+ {:confirms #{fhir/Meta},
+  :zen/tags #{zen/schema},
+  :require #{:lastUpdated},
+  :type zen/map,
+  :zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :keys
+  {:source {:confirms #{Endpoint.meta.source}},
+   :profile {:confirms #{Endpoint.meta.profile}},
+   :lastUpdated {:confirms #{Endpoint.meta.lastUpdated}},
+   :extension {:confirms #{Endpoint.meta.extension}},
+   :tag {:confirms #{Endpoint.meta.tag}},
+   :security {:confirms #{Endpoint.meta.security}},
+   :versionId {:confirms #{Endpoint.meta.versionId}},
+   :id {:confirms #{Endpoint.meta.id}}}},
+ Endpoint.meta.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.meta.extension.*}},
+  :slicing {:slices {}}},
+ Endpoint.meta.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Endpoint.meta.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Endpoint.meta.lastUpdated
+ {:zen/desc
+  "When the resource last changed - e.g. when the version changed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/instant}},
+ Endpoint.meta.profile
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.meta.profile.*}}},
+ Endpoint.meta.profile.*
+ {:confirms #{fhir/canonical},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A list of profiles (references to [StructureDefinition](http://hl7.org/fhir/R4/structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](http://hl7.org/fhir/R4/structuredefinition-definitions.html#StructureDefinition.url)."},
+ Endpoint.meta.security
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.meta.security.*}}},
+ Endpoint.meta.security.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."},
+ Endpoint.meta.source
+ {:zen/desc
+  "A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](http://hl7.org/fhir/R4/provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Endpoint.meta.tag
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.meta.tag.*}}},
+ Endpoint.meta.tag.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."},
+ Endpoint.meta.versionId
+ {:zen/desc
+  "The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/id}},
+ Endpoint.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.modifierExtension.*}}},
+ Endpoint.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Endpoint.name
+ {:zen/desc
+  "A friendly name that this endpoint can be referred to with.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Endpoint.payloadMimeType
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.payloadMimeType.*}}},
+ Endpoint.payloadMimeType.*
+ {aidbox-fx/valueset Endpoint.payloadMimeType.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The mime type to send the payload in - e.g. application/fhir+xml, application/fhir+json. If the mime type is not specified, then the sender could send any content (including no content depending on the connectionType)."},
+ Endpoint.payloadMimeType.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/mimetypes"},
+ Endpoint.payloadType
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Endpoint.payloadType.*}}},
+ Endpoint.payloadType.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The payload type describes the acceptable content that can be communicated on the endpoint."},
+ Endpoint.period
+ {:zen/desc
+  "The interval during which the endpoint is expected to be operational.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Endpoint.status
+ {aidbox-fx/valueset Endpoint.status.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "active | suspended | error | off | test.",
+  :const {:value "active"}},
+ Endpoint.status.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/endpoint-status"},
+ Endpoint.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}}}

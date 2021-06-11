@@ -1,0 +1,241 @@
+{ns plan-net.v1.newpatients,
+ import #{aidbox-fx fhir aidbox},
+ Extension
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:extension :url},
+  :type zen/map,
+  :zen/desc
+  "New Patients indicates whether new patients are being accepted in general, or from a specific network.   \n              This extension is included in the PractitionerRole, HealthcareService, and Location profiles.  \n              This provides needed flexibility for specifying whether a provider accepts new patients by location and network.",
+  :keys
+  {:valueBase64Binary {:confirms #{fhir/base64Binary}},
+   :valueAge {:confirms #{fhir/Age}},
+   :valueParameterDefinition {:confirms #{fhir/ParameterDefinition}},
+   :valueTiming {:confirms #{fhir/Timing}},
+   :valueCode {:confirms #{fhir/code}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueContributor {:confirms #{fhir/Contributor}},
+   :valueContactDetail {:confirms #{fhir/ContactDetail}},
+   :valueUri {:confirms #{fhir/uri}},
+   :valueUsageContext {:confirms #{fhir/UsageContext}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueDecimal {:confirms #{fhir/decimal}},
+   :valueCanonical {:confirms #{fhir/canonical}},
+   :valueMarkdown {:confirms #{fhir/markdown}},
+   :valueIdentifier {:confirms #{fhir/Identifier}},
+   :valueTriggerDefinition {:confirms #{fhir/TriggerDefinition}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueCount {:confirms #{fhir/Count}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueInstant {:confirms #{fhir/instant}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :valueDate {:confirms #{fhir/date}},
+   :valueDuration {:confirms #{fhir/Duration}},
+   :valueDataRequirement {:confirms #{fhir/DataRequirement}},
+   :valueMeta {:confirms #{fhir/Meta}},
+   :valueMoney {:confirms #{fhir/Money}},
+   :valueCoding {:confirms #{fhir/Coding}},
+   :valueExpression {:confirms #{fhir/Expression}},
+   :extension {:confirms #{Extension.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Extension.id}},
+   :valueDosage {:confirms #{fhir/Dosage}},
+   :valueContactPoint {:confirms #{fhir/ContactPoint}},
+   :url {:confirms #{Extension.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueAnnotation {:confirms #{fhir/Annotation}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueDistance {:confirms #{fhir/Distance}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueSignature {:confirms #{fhir/Signature}},
+   :valueUuid {:confirms #{fhir/uuid}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :valueHumanName {:confirms #{fhir/HumanName}},
+   :valueUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :valueOid {:confirms #{fhir/oid}},
+   :valueAddress {:confirms #{fhir/Address}},
+   :valueRelatedArtifact {:confirms #{fhir/RelatedArtifact}},
+   :valuePositiveInt {:confirms #{fhir/positiveInt}},
+   :valueId {:confirms #{fhir/id}},
+   :valueUrl {:confirms #{fhir/url}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueAge :valueParameterDefinition
+      :valueTiming :valueCode :valueReference :valueContributor
+      :valueContactDetail :valueUri :valueUsageContext :valueTime
+      :valueDecimal :valueCanonical :valueMarkdown :valueIdentifier
+      :valueTriggerDefinition :valueQuantity :valueCount :valueString
+      :valueRatio :valueBoolean :valueInstant :valueDateTime :valueDate
+      :valueDuration :valueDataRequirement :valueMeta :valueMoney
+      :valueCoding :valueExpression :valueSampledData :valueDosage
+      :valueContactPoint :valueCodeableConcept :valueAnnotation
+      :valuePeriod :valueDistance :valueRange :valueSignature
+      :valueUuid :valueInteger :valueHumanName :valueUnsignedInt
+      :valueAttachment :valueOid :valueAddress :valueRelatedArtifact
+      :valuePositiveInt :valueId :valueUrl}},
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients"},
+ Extension.extension
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension.*}},
+  :slicing
+  {:slices
+   {"characteristics"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:characteristics.*}}},
+     :schema {:confirms #{Extension.extension:characteristics}}},
+    "acceptingPatients"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:acceptingPatients.*}}},
+     :schema {:confirms #{Extension.extension:acceptingPatients}}},
+    "fromNetwork"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:fromNetwork.*}}},
+     :schema {:confirms #{Extension.extension:fromNetwork}}}}}},
+ Extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:acceptingPatients
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:acceptingPatients.*}}},
+ Extension.extension:acceptingPatients.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueCodeableConcept} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:id {:confirms #{Extension.extension:acceptingPatients.id}},
+   :url {:confirms #{Extension.extension:acceptingPatients.url}},
+   :extension
+   {:confirms #{Extension.extension:acceptingPatients.extension}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}}}},
+ Extension.extension:acceptingPatients.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Extension.extension:acceptingPatients.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:acceptingPatients.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:acceptingPatients.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:acceptingPatients.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "acceptingPatients"}},
+ Extension.extension:acceptingPatients.value_x_.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/AcceptingPatientsVS"},
+ Extension.extension:characteristics
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:characteristics.*}}},
+ Extension.extension:characteristics.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueString} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:url {:confirms #{Extension.extension:characteristics.url}},
+   :id {:confirms #{Extension.extension:characteristics.id}},
+   :extension
+   {:confirms #{Extension.extension:characteristics.extension}},
+   :valueString {:confirms #{fhir/string}}}},
+ Extension.extension:characteristics.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Extension.extension:characteristics.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:characteristics.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:characteristics.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:characteristics.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "characteristics"}},
+ Extension.extension:fromNetwork
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:fromNetwork.*}}},
+ Extension.extension:fromNetwork.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url #{:valueReference}},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:extension {:confirms #{Extension.extension:fromNetwork.extension}},
+   :url {:confirms #{Extension.extension:fromNetwork.url}},
+   :id {:confirms #{Extension.extension:fromNetwork.id}},
+   :valueReference {:confirms #{fhir/Reference}}}},
+ Extension.extension:fromNetwork.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:fromNetwork.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:fromNetwork.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:fromNetwork.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:fromNetwork.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "fromNetwork"}},
+ Extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const
+  {:value
+   "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/newpatients"}}}

@@ -1,0 +1,11 @@
+{ns carin-bb.v1,
+ import
+ #{carin-bb.v1.C4BB-Practitioner
+   carin-bb.v1.C4BB-ExplanationOfBenefit-Outpatient-Institutional
+   carin-bb.v1.C4BB-Patient carin-bb.v1.C4BB-Coverage
+   carin-bb.v1.us-core-birthsex carin-bb.v1.us-core-ethnicity
+   carin-bb.v1.C4BB-ExplanationOfBenefit-Pharmacy
+   carin-bb.v1.C4BB-Organization
+   carin-bb.v1.C4BB-ExplanationOfBenefit-Professional-NonClinician
+   carin-bb.v1.us-core-race
+   carin-bb.v1.C4BB-ExplanationOfBenefit-Inpatient-Institutional}}

@@ -1,0 +1,15 @@
+{ns plan-net.v1,
+ import
+ #{plan-net.v1.plannet-Endpoint plan-net.v1.communication-proficiency
+   plan-net.v1.location-reference plan-net.v1.location-boundary-geojson
+   plan-net.v1.practitioner-qualification
+   plan-net.v1.plannet-Organization plan-net.v1.network-reference
+   plan-net.v1.plannet-Practitioner plan-net.v1.accessibility
+   plan-net.v1.via-intermediary plan-net.v1.org-description
+   plan-net.v1.newpatients plan-net.v1.plannet-InsurancePlan
+   plan-net.v1.plannet-HealthcareService plan-net.v1.delivery-method
+   plan-net.v1.plannet-PractitionerRole plan-net.v1.endpoint-usecase
+   plan-net.v1.contactpoint-availabletime plan-net.v1.geolocation
+   plan-net.v1.plannet-OrganizationAffiliation
+   plan-net.v1.qualification plan-net.v1.plannet-Network
+   plan-net.v1.plannet-Location}}

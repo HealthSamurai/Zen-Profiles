@@ -1,0 +1,422 @@
+{ns us-core.v1.us-core-smokingstatus,
+ import #{aidbox-fx fhir aidbox},
+ Observation
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require
+  #{#{:valueCodeableConcept} :status :code :valueCodeableConcept
+    :issued :subject},
+  :type zen/map,
+  :zen/desc
+  "Defines constraints and extensions on the Observation  resource for the minimal set of data to query and retrieve patient's Smoking Status information.",
+  :resourceType "Observation",
+  :keys
+  {:category {:confirms #{Observation.category}},
+   :referenceRange {:confirms #{Observation.referenceRange}},
+   :hasMember {:confirms #{Observation.hasMember}},
+   :meta {:confirms #{Observation.meta}},
+   :derivedFrom {:confirms #{Observation.derivedFrom}},
+   :interpretation {:confirms #{Observation.interpretation}},
+   :encounter {:confirms #{Observation.encounter}},
+   :method {:confirms #{Observation.method}},
+   :specimen {:confirms #{Observation.specimen}},
+   :implicitRules {:confirms #{Observation.implicitRules}},
+   :resourceType {:type zen/string, :const {:value "Observation"}},
+   :component {:confirms #{Observation.component}},
+   :note {:confirms #{Observation.note}},
+   :extension {:confirms #{Observation.extension}},
+   :contained {:confirms #{Observation.contained}},
+   :effectiveDateTime {:confirms #{fhir/dateTime}},
+   :status {:confirms #{Observation.status}},
+   :language {:confirms #{Observation.language}},
+   :id {:confirms #{Observation.id}},
+   :code {:confirms #{Observation.code}},
+   :identifier {:confirms #{Observation.identifier}},
+   :effectiveTiming {:confirms #{fhir/Timing}},
+   :valueCodeableConcept
+   {:confirms
+    #{Observation.valueCodeableConcept fhir/CodeableConcept}},
+   :bodySite {:confirms #{Observation.bodySite}},
+   :focus {:confirms #{Observation.focus}},
+   :issued {:confirms #{Observation.issued}},
+   :device {:confirms #{Observation.device}},
+   :effectiveInstant {:confirms #{fhir/instant}},
+   :basedOn {:confirms #{Observation.basedOn}},
+   :partOf {:confirms #{Observation.partOf}},
+   :subject {:confirms #{Observation.subject}},
+   :modifierExtension {:confirms #{Observation.modifierExtension}},
+   :performer {:confirms #{Observation.performer}},
+   :dataAbsentReason {:confirms #{Observation.dataAbsentReason}},
+   :effectivePeriod {:confirms #{fhir/Period}},
+   :text {:confirms #{Observation.text}}},
+  :exclusive-keys
+  #{#{:effectiveDateTime :effectiveTiming :effectiveInstant
+      :effectivePeriod}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus"},
+ Observation.basedOn
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.basedOn.*}}},
+ Observation.basedOn.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A plan, proposal or order that is fulfilled in whole or in part by this event.  For example, a MedicationRequest may require a patient to have laboratory test performed before  it is dispensed."},
+ Observation.bodySite
+ {:zen/desc
+  "Indicates the site on the subject's body where the observation was made (i.e. the target site).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Observation.category
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.category.*}}},
+ Observation.category.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A code that classifies the general type of observation being made."},
+ Observation.code
+ {:zen/desc
+  "Describes what was observed. Sometimes this is called the observation \"name\".",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Observation.component
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.component.*}}},
+ Observation.component.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:code},
+  :type zen/map,
+  :zen/desc
+  "Some observations have multiple component observations.  These component observations are expressed as separate code value pairs that share the same attributes.  Examples include systolic and diastolic component observations for blood pressure measurement and multiple component observations for genetics observations.",
+  :keys
+  {:referenceRange {:confirms #{Observation.component.referenceRange}},
+   :interpretation {:confirms #{Observation.component.interpretation}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :extension {:confirms #{Observation.component.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Observation.component.id}},
+   :code {:confirms #{Observation.component.code}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :modifierExtension
+   {:confirms #{Observation.component.modifierExtension}},
+   :dataAbsentReason
+   {:confirms #{Observation.component.dataAbsentReason}}},
+  :exclusive-keys
+  #{#{:valueTime :valueQuantity :valueString :valueRatio :valueBoolean
+      :valueDateTime :valueSampledData :valueCodeableConcept
+      :valuePeriod :valueRange :valueInteger}}},
+ Observation.component.code
+ {:zen/desc
+  "Describes what was observed. Sometimes this is called the observation \"code\".",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Observation.component.dataAbsentReason
+ {:zen/desc
+  "Provides a reason why the expected value in the element Observation.component.value[x] is missing.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Observation.component.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.component.extension.*}}},
+ Observation.component.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Observation.component.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Observation.component.interpretation
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.component.interpretation.*}}},
+ Observation.component.interpretation.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A categorical assessment of an observation value.  For example, high, low, normal."},
+ Observation.component.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.component.modifierExtension.*}}},
+ Observation.component.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Observation.component.referenceRange
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.component.referenceRange.*}}},
+ Observation.component.referenceRange.*
+ #:zen{:desc
+       "Guidance on how to interpret the value by comparison to a normal or recommended range.",
+       :tags #{zen/schema}},
+ Observation.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.contained.*}}},
+ Observation.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ Observation.dataAbsentReason
+ {:zen/desc
+  "Provides a reason why the expected value in the element Observation.value[x] is missing.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Observation.derivedFrom
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.derivedFrom.*}}},
+ Observation.derivedFrom.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image."},
+ Observation.device
+ {:zen/desc "The device used to generate the observation data.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Observation.encounter
+ {:zen/desc
+  "The healthcare event  (e.g. a patient and healthcare provider interaction) during which this observation is made.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Observation.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.extension.*}}},
+ Observation.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Observation.focus
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.focus.*}}},
+ Observation.focus.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The actual focus of an observation when it is not the patient of record representing something or someone associated with the patient such as a spouse, parent, fetus, or donor. For example, fetus observations in a mother's record.  The focus of an observation could also be an existing condition,  an intervention, the subject's diet,  another observation of the subject,  or a body structure such as tumor or implanted device.   An example use case would be using the Observation resource to capture whether the mother is trained to change her child's tracheostomy tube. In this example, the child is the patient of record and the mother is the focus."},
+ Observation.hasMember
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.hasMember.*}}},
+ Observation.hasMember.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "This observation is a group observation (e.g. a battery, a panel of tests, a set of vital sign measurements) that includes the target as a member of the group."},
+ Observation.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Observation.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.identifier.*}}},
+ Observation.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :zen/desc "A unique identifier assigned to this observation."},
+ Observation.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Observation.interpretation
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.interpretation.*}}},
+ Observation.interpretation.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A categorical assessment of an observation value.  For example, high, low, normal."},
+ Observation.issued
+ {:zen/desc
+  "The date and time this version of the observation was made available to providers, typically after the results have been reviewed and verified.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/instant}},
+ Observation.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ Observation.meta
+ {:zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Meta}},
+ Observation.method
+ {:zen/desc "Indicates the mechanism used to perform the observation.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Observation.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.modifierExtension.*}}},
+ Observation.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Observation.note
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.note.*}}},
+ Observation.note.*
+ {:confirms #{fhir/Annotation},
+  :zen/tags #{zen/schema},
+  :zen/desc "Comments about the observation or the results."},
+ Observation.partOf
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.partOf.*}}},
+ Observation.partOf.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A larger event of which this particular Observation is a component or step.  For example,  an observation as part of a procedure."},
+ Observation.performer
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.performer.*}}},
+ Observation.performer.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Who was responsible for asserting the observed value as \"true\"."},
+ Observation.referenceRange
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.referenceRange.*}}},
+ Observation.referenceRange.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Guidance on how to interpret the value by comparison to a normal or recommended range.  Multiple reference ranges are interpreted as an \"OR\".   In other words, to represent two distinct target populations, two `referenceRange` elements would be used.",
+  :keys
+  {:age {:confirms #{Observation.referenceRange.age}},
+   :appliesTo {:confirms #{Observation.referenceRange.appliesTo}},
+   :type {:confirms #{Observation.referenceRange.type}},
+   :high {:confirms #{Observation.referenceRange.high}},
+   :extension {:confirms #{Observation.referenceRange.extension}},
+   :id {:confirms #{Observation.referenceRange.id}},
+   :low {:confirms #{Observation.referenceRange.low}},
+   :modifierExtension
+   {:confirms #{Observation.referenceRange.modifierExtension}},
+   :text {:confirms #{Observation.referenceRange.text}}}},
+ Observation.referenceRange.age
+ {:zen/desc
+  "The age at which this reference range is applicable. This is a neonatal age (e.g. number of weeks at term) if the meaning says so.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Range}},
+ Observation.referenceRange.appliesTo
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.referenceRange.appliesTo.*}}},
+ Observation.referenceRange.appliesTo.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Codes to indicate the target population this reference range applies to.  For example, a reference range may be based on the normal population or a particular sex or race.  Multiple `appliesTo`  are interpreted as an \"AND\" of the target populations.  For example, to represent a target population of African American females, both a code of female and a code for African American would be used."},
+ Observation.referenceRange.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Observation.referenceRange.extension.*}}},
+ Observation.referenceRange.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Observation.referenceRange.high
+ {:zen/desc
+  "The value of the high bound of the reference range.  The high bound of the reference range endpoint is inclusive of the value (e.g.  reference range is >=5 - <=9). If the high bound is omitted,  it is assumed to be meaningless (e.g. reference range is >= 2.3).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ Observation.referenceRange.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Observation.referenceRange.low
+ {:zen/desc
+  "The value of the low bound of the reference range.  The low bound of the reference range endpoint is inclusive of the value (e.g.  reference range is >=5 - <=9). If the low bound is omitted,  it is assumed to be meaningless (e.g. reference range is <=2.3).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ Observation.referenceRange.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Observation.referenceRange.modifierExtension.*}}},
+ Observation.referenceRange.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Observation.referenceRange.text
+ {:zen/desc
+  "Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of \"Negative\" or a list or table of \"normals\".",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Observation.referenceRange.type
+ {:zen/desc
+  "Codes to indicate the what part of the targeted reference population it applies to. For example, the normal or therapeutic range.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Observation.specimen
+ {:zen/desc
+  "The specimen that was used when this observation was made.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Observation.status
+ {aidbox-fx/valueset Observation.status.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The status of the result value."},
+ Observation.status.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/core/ValueSet/us-core-observation-smoking-status-status"},
+ Observation.subject
+ {:zen/desc
+  "The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Observation.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}},
+ Observation.valueCodeableConcept
+ {:zen/desc
+  "The information determined as a result of making the observation, if the information has a simple value.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}}}

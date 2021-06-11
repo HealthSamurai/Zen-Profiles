@@ -1,0 +1,1181 @@
+{ns carin-bb.v1.C4BB-Patient,
+ import
+ #{aidbox-fx fhir aidbox carin-bb.v1.us-core-birthsex
+   carin-bb.v1.us-core-ethnicity carin-bb.v1.us-core-race},
+ Patient
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:meta :name :identifier :gender},
+  :type zen/map,
+  :zen/desc
+  "This profile builds upon the US Core Patient profile. It is used to convey information about the patient who received the services described on the claim.",
+  :resourceType "Patient",
+  :keys
+  {:multipleBirthBoolean {:confirms #{fhir/boolean}},
+   :address {:confirms #{Patient.address}},
+   :meta {:confirms #{Patient.meta}},
+   :deceasedDateTime
+   {:confirms #{fhir/dateTime Patient.deceasedDateTime}},
+   :managingOrganization {:confirms #{Patient.managingOrganization}},
+   :deceasedBoolean
+   {:confirms #{Patient.deceasedBoolean fhir/boolean}},
+   :name {:confirms #{Patient.name}},
+   :implicitRules {:confirms #{Patient.implicitRules}},
+   :birthDate {:confirms #{Patient.birthDate}},
+   :multipleBirthInteger {:confirms #{fhir/integer}},
+   :resourceType {:type zen/string, :const {:value "Patient"}},
+   :extension {:confirms #{Patient.extension}},
+   :contained {:confirms #{Patient.contained}},
+   :photo {:confirms #{Patient.photo}},
+   :language {:confirms #{Patient.language}},
+   :link {:confirms #{Patient.link}},
+   :active {:confirms #{Patient.active}},
+   :communication {:confirms #{Patient.communication}},
+   :id {:confirms #{Patient.id}},
+   :identifier {:confirms #{Patient.identifier}},
+   :telecom {:confirms #{Patient.telecom}},
+   :generalPractitioner {:confirms #{Patient.generalPractitioner}},
+   :gender {:confirms #{Patient.gender}},
+   :maritalStatus {:confirms #{Patient.maritalStatus}},
+   :contact {:confirms #{Patient.contact}},
+   :modifierExtension {:confirms #{Patient.modifierExtension}},
+   :text {:confirms #{Patient.text}}},
+  :exclusive-keys
+  #{#{:deceasedDateTime :deceasedBoolean}
+    #{:multipleBirthBoolean :multipleBirthInteger}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient"},
+ Patient.active
+ {:zen/desc
+  "Whether this patient record is in active use. \nMany systems use this property to mark as non-current patients, such as those that have not been seen for a period of time based on an organization's business rules.\n\nIt is often used to filter patient lists to exclude inactive patients\n\nDeceased patients may also be marked as inactive for the same reasons, but may be active for some time after death.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ Patient.address
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.address.*}}},
+ Patient.address.*
+ {:confirms #{fhir/Address},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An address for the individual.",
+  :keys
+  {:use {:confirms #{Patient.address.use}},
+   :city {:confirms #{Patient.address.city}},
+   :type {:confirms #{Patient.address.type}},
+   :state {:confirms #{Patient.address.state}},
+   :extension {:confirms #{Patient.address.extension}},
+   :line {:confirms #{Patient.address.line}},
+   :id {:confirms #{Patient.address.id}},
+   :postalCode {:confirms #{Patient.address.postalCode}},
+   :period {:confirms #{Patient.address.period}},
+   :country {:confirms #{Patient.address.country}},
+   :district {:confirms #{Patient.address.district}},
+   :text {:confirms #{Patient.address.text}}}},
+ Patient.address.city
+ {:zen/desc
+  "The name of the city, town, suburb, village or other community or delivery center.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.address.country
+ {:zen/desc
+  "Country - a nation as commonly understood or generally accepted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.address.district
+ {:zen/desc "The name of the administrative area (county).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.address.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.address.extension.*}},
+  :slicing {:slices {}}},
+ Patient.address.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.address.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.address.line
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.address.line.*}}},
+ Patient.address.line.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information."},
+ Patient.address.period
+ {:zen/desc "Time period when address was/is in use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Patient.address.postalCode
+ {:zen/desc
+  "A postal code designating a region defined by the postal service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.address.state
+ {:zen/desc
+  "Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (e.g. US 2 letter state codes).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.address.text
+ {:zen/desc
+  "Specifies the entire address as it should be displayed e.g. on a postal label. This may be provided instead of or as well as the specific parts.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.address.type
+ {aidbox-fx/valueset Patient.address.type.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both."},
+ Patient.address.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/address-type"},
+ Patient.address.use
+ {aidbox-fx/valueset Patient.address.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this address."},
+ Patient.address.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/address-use"},
+ Patient.birthDate
+ {:zen/desc "The date of birth for the individual.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/date}},
+ Patient.communication
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.communication.*}}},
+ Patient.communication.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:language},
+  :type zen/map,
+  :zen/desc
+  "A language which may be used to communicate with the patient about his or her health.",
+  :keys
+  {:language {:confirms #{Patient.communication.language}},
+   :modifierExtension
+   {:confirms #{Patient.communication.modifierExtension}},
+   :id {:confirms #{Patient.communication.id}},
+   :extension {:confirms #{Patient.communication.extension}},
+   :preferred {:confirms #{Patient.communication.preferred}}}},
+ Patient.communication.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.communication.extension.*}}},
+ Patient.communication.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.communication.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.communication.language
+ {:zen/desc
+  "The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. \"en\" for English, or \"en-US\" for American English versus \"en-EN\" for England English.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Patient.communication.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.communication.modifierExtension.*}}},
+ Patient.communication.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Patient.communication.preferred
+ {:zen/desc
+  "Indicates whether or not the patient prefers this language (over other languages he masters up a certain level).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ Patient.contact
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.contact.*}}},
+ Patient.contact.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A contact party (e.g. guardian, partner, friend) for the patient.",
+  :keys
+  {:address {:confirms #{Patient.contact.address}},
+   :name {:confirms #{Patient.contact.name}},
+   :relationship {:confirms #{Patient.contact.relationship}},
+   :organization {:confirms #{Patient.contact.organization}},
+   :extension {:confirms #{Patient.contact.extension}},
+   :id {:confirms #{Patient.contact.id}},
+   :telecom {:confirms #{Patient.contact.telecom}},
+   :gender {:confirms #{Patient.contact.gender}},
+   :period {:confirms #{Patient.contact.period}},
+   :modifierExtension
+   {:confirms #{Patient.contact.modifierExtension}}}},
+ Patient.contact.address
+ {:zen/desc "Address for the contact person.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Address}},
+ Patient.contact.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.contact.extension.*}}},
+ Patient.contact.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.contact.gender
+ {aidbox-fx/valueset Patient.contact.gender.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Administrative Gender - the gender that the contact person is considered to have for administration and record keeping purposes."},
+ Patient.contact.gender.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/administrative-gender"},
+ Patient.contact.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.contact.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.contact.modifierExtension.*}}},
+ Patient.contact.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Patient.contact.name
+ {:zen/desc "A name associated with the contact person.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/HumanName}},
+ Patient.contact.organization
+ {:zen/desc
+  "Organization on behalf of which the contact is acting or for which the contact is working.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Patient.contact.period
+ {:zen/desc
+  "The period during which this contact person or organization is valid to be contacted relating to this patient.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Patient.contact.relationship
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.contact.relationship.*}}},
+ Patient.contact.relationship.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The nature of the relationship between the patient and the contact person."},
+ Patient.contact.telecom
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.contact.telecom.*}}},
+ Patient.contact.telecom.*
+ {:confirms #{fhir/ContactPoint},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A contact detail for the person, e.g. a telephone number or an email address."},
+ Patient.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.contained.*}}},
+ Patient.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ Patient.deceasedBoolean
+ {:zen/desc "Indicates if the individual is deceased or not.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ Patient.deceasedDateTime
+ {:zen/desc "Indicates if the individual is deceased or not.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ Patient.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.extension.*}},
+  :slicing
+  {:slices
+   {"birthsex"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Patient.extension:birthsex.*}}},
+     :schema {:confirms #{Patient.extension:birthsex}}},
+    "ethnicity"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Patient.extension:ethnicity.*}}},
+     :schema {:confirms #{Patient.extension:ethnicity}}},
+    "race"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Patient.extension:race.*}}},
+     :schema {:confirms #{Patient.extension:race}}}}}},
+ Patient.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Patient.extension:birthsex
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.extension:birthsex.*}}},
+ Patient.extension:birthsex.*
+ {:confirms #{carin-bb.v1.us-core-birthsex/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A code classifying the person's sex assigned at birth  as specified by the [Office of the National Coordinator for Health IT (ONC)](https://www.healthit.gov/newsroom/about-onc)."},
+ Patient.extension:ethnicity
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.extension:ethnicity.*}}},
+ Patient.extension:ethnicity.*
+ {:confirms #{carin-bb.v1.us-core-ethnicity/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or nationality.  The ethnicity codes used to represent these concepts are based upon the [CDC ethnicity and Ethnicity Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and ethnicity of which 43 reference ethnicity.  The ethnicity concepts are grouped by and pre-mapped to the 2 OMB ethnicity categories: - Hispanic or Latino - Not Hispanic or Latino."},
+ Patient.extension:race
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.extension:race.*}}},
+ Patient.extension:race.*
+ {:confirms #{carin-bb.v1.us-core-race/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or nationality.  The race codes used to represent these concepts are based upon the [CDC Race and Ethnicity Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and ethnicity of which 921 reference race.  The race concepts are grouped by and pre-mapped to the 5 OMB race categories:\n\n   - American Indian or Alaska Native\n   - Asian\n   - Black or African American\n   - Native Hawaiian or Other Pacific Islander\n   - White."},
+ Patient.gender
+ {aidbox-fx/valueset Patient.gender.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes."},
+ Patient.gender.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/administrative-gender"},
+ Patient.generalPractitioner
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.generalPractitioner.*}}},
+ Patient.generalPractitioner.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc "Patient's nominated care provider."},
+ Patient.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.identifier
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.identifier.*}},
+  :slicing
+  {:slices
+   {"patacctnum"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Patient.identifier:patacctnum.*}}},
+     :schema {:confirms #{Patient.identifier:patacctnum}}},
+    "uniquememberid"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Patient.identifier:uniquememberid.*}}},
+     :schema {:confirms #{Patient.identifier:uniquememberid}}},
+    "memberid"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Patient.identifier:memberid.*}}},
+     :schema {:confirms #{Patient.identifier:memberid}}},
+    "medrecnum"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Patient.identifier:medrecnum.*}}},
+     :schema {:confirms #{Patient.identifier:medrecnum}}}}}},
+ Patient.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :require #{:system :value},
+  :type zen/map,
+  :zen/desc "An identifier for this patient.",
+  :keys
+  {:value {:confirms #{Patient.identifier.value}},
+   :extension {:confirms #{Patient.identifier.extension}},
+   :id {:confirms #{Patient.identifier.id}},
+   :period {:confirms #{Patient.identifier.period}},
+   :use {:confirms #{Patient.identifier.use}},
+   :assigner {:confirms #{Patient.identifier.assigner}},
+   :system {:confirms #{Patient.identifier.system}},
+   :type {:confirms #{Patient.identifier.type}}}},
+ Patient.identifier.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Patient.identifier.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.identifier.extension.*}},
+  :slicing {:slices {}}},
+ Patient.identifier.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.identifier.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.identifier.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Patient.identifier.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Patient.identifier.type
+ {:zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Patient.identifier.use
+ {aidbox-fx/valueset Patient.identifier.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ Patient.identifier.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ Patient.identifier.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.identifier:medrecnum
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.identifier:medrecnum.*}}},
+ Patient.identifier:medrecnum.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :require #{:system :value :type},
+  :type zen/map,
+  :zen/desc "An identifier for this patient.",
+  :keys
+  {:period {:confirms #{Patient.identifier:medrecnum.period}},
+   :use {:confirms #{Patient.identifier:medrecnum.use}},
+   :extension {:confirms #{Patient.identifier:medrecnum.extension}},
+   :type {:confirms #{Patient.identifier:medrecnum.type}},
+   :id {:confirms #{Patient.identifier:medrecnum.id}},
+   :system {:confirms #{Patient.identifier:medrecnum.system}},
+   :assigner {:confirms #{Patient.identifier:medrecnum.assigner}},
+   :value {:confirms #{Patient.identifier:medrecnum.value}}}},
+ Patient.identifier:medrecnum.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Patient.identifier:medrecnum.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.identifier:medrecnum.extension.*}},
+  :slicing {:slices {}}},
+ Patient.identifier:medrecnum.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.identifier:medrecnum.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.identifier:medrecnum.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Patient.identifier:medrecnum.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Patient.identifier:medrecnum.type
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value "http://terminology.hl7.org/CodeSystem/v2-0203"}},
+          :code {:const {:value "MR"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ Patient.identifier:medrecnum.use
+ {aidbox-fx/valueset Patient.identifier:medrecnum.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ Patient.identifier:medrecnum.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ Patient.identifier:medrecnum.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.identifier:memberid
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.identifier:memberid.*}}},
+ Patient.identifier:memberid.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :require #{:system :value :type},
+  :type zen/map,
+  :zen/desc "An identifier for this patient.",
+  :keys
+  {:system {:confirms #{Patient.identifier:memberid.system}},
+   :use {:confirms #{Patient.identifier:memberid.use}},
+   :extension {:confirms #{Patient.identifier:memberid.extension}},
+   :value {:confirms #{Patient.identifier:memberid.value}},
+   :type {:confirms #{Patient.identifier:memberid.type}},
+   :assigner {:confirms #{Patient.identifier:memberid.assigner}},
+   :id {:confirms #{Patient.identifier:memberid.id}},
+   :period {:confirms #{Patient.identifier:memberid.period}}}},
+ Patient.identifier:memberid.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Patient.identifier:memberid.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.identifier:memberid.extension.*}},
+  :slicing {:slices {}}},
+ Patient.identifier:memberid.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.identifier:memberid.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.identifier:memberid.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Patient.identifier:memberid.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Patient.identifier:memberid.type
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value "http://terminology.hl7.org/CodeSystem/v2-0203"}},
+          :code {:const {:value "MB"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ Patient.identifier:memberid.use
+ {aidbox-fx/valueset Patient.identifier:memberid.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ Patient.identifier:memberid.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ Patient.identifier:memberid.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.identifier:patacctnum
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.identifier:patacctnum.*}}},
+ Patient.identifier:patacctnum.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :require #{:system :value :type},
+  :type zen/map,
+  :zen/desc "An identifier for this patient.",
+  :keys
+  {:assigner {:confirms #{Patient.identifier:patacctnum.assigner}},
+   :period {:confirms #{Patient.identifier:patacctnum.period}},
+   :id {:confirms #{Patient.identifier:patacctnum.id}},
+   :type {:confirms #{Patient.identifier:patacctnum.type}},
+   :system {:confirms #{Patient.identifier:patacctnum.system}},
+   :extension {:confirms #{Patient.identifier:patacctnum.extension}},
+   :use {:confirms #{Patient.identifier:patacctnum.use}},
+   :value {:confirms #{Patient.identifier:patacctnum.value}}}},
+ Patient.identifier:patacctnum.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Patient.identifier:patacctnum.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.identifier:patacctnum.extension.*}},
+  :slicing {:slices {}}},
+ Patient.identifier:patacctnum.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.identifier:patacctnum.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.identifier:patacctnum.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Patient.identifier:patacctnum.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Patient.identifier:patacctnum.type
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType"}},
+          :code {:const {:value "pat"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ Patient.identifier:patacctnum.use
+ {aidbox-fx/valueset Patient.identifier:patacctnum.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ Patient.identifier:patacctnum.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ Patient.identifier:patacctnum.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.identifier:uniquememberid
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.identifier:uniquememberid.*}}},
+ Patient.identifier:uniquememberid.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :require #{:system :value :type},
+  :type zen/map,
+  :zen/desc "An identifier for this patient.",
+  :keys
+  {:extension
+   {:confirms #{Patient.identifier:uniquememberid.extension}},
+   :type {:confirms #{Patient.identifier:uniquememberid.type}},
+   :system {:confirms #{Patient.identifier:uniquememberid.system}},
+   :period {:confirms #{Patient.identifier:uniquememberid.period}},
+   :use {:confirms #{Patient.identifier:uniquememberid.use}},
+   :assigner {:confirms #{Patient.identifier:uniquememberid.assigner}},
+   :id {:confirms #{Patient.identifier:uniquememberid.id}},
+   :value {:confirms #{Patient.identifier:uniquememberid.value}}}},
+ Patient.identifier:uniquememberid.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Patient.identifier:uniquememberid.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.identifier:uniquememberid.extension.*}},
+  :slicing {:slices {}}},
+ Patient.identifier:uniquememberid.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.identifier:uniquememberid.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.identifier:uniquememberid.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Patient.identifier:uniquememberid.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Patient.identifier:uniquememberid.type
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType"}},
+          :code {:const {:value "um"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ Patient.identifier:uniquememberid.use
+ {aidbox-fx/valueset Patient.identifier:uniquememberid.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ Patient.identifier:uniquememberid.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ Patient.identifier:uniquememberid.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Patient.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ Patient.link
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.link.*}}},
+ Patient.link.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:other :type},
+  :type zen/map,
+  :zen/desc
+  "Link to another patient resource that concerns the same actual patient.",
+  :keys
+  {:id {:confirms #{Patient.link.id}},
+   :modifierExtension {:confirms #{Patient.link.modifierExtension}},
+   :type {:confirms #{Patient.link.type}},
+   :other {:confirms #{Patient.link.other}},
+   :extension {:confirms #{Patient.link.extension}}}},
+ Patient.link.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.link.extension.*}}},
+ Patient.link.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.link.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.link.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.link.modifierExtension.*}}},
+ Patient.link.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Patient.link.other
+ {:zen/desc "The other patient resource that the link refers to.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Patient.link.type
+ {aidbox-fx/valueset Patient.link.type.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The type of link between this patient resource and another patient resource."},
+ Patient.link.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/link-type"},
+ Patient.managingOrganization
+ {:zen/desc
+  "Organization that is the custodian of the patient record.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Patient.maritalStatus
+ {:zen/desc
+  "This field contains a patient's most recent marital (civil) status.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Patient.meta
+ {:confirms #{fhir/Meta},
+  :zen/tags #{zen/schema},
+  :require #{:lastUpdated :profile},
+  :type zen/map,
+  :zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :keys
+  {:source {:confirms #{Patient.meta.source}},
+   :profile {:confirms #{Patient.meta.profile}},
+   :versionId {:confirms #{Patient.meta.versionId}},
+   :id {:confirms #{Patient.meta.id}},
+   :extension {:confirms #{Patient.meta.extension}},
+   :security {:confirms #{Patient.meta.security}},
+   :lastUpdated {:confirms #{Patient.meta.lastUpdated}},
+   :tag {:confirms #{Patient.meta.tag}}}},
+ Patient.meta.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.meta.extension.*}},
+  :slicing {:slices {}}},
+ Patient.meta.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.meta.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.meta.lastUpdated
+ {:zen/desc
+  "When the resource last changed - e.g. when the version changed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/instant}},
+ Patient.meta.profile
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.meta.profile.*}}},
+ Patient.meta.profile.*
+ {:confirms #{fhir/canonical},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A list of profiles (references to [StructureDefinition](http://hl7.org/fhir/R4/structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](http://hl7.org/fhir/R4/structuredefinition-definitions.html#StructureDefinition.url)."},
+ Patient.meta.security
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.meta.security.*}}},
+ Patient.meta.security.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."},
+ Patient.meta.source
+ {:zen/desc
+  "A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](http://hl7.org/fhir/R4/provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Patient.meta.tag
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.meta.tag.*}}},
+ Patient.meta.tag.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."},
+ Patient.meta.versionId
+ {:zen/desc
+  "The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/id}},
+ Patient.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.modifierExtension.*}}},
+ Patient.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Patient.name
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.name.*}}},
+ Patient.name.*
+ {:confirms #{fhir/HumanName},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "A name associated with the individual.",
+  :keys
+  {:suffix {:confirms #{Patient.name.suffix}},
+   :given {:confirms #{Patient.name.given}},
+   :family {:confirms #{Patient.name.family}},
+   :use {:confirms #{Patient.name.use}},
+   :prefix {:confirms #{Patient.name.prefix}},
+   :extension {:confirms #{Patient.name.extension}},
+   :id {:confirms #{Patient.name.id}},
+   :period {:confirms #{Patient.name.period}},
+   :text {:confirms #{Patient.name.text}}}},
+ Patient.name.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.name.extension.*}},
+  :slicing {:slices {}}},
+ Patient.name.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.name.family
+ {:zen/desc
+  "The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.name.given
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.name.given.*}}},
+ Patient.name.given.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc "Given name."},
+ Patient.name.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.name.period
+ {:zen/desc
+  "Indicates the period of time when this name was valid for the named person.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Patient.name.prefix
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.name.prefix.*}}},
+ Patient.name.prefix.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name."},
+ Patient.name.suffix
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.name.suffix.*}}},
+ Patient.name.suffix.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name."},
+ Patient.name.text
+ {:zen/desc
+  "Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of or as well as the specific parts.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.name.use
+ {aidbox-fx/valueset Patient.name.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Identifies the purpose for this name."},
+ Patient.name.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/name-use"},
+ Patient.photo
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.photo.*}}},
+ Patient.photo.*
+ {:confirms #{fhir/Attachment},
+  :zen/tags #{zen/schema},
+  :zen/desc "Image of the patient."},
+ Patient.telecom
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.telecom.*}}},
+ Patient.telecom.*
+ {:confirms #{fhir/ContactPoint},
+  :zen/tags #{zen/schema},
+  :require #{:system :value},
+  :type zen/map,
+  :zen/desc
+  "A contact detail (e.g. a telephone number or an email address) by which the individual may be contacted.",
+  :keys
+  {:use {:confirms #{Patient.telecom.use}},
+   :value {:confirms #{Patient.telecom.value}},
+   :rank {:confirms #{Patient.telecom.rank}},
+   :system {:confirms #{Patient.telecom.system}},
+   :extension {:confirms #{Patient.telecom.extension}},
+   :id {:confirms #{Patient.telecom.id}},
+   :period {:confirms #{Patient.telecom.period}}}},
+ Patient.telecom.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Patient.telecom.extension.*}},
+  :slicing {:slices {}}},
+ Patient.telecom.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Patient.telecom.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.telecom.period
+ {:zen/desc "Time period when the contact point was/is in use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Patient.telecom.rank
+ {:zen/desc
+  "Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred than those with higher rank values.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ Patient.telecom.system
+ {aidbox-fx/valueset Patient.telecom.system.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Telecommunications form for contact point - what communications system is required to make use of the contact."},
+ Patient.telecom.system.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-system"},
+ Patient.telecom.use
+ {aidbox-fx/valueset Patient.telecom.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Identifies the purpose for the contact point."},
+ Patient.telecom.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-use"},
+ Patient.telecom.value
+ {:zen/desc
+  "The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Patient.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}}}

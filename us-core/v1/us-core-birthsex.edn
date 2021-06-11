@@ -1,0 +1,52 @@
+{ns us-core.v1.us-core-birthsex,
+ import #{aidbox-fx fhir aidbox},
+ Extension
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:valueCode #{:valueCode} :url},
+  :type zen/map,
+  :zen/desc
+  "A code classifying the person's sex assigned at birth  as specified by the [Office of the National Coordinator for Health IT (ONC)](https://www.healthit.gov/newsroom/about-onc). This extension aligns with the C-CDA Birth Sex Observation (LOINC 76689-9).",
+  :keys
+  {:id {:confirms #{Extension.id}},
+   :extension {:confirms #{Extension.extension}},
+   :valueCode {:confirms #{fhir/code Extension.valueCode}},
+   :url {:confirms #{Extension.url}}},
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex"},
+ Extension.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const
+  {:value
+   "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex"}},
+ Extension.valueCode
+ {aidbox-fx/valueset Extension.valueCode.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list)."},
+ Extension.valueCode.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/us/core/ValueSet/birthsex"}}

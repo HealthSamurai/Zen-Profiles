@@ -1,0 +1,380 @@
+{ns plan-net.v1.qualification,
+ import #{aidbox-fx fhir aidbox},
+ Extension
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:extension :url},
+  :type zen/map,
+  :zen/desc
+  "An extension to add qualifications for an organization (e.g. accreditation) or practitionerRole (e.g. registered to prescribe controlled substances).",
+  :keys
+  {:valueBase64Binary {:confirms #{fhir/base64Binary}},
+   :valueAge {:confirms #{fhir/Age}},
+   :valueParameterDefinition {:confirms #{fhir/ParameterDefinition}},
+   :valueTiming {:confirms #{fhir/Timing}},
+   :valueCode {:confirms #{fhir/code}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueContributor {:confirms #{fhir/Contributor}},
+   :valueContactDetail {:confirms #{fhir/ContactDetail}},
+   :valueUri {:confirms #{fhir/uri}},
+   :valueUsageContext {:confirms #{fhir/UsageContext}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueDecimal {:confirms #{fhir/decimal}},
+   :valueCanonical {:confirms #{fhir/canonical}},
+   :valueMarkdown {:confirms #{fhir/markdown}},
+   :valueIdentifier {:confirms #{fhir/Identifier}},
+   :valueTriggerDefinition {:confirms #{fhir/TriggerDefinition}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueCount {:confirms #{fhir/Count}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueInstant {:confirms #{fhir/instant}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :valueDate {:confirms #{fhir/date}},
+   :valueDuration {:confirms #{fhir/Duration}},
+   :valueDataRequirement {:confirms #{fhir/DataRequirement}},
+   :valueMeta {:confirms #{fhir/Meta}},
+   :valueMoney {:confirms #{fhir/Money}},
+   :valueCoding {:confirms #{fhir/Coding}},
+   :valueExpression {:confirms #{fhir/Expression}},
+   :extension {:confirms #{Extension.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Extension.id}},
+   :valueDosage {:confirms #{fhir/Dosage}},
+   :valueContactPoint {:confirms #{fhir/ContactPoint}},
+   :url {:confirms #{Extension.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueAnnotation {:confirms #{fhir/Annotation}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueDistance {:confirms #{fhir/Distance}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueSignature {:confirms #{fhir/Signature}},
+   :valueUuid {:confirms #{fhir/uuid}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :valueHumanName {:confirms #{fhir/HumanName}},
+   :valueUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :valueOid {:confirms #{fhir/oid}},
+   :valueAddress {:confirms #{fhir/Address}},
+   :valueRelatedArtifact {:confirms #{fhir/RelatedArtifact}},
+   :valuePositiveInt {:confirms #{fhir/positiveInt}},
+   :valueId {:confirms #{fhir/id}},
+   :valueUrl {:confirms #{fhir/url}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueAge :valueParameterDefinition
+      :valueTiming :valueCode :valueReference :valueContributor
+      :valueContactDetail :valueUri :valueUsageContext :valueTime
+      :valueDecimal :valueCanonical :valueMarkdown :valueIdentifier
+      :valueTriggerDefinition :valueQuantity :valueCount :valueString
+      :valueRatio :valueBoolean :valueInstant :valueDateTime :valueDate
+      :valueDuration :valueDataRequirement :valueMeta :valueMoney
+      :valueCoding :valueExpression :valueSampledData :valueDosage
+      :valueContactPoint :valueCodeableConcept :valueAnnotation
+      :valuePeriod :valueDistance :valueRange :valueSignature
+      :valueUuid :valueInteger :valueHumanName :valueUnsignedInt
+      :valueAttachment :valueOid :valueAddress :valueRelatedArtifact
+      :valuePositiveInt :valueId :valueUrl}},
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/qualification"},
+ Extension.extension
+ {:minItems 2,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension.*}},
+  :slicing
+  {:slices
+   {"period"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:period.*}}},
+     :schema {:confirms #{Extension.extension:period}}},
+    "code"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:code.*}}},
+     :schema {:confirms #{Extension.extension:code}}},
+    "status"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:status.*}}},
+     :schema {:confirms #{Extension.extension:status}}},
+    "whereValid"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:whereValid.*}}},
+     :schema {:confirms #{Extension.extension:whereValid}}},
+    "identifier"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:identifier.*}}},
+     :schema {:confirms #{Extension.extension:identifier}}},
+    "issuer"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:issuer.*}}},
+     :schema {:confirms #{Extension.extension:issuer}}}}}},
+ Extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:code
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:code.*}}},
+ Extension.extension:code.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueCodeableConcept} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:url {:confirms #{Extension.extension:code.url}},
+   :id {:confirms #{Extension.extension:code.id}},
+   :extension {:confirms #{Extension.extension:code.extension}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}}}},
+ Extension.extension:code.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:code.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:code.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:code.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:code.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "code"}},
+ Extension.extension:identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:identifier.*}}},
+ Extension.extension:identifier.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueIdentifier} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:id {:confirms #{Extension.extension:identifier.id}},
+   :url {:confirms #{Extension.extension:identifier.url}},
+   :extension {:confirms #{Extension.extension:identifier.extension}},
+   :valueIdentifier {:confirms #{fhir/Identifier}}}},
+ Extension.extension:identifier.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:identifier.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:identifier.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:identifier.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:identifier.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "identifier"}},
+ Extension.extension:issuer
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:issuer.*}}},
+ Extension.extension:issuer.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url #{:valueReference}},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:extension {:confirms #{Extension.extension:issuer.extension}},
+   :id {:confirms #{Extension.extension:issuer.id}},
+   :url {:confirms #{Extension.extension:issuer.url}},
+   :valueReference {:confirms #{fhir/Reference}}}},
+ Extension.extension:issuer.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:issuer.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:issuer.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:issuer.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:issuer.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "issuer"}},
+ Extension.extension:period
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:period.*}}},
+ Extension.extension:period.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url #{:valuePeriod}},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:id {:confirms #{Extension.extension:period.id}},
+   :url {:confirms #{Extension.extension:period.url}},
+   :extension {:confirms #{Extension.extension:period.extension}},
+   :valuePeriod {:confirms #{fhir/Period}}}},
+ Extension.extension:period.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:period.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:period.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:period.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:period.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "period"}},
+ Extension.extension:status
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:status.*}}},
+ Extension.extension:status.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:valueCode #{:valueCode} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:url {:confirms #{Extension.extension:status.url}},
+   :valueCode
+   {:confirms #{fhir/code Extension.extension:status.valueCode}},
+   :extension {:confirms #{Extension.extension:status.extension}},
+   :id {:confirms #{Extension.extension:status.id}}}},
+ Extension.extension:status.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:status.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:status.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:status.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:status.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "status"}},
+ Extension.extension:status.valueCode
+ {aidbox-fx/valueset Extension.extension:status.valueCode.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list).",
+  :const {:value "active"}},
+ Extension.extension:status.valueCode.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/QualificationStatusVS"},
+ Extension.extension:whereValid
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:whereValid.*}}},
+ Extension.extension:whereValid.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueReference :valueCodeableConcept} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:extension {:confirms #{Extension.extension:whereValid.extension}},
+   :id {:confirms #{Extension.extension:whereValid.id}},
+   :url {:confirms #{Extension.extension:whereValid.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueReference {:confirms #{fhir/Reference}}},
+  :exclusive-keys #{#{:valueReference :valueCodeableConcept}}},
+ Extension.extension:whereValid.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:whereValid.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:whereValid.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:whereValid.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:whereValid.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "whereValid"}},
+ Extension.extension:whereValid.value_x_.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/core/ValueSet/us-core-usps-state"},
+ Extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const
+  {:value
+   "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/qualification"}}}

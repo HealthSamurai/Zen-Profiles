@@ -1,0 +1,352 @@
+{ns drug-formulary.v1.usdf-CoveragePlan,
+ import
+ #{drug-formulary.v1.usdf-MarketingURL-extension
+   drug-formulary.v1.usdf-FormularyURL-extension
+   drug-formulary.v1.usdf-Network-extension aidbox-fx fhir
+   drug-formulary.v1.usdf-SummaryURL-extension aidbox
+   drug-formulary.v1.usdf-EmailPlanContact-extension
+   drug-formulary.v1.usdf-DrugTierDefinition-extension
+   drug-formulary.v1.usdf-PlanIDType-extension},
+ List
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:mode :extension :status},
+  :type zen/map,
+  :zen/desc
+  "A health plan which contains links to administrative information, a list of formulary drugs covered under that plan, and a definition of drug tiers and their associated cost-sharing models.",
+  :resourceType "List",
+  :keys
+  {:date {:confirms #{List.date}},
+   :meta {:confirms #{List.meta}},
+   :encounter {:confirms #{List.encounter}},
+   :orderedBy {:confirms #{List.orderedBy}},
+   :implicitRules {:confirms #{List.implicitRules}},
+   :mode {:confirms #{List.mode}},
+   :resourceType {:type zen/string, :const {:value "List"}},
+   :source {:confirms #{List.source}},
+   :title {:confirms #{List.title}},
+   :note {:confirms #{List.note}},
+   :emptyReason {:confirms #{List.emptyReason}},
+   :extension {:confirms #{List.extension}},
+   :contained {:confirms #{List.contained}},
+   :status {:confirms #{List.status}},
+   :language {:confirms #{List.language}},
+   :id {:confirms #{List.id}},
+   :code {:confirms #{List.code}},
+   :identifier {:confirms #{List.identifier}},
+   :entry {:confirms #{List.entry}},
+   :subject {:confirms #{List.subject}},
+   :modifierExtension {:confirms #{List.modifierExtension}},
+   :text {:confirms #{List.text}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-drug-formulary/StructureDefinition/usdf-CoveragePlan"},
+ List.code
+ {:zen/desc
+  "This code defines the purpose of the list - why it was created.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ List.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.contained.*}}},
+ List.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ List.date
+ {:zen/desc "The date that the list was prepared.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ List.emptyReason
+ {:zen/desc "If the list is empty, why the list is empty.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ List.encounter
+ {:zen/desc
+  "The encounter that is the context in which this list was created.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ List.entry
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.entry.*}}},
+ List.entry.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:item},
+  :type zen/map,
+  :zen/desc "Entries in this list.",
+  :keys
+  {:flag {:confirms #{List.entry.flag}},
+   :date {:confirms #{List.entry.date}},
+   :id {:confirms #{List.entry.id}},
+   :extension {:confirms #{List.entry.extension}},
+   :deleted {:confirms #{List.entry.deleted}},
+   :modifierExtension {:confirms #{List.entry.modifierExtension}},
+   :item {:confirms #{List.entry.item}}}},
+ List.entry.date
+ {:zen/desc "When this item was added to the list.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ List.entry.deleted
+ {:zen/desc "True if this item is marked as deleted in the list.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ List.entry.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.entry.extension.*}}},
+ List.entry.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ List.entry.flag
+ {:zen/desc
+  "The flag allows the system constructing the list to indicate the role and significance of the item in the list.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ List.entry.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ List.entry.item
+ {:zen/desc
+  "A reference to the actual resource from which data was derived.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ List.entry.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.entry.modifierExtension.*}}},
+ List.entry.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ List.extension
+ {:minItems 4,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.extension.*}},
+  :slicing
+  {:slices
+   {"usdf-FormularyURL-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms #{List.extension:usdf-FormularyURL-extension.*}}},
+     :schema
+     {:confirms #{List.extension:usdf-FormularyURL-extension}}},
+    "usdf-PlanIDType-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{List.extension:usdf-PlanIDType-extension.*}}},
+     :schema {:confirms #{List.extension:usdf-PlanIDType-extension}}},
+    "usdf-EmailPlanContact-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms #{List.extension:usdf-EmailPlanContact-extension.*}}},
+     :schema
+     {:confirms #{List.extension:usdf-EmailPlanContact-extension}}},
+    "usdf-MarketingURL-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms #{List.extension:usdf-MarketingURL-extension.*}}},
+     :schema
+     {:confirms #{List.extension:usdf-MarketingURL-extension}}},
+    "usdf-SummaryURL-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{List.extension:usdf-SummaryURL-extension.*}}},
+     :schema {:confirms #{List.extension:usdf-SummaryURL-extension}}},
+    "usdf-DrugTierDefinition-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{List.extension:usdf-DrugTierDefinition-extension.*}}},
+     :schema
+     {:confirms #{List.extension:usdf-DrugTierDefinition-extension}}},
+    "usdf-Network-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{List.extension:usdf-Network-extension.*}}},
+     :schema {:confirms #{List.extension:usdf-Network-extension}}}}}},
+ List.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ List.extension:usdf-DrugTierDefinition-extension
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{List.extension:usdf-DrugTierDefinition-extension.*}}},
+ List.extension:usdf-DrugTierDefinition-extension.*
+ {:confirms
+  #{drug-formulary.v1.usdf-DrugTierDefinition-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ List.extension:usdf-EmailPlanContact-extension
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{List.extension:usdf-EmailPlanContact-extension.*}}},
+ List.extension:usdf-EmailPlanContact-extension.*
+ {:confirms
+  #{drug-formulary.v1.usdf-EmailPlanContact-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ List.extension:usdf-FormularyURL-extension
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.extension:usdf-FormularyURL-extension.*}}},
+ List.extension:usdf-FormularyURL-extension.*
+ {:confirms #{drug-formulary.v1.usdf-FormularyURL-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ List.extension:usdf-MarketingURL-extension
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.extension:usdf-MarketingURL-extension.*}}},
+ List.extension:usdf-MarketingURL-extension.*
+ {:confirms #{drug-formulary.v1.usdf-MarketingURL-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ List.extension:usdf-Network-extension
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.extension:usdf-Network-extension.*}}},
+ List.extension:usdf-Network-extension.*
+ {:confirms #{drug-formulary.v1.usdf-Network-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ List.extension:usdf-PlanIDType-extension
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.extension:usdf-PlanIDType-extension.*}}},
+ List.extension:usdf-PlanIDType-extension.*
+ {:confirms #{drug-formulary.v1.usdf-PlanIDType-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ List.extension:usdf-SummaryURL-extension
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.extension:usdf-SummaryURL-extension.*}}},
+ List.extension:usdf-SummaryURL-extension.*
+ {:confirms #{drug-formulary.v1.usdf-SummaryURL-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ List.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ List.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.identifier.*}}},
+ List.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Identifier for the List assigned for business purposes outside the context of FHIR."},
+ List.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ List.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ List.meta
+ {:zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Meta}},
+ List.mode
+ {aidbox-fx/valueset List.mode.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "How this list was prepared - whether it is a working list that is suitable for being maintained on an ongoing basis, or if it represents a snapshot of a list of items from another source, or whether it is a prepared list where items may be marked as added, modified or deleted."},
+ List.mode.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/list-mode"},
+ List.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.modifierExtension.*}}},
+ List.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ List.note
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{List.note.*}}},
+ List.note.*
+ {:confirms #{fhir/Annotation},
+  :zen/tags #{zen/schema},
+  :zen/desc "Comments that apply to the overall list."},
+ List.orderedBy
+ {:zen/desc "What order applies to the items in the list.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ List.source
+ {:zen/desc
+  "The entity responsible for deciding what the contents of the list were. Where the list was created by a human, this is the same as the author of the list.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ List.status
+ {aidbox-fx/valueset List.status.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Indicates the current state of this list."},
+ List.status.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/list-status"},
+ List.subject
+ {:zen/desc
+  "The common subject (or patient) of the resources that are in the list if there is one.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ List.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}},
+ List.title
+ {:zen/desc "A label for the list assigned by the author.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}}}

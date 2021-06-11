@@ -1,0 +1,715 @@
+{ns plan-net.v1.plannet-HealthcareService,
+ import
+ #{aidbox-fx fhir aidbox plan-net.v1.via-intermediary
+   plan-net.v1.newpatients plan-net.v1.delivery-method
+   plan-net.v1.contactpoint-availabletime},
+ HealthcareService
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:category :extension :active},
+  :type zen/map,
+  :zen/desc
+  "The HealthCareService resource typically describes services offered by an organization/practitioner at a location. The resource may be used to encompass a variety of services covering the entire healthcare spectrum, including promotion, prevention, diagnostics, pharmacy, hospital and ambulatory care, home care, long-term care, and other health-related and community services.",
+  :resourceType "HealthcareService",
+  :keys
+  {:coverageArea {:confirms #{HealthcareService.coverageArea}},
+   :category {:confirms #{HealthcareService.category}},
+   :availableTime {:confirms #{HealthcareService.availableTime}},
+   :meta {:confirms #{HealthcareService.meta}},
+   :specialty {:confirms #{HealthcareService.specialty}},
+   :name {:confirms #{HealthcareService.name}},
+   :notAvailable {:confirms #{HealthcareService.notAvailable}},
+   :implicitRules {:confirms #{HealthcareService.implicitRules}},
+   :providedBy {:confirms #{HealthcareService.providedBy}},
+   :type {:confirms #{HealthcareService.type}},
+   :eligibility {:confirms #{HealthcareService.eligibility}},
+   :resourceType
+   {:type zen/string, :const {:value "HealthcareService"}},
+   :extraDetails {:confirms #{HealthcareService.extraDetails}},
+   :characteristic {:confirms #{HealthcareService.characteristic}},
+   :extension {:confirms #{HealthcareService.extension}},
+   :contained {:confirms #{HealthcareService.contained}},
+   :photo {:confirms #{HealthcareService.photo}},
+   :language {:confirms #{HealthcareService.language}},
+   :active {:confirms #{HealthcareService.active}},
+   :communication {:confirms #{HealthcareService.communication}},
+   :id {:confirms #{HealthcareService.id}},
+   :comment {:confirms #{HealthcareService.comment}},
+   :identifier {:confirms #{HealthcareService.identifier}},
+   :serviceProvisionCode
+   {:confirms #{HealthcareService.serviceProvisionCode}},
+   :availabilityExceptions
+   {:confirms #{HealthcareService.availabilityExceptions}},
+   :appointmentRequired
+   {:confirms #{HealthcareService.appointmentRequired}},
+   :referralMethod {:confirms #{HealthcareService.referralMethod}},
+   :telecom {:confirms #{HealthcareService.telecom}},
+   :location {:confirms #{HealthcareService.location}},
+   :program {:confirms #{HealthcareService.program}},
+   :endpoint {:confirms #{HealthcareService.endpoint}},
+   :modifierExtension
+   {:confirms #{HealthcareService.modifierExtension}},
+   :text {:confirms #{HealthcareService.text}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-HealthcareService"},
+ HealthcareService.active
+ {:confirms #{fhir/boolean},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "This flag is used to mark the record to not be used. This is not used when a center is closed for maintenance, or for holidays, the notAvailable period is to be used for this.",
+  :const {:value true}},
+ HealthcareService.appointmentRequired
+ {:zen/desc
+  "Indicates whether or not a prospective consumer will require an appointment for a particular service at a site to be provided by the Organization. Indicates if an appointment is required for access to this service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ HealthcareService.availabilityExceptions
+ {:zen/desc
+  "A description of site availability exceptions, e.g. public holiday availability. Succinctly describing all possible exceptions to normal site availability as details in the available Times and not available Times.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.availableTime
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.availableTime.*}}},
+ HealthcareService.availableTime.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A collection of times that the Service Site is available.",
+  :keys
+  {:availableStartTime
+   {:confirms #{HealthcareService.availableTime.availableStartTime}},
+   :modifierExtension
+   {:confirms #{HealthcareService.availableTime.modifierExtension}},
+   :allDay {:confirms #{HealthcareService.availableTime.allDay}},
+   :id {:confirms #{HealthcareService.availableTime.id}},
+   :daysOfWeek
+   {:confirms #{HealthcareService.availableTime.daysOfWeek}},
+   :extension {:confirms #{HealthcareService.availableTime.extension}},
+   :availableEndTime
+   {:confirms #{HealthcareService.availableTime.availableEndTime}}}},
+ HealthcareService.availableTime.allDay
+ {:zen/desc
+  "Is this always available? (hence times are irrelevant) e.g. 24 hour service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ HealthcareService.availableTime.availableEndTime
+ {:zen/desc
+  "The closing time of day. Note: If the AllDay flag is set, then this time is ignored.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/time}},
+ HealthcareService.availableTime.availableStartTime
+ {:zen/desc
+  "The opening time of day. Note: If the AllDay flag is set, then this time is ignored.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/time}},
+ HealthcareService.availableTime.daysOfWeek
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.availableTime.daysOfWeek.*}}},
+ HealthcareService.availableTime.daysOfWeek.*
+ {aidbox-fx/valueset
+  HealthcareService.availableTime.daysOfWeek.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Indicates which days of the week are available between the start and end Times."},
+ HealthcareService.availableTime.daysOfWeek.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/days-of-week"},
+ HealthcareService.availableTime.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.availableTime.extension.*}}},
+ HealthcareService.availableTime.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ HealthcareService.availableTime.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.availableTime.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{HealthcareService.availableTime.modifierExtension.*}}},
+ HealthcareService.availableTime.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ HealthcareService.category
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.category.*}}},
+ HealthcareService.category.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Identifies the broad category of service being performed or delivered."},
+ HealthcareService.characteristic
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.characteristic.*}}},
+ HealthcareService.characteristic.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc "Collection of characteristics (attributes)."},
+ HealthcareService.comment
+ {:zen/desc
+  "Any additional description of the service and/or any specific issues not covered by the other attributes, which can be displayed as further detail under the serviceName.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.communication
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.communication.*}}},
+ HealthcareService.communication.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Some services are specifically made available in multiple languages, this property permits a directory to declare the languages this is offered in. Typically this is only provided where a service operates in communities with mixed languages used."},
+ HealthcareService.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.contained.*}}},
+ HealthcareService.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ HealthcareService.coverageArea
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.coverageArea.*}}},
+ HealthcareService.coverageArea.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The location(s) that this service is available to (not where the service is provided)."},
+ HealthcareService.eligibility
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.eligibility.*}}},
+ HealthcareService.eligibility.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Does this service have specific eligibility requirements that need to be met in order to use the service?",
+  :keys
+  {:code {:confirms #{HealthcareService.eligibility.code}},
+   :id {:confirms #{HealthcareService.eligibility.id}},
+   :modifierExtension
+   {:confirms #{HealthcareService.eligibility.modifierExtension}},
+   :comment {:confirms #{HealthcareService.eligibility.comment}},
+   :extension {:confirms #{HealthcareService.eligibility.extension}}}},
+ HealthcareService.eligibility.code
+ {:zen/desc "Coded value for the eligibility.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ HealthcareService.eligibility.comment
+ {:zen/desc "Describes the eligibility conditions for the service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/markdown}},
+ HealthcareService.eligibility.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.eligibility.extension.*}}},
+ HealthcareService.eligibility.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ HealthcareService.eligibility.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.eligibility.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{HealthcareService.eligibility.modifierExtension.*}}},
+ HealthcareService.eligibility.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ HealthcareService.endpoint
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.endpoint.*}}},
+ HealthcareService.endpoint.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Technical endpoints providing access to services operated for the specific healthcare services defined at this resource."},
+ HealthcareService.extension
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.extension.*}},
+  :slicing
+  {:slices
+   {"deliverymethod"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms #{HealthcareService.extension:deliverymethod.*}}},
+     :schema
+     {:confirms #{HealthcareService.extension:deliverymethod}}},
+    "newpatients"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{HealthcareService.extension:newpatients.*}}},
+     :schema
+     {:confirms #{HealthcareService.extension:newpatients}}}}}},
+ HealthcareService.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ HealthcareService.extension:deliverymethod
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.extension:deliverymethod.*}}},
+ HealthcareService.extension:deliverymethod.*
+ {:confirms #{plan-net.v1.delivery-method/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ HealthcareService.extension:newpatients
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.extension:newpatients.*}}},
+ HealthcareService.extension:newpatients.*
+ {:confirms #{plan-net.v1.newpatients/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ HealthcareService.extraDetails
+ {:zen/desc
+  "Extra details about the service that can't be placed in the other fields.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/markdown}},
+ HealthcareService.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.identifier.*}}},
+ HealthcareService.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "External identifiers for this item.",
+  :keys
+  {:id {:confirms #{HealthcareService.identifier.id}},
+   :period {:confirms #{HealthcareService.identifier.period}},
+   :value {:confirms #{HealthcareService.identifier.value}},
+   :use {:confirms #{HealthcareService.identifier.use}},
+   :assigner {:confirms #{HealthcareService.identifier.assigner}},
+   :system {:confirms #{HealthcareService.identifier.system}},
+   :type {:confirms #{HealthcareService.identifier.type}},
+   :extension {:confirms #{HealthcareService.identifier.extension}}}},
+ HealthcareService.identifier.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ HealthcareService.identifier.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.identifier.extension.*}},
+  :slicing {:slices {}}},
+ HealthcareService.identifier.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ HealthcareService.identifier.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.identifier.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ HealthcareService.identifier.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ HealthcareService.identifier.type
+ {:zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ HealthcareService.identifier.use
+ {aidbox-fx/valueset HealthcareService.identifier.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ HealthcareService.identifier.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ HealthcareService.identifier.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ HealthcareService.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ HealthcareService.location
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.location.*}}},
+ HealthcareService.location.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The location(s) where this healthcare service may be provided."},
+ HealthcareService.meta
+ {:confirms #{fhir/Meta},
+  :zen/tags #{zen/schema},
+  :require #{:lastUpdated},
+  :type zen/map,
+  :zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :keys
+  {:security {:confirms #{HealthcareService.meta.security}},
+   :source {:confirms #{HealthcareService.meta.source}},
+   :id {:confirms #{HealthcareService.meta.id}},
+   :versionId {:confirms #{HealthcareService.meta.versionId}},
+   :profile {:confirms #{HealthcareService.meta.profile}},
+   :tag {:confirms #{HealthcareService.meta.tag}},
+   :lastUpdated {:confirms #{HealthcareService.meta.lastUpdated}},
+   :extension {:confirms #{HealthcareService.meta.extension}}}},
+ HealthcareService.meta.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.meta.extension.*}},
+  :slicing {:slices {}}},
+ HealthcareService.meta.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ HealthcareService.meta.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.meta.lastUpdated
+ {:zen/desc
+  "When the resource last changed - e.g. when the version changed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/instant}},
+ HealthcareService.meta.profile
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.meta.profile.*}}},
+ HealthcareService.meta.profile.*
+ {:confirms #{fhir/canonical},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A list of profiles (references to [StructureDefinition](http://hl7.org/fhir/R4/structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](http://hl7.org/fhir/R4/structuredefinition-definitions.html#StructureDefinition.url)."},
+ HealthcareService.meta.security
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.meta.security.*}}},
+ HealthcareService.meta.security.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."},
+ HealthcareService.meta.source
+ {:zen/desc
+  "A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](http://hl7.org/fhir/R4/provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ HealthcareService.meta.tag
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.meta.tag.*}}},
+ HealthcareService.meta.tag.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."},
+ HealthcareService.meta.versionId
+ {:zen/desc
+  "The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/id}},
+ HealthcareService.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.modifierExtension.*}}},
+ HealthcareService.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ HealthcareService.name
+ {:zen/desc
+  "Further description of the service as it would be presented to a consumer while searching.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.notAvailable
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.notAvailable.*}}},
+ HealthcareService.notAvailable.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:description},
+  :type zen/map,
+  :zen/desc
+  "The HealthcareService is not available during this period of time due to the provided reason.",
+  :keys
+  {:extension {:confirms #{HealthcareService.notAvailable.extension}},
+   :during {:confirms #{HealthcareService.notAvailable.during}},
+   :description
+   {:confirms #{HealthcareService.notAvailable.description}},
+   :modifierExtension
+   {:confirms #{HealthcareService.notAvailable.modifierExtension}},
+   :id {:confirms #{HealthcareService.notAvailable.id}}}},
+ HealthcareService.notAvailable.description
+ {:zen/desc
+  "The reason that can be presented to the user as to why this time is not available.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.notAvailable.during
+ {:zen/desc
+  "Service is not available (seasonally or for a public holiday) from this date.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ HealthcareService.notAvailable.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.notAvailable.extension.*}}},
+ HealthcareService.notAvailable.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ HealthcareService.notAvailable.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.notAvailable.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{HealthcareService.notAvailable.modifierExtension.*}}},
+ HealthcareService.notAvailable.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ HealthcareService.photo
+ {:zen/desc
+  "If there is a photo/symbol associated with this HealthcareService, it may be included here to facilitate quick identification of the service in a list.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Attachment}},
+ HealthcareService.program
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.program.*}}},
+ HealthcareService.program.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc "Programs that this service is applicable to."},
+ HealthcareService.providedBy
+ {:zen/desc "The organization that provides this healthcare service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ HealthcareService.referralMethod
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.referralMethod.*}}},
+ HealthcareService.referralMethod.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Ways that the service accepts referrals, if this is not provided then it is implied that no referral is required."},
+ HealthcareService.serviceProvisionCode
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.serviceProvisionCode.*}}},
+ HealthcareService.serviceProvisionCode.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The code(s) that detail the conditions under which the healthcare service is available/offered."},
+ HealthcareService.specialty
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.specialty.*}}},
+ HealthcareService.specialty.*
+ {aidbox-fx/valueset HealthcareService.specialty.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Collection of specialties handled by the service site. This is more of a medical term."},
+ HealthcareService.specialty.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/ValueSet/SpecialtiesVS"},
+ HealthcareService.telecom
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.telecom.*}}},
+ HealthcareService.telecom.*
+ {:confirms #{fhir/ContactPoint},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "List of contacts related to this specific healthcare service.",
+  :keys
+  {:value {:confirms #{HealthcareService.telecom.value}},
+   :id {:confirms #{HealthcareService.telecom.id}},
+   :use {:confirms #{HealthcareService.telecom.use}},
+   :period {:confirms #{HealthcareService.telecom.period}},
+   :rank {:confirms #{HealthcareService.telecom.rank}},
+   :system {:confirms #{HealthcareService.telecom.system}},
+   :extension {:confirms #{HealthcareService.telecom.extension}}}},
+ HealthcareService.telecom.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.telecom.extension.*}},
+  :slicing
+  {:slices
+   {"via-intermediary"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{HealthcareService.telecom.extension:via-intermediary.*}}},
+     :schema
+     {:confirms
+      #{HealthcareService.telecom.extension:via-intermediary}}},
+    "contactpoint-availabletime"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{HealthcareService.telecom.extension:contactpoint-availabletime.*}}},
+     :schema
+     {:confirms
+      #{HealthcareService.telecom.extension:contactpoint-availabletime}}}}}},
+ HealthcareService.telecom.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ HealthcareService.telecom.extension:contactpoint-availabletime
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{HealthcareService.telecom.extension:contactpoint-availabletime.*}}},
+ HealthcareService.telecom.extension:contactpoint-availabletime.*
+ {:confirms #{plan-net.v1.contactpoint-availabletime/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ HealthcareService.telecom.extension:via-intermediary
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{HealthcareService.telecom.extension:via-intermediary.*}}},
+ HealthcareService.telecom.extension:via-intermediary.*
+ {:confirms #{plan-net.v1.via-intermediary/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ HealthcareService.telecom.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.telecom.period
+ {:zen/desc "Time period when the contact point was/is in use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ HealthcareService.telecom.rank
+ {:zen/desc
+  "Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred than those with higher rank values.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ HealthcareService.telecom.system
+ {aidbox-fx/valueset HealthcareService.telecom.system.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Telecommunications form for contact point - what communications system is required to make use of the contact."},
+ HealthcareService.telecom.system.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-system"},
+ HealthcareService.telecom.use
+ {aidbox-fx/valueset HealthcareService.telecom.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Identifies the purpose for the contact point."},
+ HealthcareService.telecom.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-use"},
+ HealthcareService.telecom.value
+ {:zen/desc
+  "The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ HealthcareService.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}},
+ HealthcareService.type
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{HealthcareService.type.*}}},
+ HealthcareService.type.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The specific type of service that may be delivered or performed."}}

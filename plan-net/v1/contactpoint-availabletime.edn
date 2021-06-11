@@ -1,0 +1,288 @@
+{ns plan-net.v1.contactpoint-availabletime,
+ import #{aidbox-fx fhir aidbox},
+ Extension
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:url},
+  :type zen/map,
+  :zen/desc
+  "An extension representing the days and times a contact point is available",
+  :keys
+  {:valueBase64Binary {:confirms #{fhir/base64Binary}},
+   :valueAge {:confirms #{fhir/Age}},
+   :valueParameterDefinition {:confirms #{fhir/ParameterDefinition}},
+   :valueTiming {:confirms #{fhir/Timing}},
+   :valueCode {:confirms #{fhir/code}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueContributor {:confirms #{fhir/Contributor}},
+   :valueContactDetail {:confirms #{fhir/ContactDetail}},
+   :valueUri {:confirms #{fhir/uri}},
+   :valueUsageContext {:confirms #{fhir/UsageContext}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueDecimal {:confirms #{fhir/decimal}},
+   :valueCanonical {:confirms #{fhir/canonical}},
+   :valueMarkdown {:confirms #{fhir/markdown}},
+   :valueIdentifier {:confirms #{fhir/Identifier}},
+   :valueTriggerDefinition {:confirms #{fhir/TriggerDefinition}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueCount {:confirms #{fhir/Count}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueInstant {:confirms #{fhir/instant}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :valueDate {:confirms #{fhir/date}},
+   :valueDuration {:confirms #{fhir/Duration}},
+   :valueDataRequirement {:confirms #{fhir/DataRequirement}},
+   :valueMeta {:confirms #{fhir/Meta}},
+   :valueMoney {:confirms #{fhir/Money}},
+   :valueCoding {:confirms #{fhir/Coding}},
+   :valueExpression {:confirms #{fhir/Expression}},
+   :extension {:confirms #{Extension.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Extension.id}},
+   :valueDosage {:confirms #{fhir/Dosage}},
+   :valueContactPoint {:confirms #{fhir/ContactPoint}},
+   :url {:confirms #{Extension.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueAnnotation {:confirms #{fhir/Annotation}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueDistance {:confirms #{fhir/Distance}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueSignature {:confirms #{fhir/Signature}},
+   :valueUuid {:confirms #{fhir/uuid}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :valueHumanName {:confirms #{fhir/HumanName}},
+   :valueUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :valueOid {:confirms #{fhir/oid}},
+   :valueAddress {:confirms #{fhir/Address}},
+   :valueRelatedArtifact {:confirms #{fhir/RelatedArtifact}},
+   :valuePositiveInt {:confirms #{fhir/positiveInt}},
+   :valueId {:confirms #{fhir/id}},
+   :valueUrl {:confirms #{fhir/url}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueAge :valueParameterDefinition
+      :valueTiming :valueCode :valueReference :valueContributor
+      :valueContactDetail :valueUri :valueUsageContext :valueTime
+      :valueDecimal :valueCanonical :valueMarkdown :valueIdentifier
+      :valueTriggerDefinition :valueQuantity :valueCount :valueString
+      :valueRatio :valueBoolean :valueInstant :valueDateTime :valueDate
+      :valueDuration :valueDataRequirement :valueMeta :valueMoney
+      :valueCoding :valueExpression :valueSampledData :valueDosage
+      :valueContactPoint :valueCodeableConcept :valueAnnotation
+      :valuePeriod :valueDistance :valueRange :valueSignature
+      :valueUuid :valueInteger :valueHumanName :valueUnsignedInt
+      :valueAttachment :valueOid :valueAddress :valueRelatedArtifact
+      :valuePositiveInt :valueId :valueUrl}},
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime"},
+ Extension.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension.*}},
+  :slicing
+  {:slices
+   {"availableEndTime"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:availableEndTime.*}}},
+     :schema {:confirms #{Extension.extension:availableEndTime}}},
+    "allDay"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:allDay.*}}},
+     :schema {:confirms #{Extension.extension:allDay}}},
+    "daysOfWeek"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:daysOfWeek.*}}},
+     :schema {:confirms #{Extension.extension:daysOfWeek}}},
+    "availableStartTime"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:availableStartTime.*}}},
+     :schema {:confirms #{Extension.extension:availableStartTime}}}}}},
+ Extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Extension.extension:allDay
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:allDay.*}}},
+ Extension.extension:allDay.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:id {:confirms #{Extension.extension:allDay.id}},
+   :url {:confirms #{Extension.extension:allDay.url}},
+   :extension {:confirms #{Extension.extension:allDay.extension}},
+   :valueBoolean {:confirms #{fhir/boolean}}}},
+ Extension.extension:allDay.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:allDay.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:allDay.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:allDay.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:allDay.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "allDay"}},
+ Extension.extension:availableEndTime
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:availableEndTime.*}}},
+ Extension.extension:availableEndTime.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:id {:confirms #{Extension.extension:availableEndTime.id}},
+   :url {:confirms #{Extension.extension:availableEndTime.url}},
+   :extension
+   {:confirms #{Extension.extension:availableEndTime.extension}},
+   :valueTime {:confirms #{fhir/time}}}},
+ Extension.extension:availableEndTime.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Extension.extension:availableEndTime.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:availableEndTime.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:availableEndTime.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:availableEndTime.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "availableEndTime"}},
+ Extension.extension:availableStartTime
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:availableStartTime.*}}},
+ Extension.extension:availableStartTime.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:url {:confirms #{Extension.extension:availableStartTime.url}},
+   :extension
+   {:confirms #{Extension.extension:availableStartTime.extension}},
+   :id {:confirms #{Extension.extension:availableStartTime.id}},
+   :valueTime {:confirms #{fhir/time}}}},
+ Extension.extension:availableStartTime.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Extension.extension:availableStartTime.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:availableStartTime.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:availableStartTime.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:availableStartTime.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "availableStartTime"}},
+ Extension.extension:daysOfWeek
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:daysOfWeek.*}}},
+ Extension.extension:daysOfWeek.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:valueCode
+   {:confirms #{fhir/code Extension.extension:daysOfWeek.valueCode}},
+   :extension {:confirms #{Extension.extension:daysOfWeek.extension}},
+   :url {:confirms #{Extension.extension:daysOfWeek.url}},
+   :id {:confirms #{Extension.extension:daysOfWeek.id}}}},
+ Extension.extension:daysOfWeek.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:daysOfWeek.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:daysOfWeek.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:daysOfWeek.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:daysOfWeek.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "daysOfWeek"}},
+ Extension.extension:daysOfWeek.valueCode
+ {aidbox-fx/valueset Extension.extension:daysOfWeek.valueCode.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list)."},
+ Extension.extension:daysOfWeek.valueCode.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/days-of-week"},
+ Extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const
+  {:value
+   "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/contactpoint-availabletime"}}}

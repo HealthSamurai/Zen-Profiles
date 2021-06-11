@@ -1,0 +1,2 @@
+{ns carin-bb.test,
+ import #{carin-bb.test.C4BB-ExplanationOfBenefit-Pharmacy}}

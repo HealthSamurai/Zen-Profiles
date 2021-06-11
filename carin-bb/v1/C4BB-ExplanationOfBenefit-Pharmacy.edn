@@ -1,0 +1,3770 @@
+{ns carin-bb.v1.C4BB-ExplanationOfBenefit-Pharmacy,
+ import #{aidbox-fx fhir aidbox},
+ ExplanationOfBenefit
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require
+  #{:patient :insurance :meta :supportingInfo :use :type :created
+    :outcome :total :insurer :status :identifier :provider},
+  :type zen/map,
+  :zen/desc
+  "This profile is used for Explanation of Benefits (EOBs) based on claims submitted by retail pharmacies. \nThe claims data is based on submission standards adopted by the Department of Health and Human Services defined by NCPDP (National Council for Prescription Drug Program)",
+  :resourceType "ExplanationOfBenefit",
+  :keys
+  {:patient {:confirms #{ExplanationOfBenefit.patient}},
+   :claimResponse {:confirms #{ExplanationOfBenefit.claimResponse}},
+   :insurance {:confirms #{ExplanationOfBenefit.insurance}},
+   :benefitBalance {:confirms #{ExplanationOfBenefit.benefitBalance}},
+   :facility {:confirms #{ExplanationOfBenefit.facility}},
+   :processNote {:confirms #{ExplanationOfBenefit.processNote}},
+   :diagnosis {:confirms #{ExplanationOfBenefit.diagnosis}},
+   :meta {:confirms #{ExplanationOfBenefit.meta}},
+   :preAuthRef {:confirms #{ExplanationOfBenefit.preAuthRef}},
+   :adjudication {:confirms #{ExplanationOfBenefit.adjudication}},
+   :enterer {:confirms #{ExplanationOfBenefit.enterer}},
+   :supportingInfo {:confirms #{ExplanationOfBenefit.supportingInfo}},
+   :use {:confirms #{ExplanationOfBenefit.use}},
+   :payment {:confirms #{ExplanationOfBenefit.payment}},
+   :item {:confirms #{ExplanationOfBenefit.item}},
+   :implicitRules {:confirms #{ExplanationOfBenefit.implicitRules}},
+   :type {:confirms #{ExplanationOfBenefit.type}},
+   :created {:confirms #{ExplanationOfBenefit.created}},
+   :procedure {:confirms #{ExplanationOfBenefit.procedure}},
+   :outcome {:confirms #{ExplanationOfBenefit.outcome}},
+   :related {:confirms #{ExplanationOfBenefit.related}},
+   :resourceType
+   {:type zen/string, :const {:value "ExplanationOfBenefit"}},
+   :disposition {:confirms #{ExplanationOfBenefit.disposition}},
+   :extension {:confirms #{ExplanationOfBenefit.extension}},
+   :contained {:confirms #{ExplanationOfBenefit.contained}},
+   :referral {:confirms #{ExplanationOfBenefit.referral}},
+   :preAuthRefPeriod
+   {:confirms #{ExplanationOfBenefit.preAuthRefPeriod}},
+   :total {:confirms #{ExplanationOfBenefit.total}},
+   :insurer {:confirms #{ExplanationOfBenefit.insurer}},
+   :fundsReserve {:confirms #{ExplanationOfBenefit.fundsReserve}},
+   :priority {:confirms #{ExplanationOfBenefit.priority}},
+   :accident {:confirms #{ExplanationOfBenefit.accident}},
+   :status {:confirms #{ExplanationOfBenefit.status}},
+   :language {:confirms #{ExplanationOfBenefit.language}},
+   :payee {:confirms #{ExplanationOfBenefit.payee}},
+   :prescription {:confirms #{ExplanationOfBenefit.prescription}},
+   :id {:confirms #{ExplanationOfBenefit.id}},
+   :billablePeriod {:confirms #{ExplanationOfBenefit.billablePeriod}},
+   :identifier {:confirms #{ExplanationOfBenefit.identifier}},
+   :form {:confirms #{ExplanationOfBenefit.form}},
+   :subType {:confirms #{ExplanationOfBenefit.subType}},
+   :fundsReserveRequested
+   {:confirms #{ExplanationOfBenefit.fundsReserveRequested}},
+   :benefitPeriod {:confirms #{ExplanationOfBenefit.benefitPeriod}},
+   :precedence {:confirms #{ExplanationOfBenefit.precedence}},
+   :formCode {:confirms #{ExplanationOfBenefit.formCode}},
+   :provider {:confirms #{ExplanationOfBenefit.provider}},
+   :addItem {:confirms #{ExplanationOfBenefit.addItem}},
+   :originalPrescription
+   {:confirms #{ExplanationOfBenefit.originalPrescription}},
+   :modifierExtension
+   {:confirms #{ExplanationOfBenefit.modifierExtension}},
+   :careTeam {:confirms #{ExplanationOfBenefit.careTeam}},
+   :text {:confirms #{ExplanationOfBenefit.text}},
+   :claim {:confirms #{ExplanationOfBenefit.claim}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit-Pharmacy"},
+ ExplanationOfBenefit.accident
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Details of a accident which resulted in injuries which required the products and services listed in the claim.",
+  :keys
+  {:id {:confirms #{ExplanationOfBenefit.accident.id}},
+   :type {:confirms #{ExplanationOfBenefit.accident.type}},
+   :modifierExtension
+   {:confirms #{ExplanationOfBenefit.accident.modifierExtension}},
+   :date {:confirms #{ExplanationOfBenefit.accident.date}},
+   :extension {:confirms #{ExplanationOfBenefit.accident.extension}},
+   :locationAddress {:confirms #{fhir/Address}},
+   :locationReference {:confirms #{fhir/Reference}}},
+  :exclusive-keys #{#{:locationAddress :locationReference}}},
+ ExplanationOfBenefit.accident.date
+ {:zen/desc
+  "Date of an accident event  related to the products and services contained in the claim.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/date}},
+ ExplanationOfBenefit.accident.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.accident.extension.*}}},
+ ExplanationOfBenefit.accident.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.accident.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.accident.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.accident.modifierExtension.*}}},
+ ExplanationOfBenefit.accident.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.accident.type
+ {:zen/desc
+  "The type or context of the accident event for the purposes of selection of potential insurance coverages and determination of coordination between insurers.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.addItem
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.*}}},
+ ExplanationOfBenefit.addItem.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:productOrService},
+  :type zen/map,
+  :zen/desc
+  "The first-tier service adjudications for payor added product or service lines.",
+  :keys
+  {:locationAddress {:confirms #{fhir/Address}},
+   :modifier {:confirms #{ExplanationOfBenefit.addItem.modifier}},
+   :adjudication
+   {:confirms #{ExplanationOfBenefit.addItem.adjudication}},
+   :locationCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :itemSequence
+   {:confirms #{ExplanationOfBenefit.addItem.itemSequence}},
+   :net {:confirms #{ExplanationOfBenefit.addItem.net}},
+   :detailSequence
+   {:confirms #{ExplanationOfBenefit.addItem.detailSequence}},
+   :subSite {:confirms #{ExplanationOfBenefit.addItem.subSite}},
+   :productOrService
+   {:confirms #{ExplanationOfBenefit.addItem.productOrService}},
+   :extension {:confirms #{ExplanationOfBenefit.addItem.extension}},
+   :locationReference {:confirms #{fhir/Reference}},
+   :programCode
+   {:confirms #{ExplanationOfBenefit.addItem.programCode}},
+   :factor {:confirms #{ExplanationOfBenefit.addItem.factor}},
+   :id {:confirms #{ExplanationOfBenefit.addItem.id}},
+   :servicedDate {:confirms #{fhir/date}},
+   :subDetailSequence
+   {:confirms #{ExplanationOfBenefit.addItem.subDetailSequence}},
+   :bodySite {:confirms #{ExplanationOfBenefit.addItem.bodySite}},
+   :quantity {:confirms #{ExplanationOfBenefit.addItem.quantity}},
+   :provider {:confirms #{ExplanationOfBenefit.addItem.provider}},
+   :noteNumber {:confirms #{ExplanationOfBenefit.addItem.noteNumber}},
+   :unitPrice {:confirms #{ExplanationOfBenefit.addItem.unitPrice}},
+   :modifierExtension
+   {:confirms #{ExplanationOfBenefit.addItem.modifierExtension}},
+   :servicedPeriod {:confirms #{fhir/Period}},
+   :detail {:confirms #{ExplanationOfBenefit.addItem.detail}}},
+  :exclusive-keys
+  #{#{:locationAddress :locationCodeableConcept :locationReference}
+    #{:servicedDate :servicedPeriod}}},
+ ExplanationOfBenefit.addItem.adjudication
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.adjudication.*}}},
+ ExplanationOfBenefit.addItem.adjudication.*
+ #:zen{:desc "The adjudication results.", :tags #{zen/schema}},
+ ExplanationOfBenefit.addItem.bodySite
+ {:zen/desc
+  "Physical service site on the patient (limb, tooth, etc.).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.addItem.detail
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.detail.*}}},
+ ExplanationOfBenefit.addItem.detail.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:productOrService},
+  :type zen/map,
+  :zen/desc
+  "The second-tier service adjudications for payor added services.",
+  :keys
+  {:modifier
+   {:confirms #{ExplanationOfBenefit.addItem.detail.modifier}},
+   :adjudication
+   {:confirms #{ExplanationOfBenefit.addItem.detail.adjudication}},
+   :net {:confirms #{ExplanationOfBenefit.addItem.detail.net}},
+   :productOrService
+   {:confirms #{ExplanationOfBenefit.addItem.detail.productOrService}},
+   :extension
+   {:confirms #{ExplanationOfBenefit.addItem.detail.extension}},
+   :factor {:confirms #{ExplanationOfBenefit.addItem.detail.factor}},
+   :id {:confirms #{ExplanationOfBenefit.addItem.detail.id}},
+   :subDetail
+   {:confirms #{ExplanationOfBenefit.addItem.detail.subDetail}},
+   :quantity
+   {:confirms #{ExplanationOfBenefit.addItem.detail.quantity}},
+   :noteNumber
+   {:confirms #{ExplanationOfBenefit.addItem.detail.noteNumber}},
+   :unitPrice
+   {:confirms #{ExplanationOfBenefit.addItem.detail.unitPrice}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.addItem.detail.modifierExtension}}}},
+ ExplanationOfBenefit.addItem.detail.adjudication
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.addItem.detail.adjudication.*}}},
+ ExplanationOfBenefit.addItem.detail.adjudication.*
+ #:zen{:desc "The adjudication results.", :tags #{zen/schema}},
+ ExplanationOfBenefit.addItem.detail.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.addItem.detail.extension.*}}},
+ ExplanationOfBenefit.addItem.detail.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.addItem.detail.factor
+ {:zen/desc
+  "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ ExplanationOfBenefit.addItem.detail.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.addItem.detail.modifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.addItem.detail.modifier.*}}},
+ ExplanationOfBenefit.addItem.detail.modifier.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Item typification or modifiers codes to convey additional context for the product or service."},
+ ExplanationOfBenefit.addItem.detail.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.addItem.detail.modifierExtension.*}}},
+ ExplanationOfBenefit.addItem.detail.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.addItem.detail.net
+ {:zen/desc
+  "The quantity times the unit price for an additional service or product or charge.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.addItem.detail.noteNumber
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.addItem.detail.noteNumber.*}}},
+ ExplanationOfBenefit.addItem.detail.noteNumber.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The numbers associated with notes below which apply to the adjudication of this item."},
+ ExplanationOfBenefit.addItem.detail.productOrService
+ {:zen/desc
+  "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.addItem.detail.quantity
+ {:zen/desc "The number of repetitions of a service or product.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ ExplanationOfBenefit.addItem.detail.subDetail
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.addItem.detail.subDetail.*}}},
+ ExplanationOfBenefit.addItem.detail.subDetail.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:productOrService},
+  :type zen/map,
+  :zen/desc
+  "The third-tier service adjudications for payor added services.",
+  :keys
+  {:modifier
+   {:confirms
+    #{ExplanationOfBenefit.addItem.detail.subDetail.modifier}},
+   :adjudication
+   {:confirms
+    #{ExplanationOfBenefit.addItem.detail.subDetail.adjudication}},
+   :net
+   {:confirms #{ExplanationOfBenefit.addItem.detail.subDetail.net}},
+   :productOrService
+   {:confirms
+    #{ExplanationOfBenefit.addItem.detail.subDetail.productOrService}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.addItem.detail.subDetail.extension}},
+   :factor
+   {:confirms #{ExplanationOfBenefit.addItem.detail.subDetail.factor}},
+   :id {:confirms #{ExplanationOfBenefit.addItem.detail.subDetail.id}},
+   :quantity
+   {:confirms
+    #{ExplanationOfBenefit.addItem.detail.subDetail.quantity}},
+   :noteNumber
+   {:confirms
+    #{ExplanationOfBenefit.addItem.detail.subDetail.noteNumber}},
+   :unitPrice
+   {:confirms
+    #{ExplanationOfBenefit.addItem.detail.subDetail.unitPrice}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.addItem.detail.subDetail.modifierExtension}}}},
+ ExplanationOfBenefit.addItem.detail.subDetail.adjudication
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.addItem.detail.subDetail.adjudication.*}}},
+ ExplanationOfBenefit.addItem.detail.subDetail.adjudication.*
+ #:zen{:desc "The adjudication results.", :tags #{zen/schema}},
+ ExplanationOfBenefit.addItem.detail.subDetail.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.addItem.detail.subDetail.extension.*}}},
+ ExplanationOfBenefit.addItem.detail.subDetail.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.addItem.detail.subDetail.factor
+ {:zen/desc
+  "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ ExplanationOfBenefit.addItem.detail.subDetail.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.addItem.detail.subDetail.modifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.addItem.detail.subDetail.modifier.*}}},
+ ExplanationOfBenefit.addItem.detail.subDetail.modifier.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Item typification or modifiers codes to convey additional context for the product or service."},
+ ExplanationOfBenefit.addItem.detail.subDetail.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.addItem.detail.subDetail.modifierExtension.*}}},
+ ExplanationOfBenefit.addItem.detail.subDetail.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.addItem.detail.subDetail.net
+ {:zen/desc
+  "The quantity times the unit price for an additional service or product or charge.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.addItem.detail.subDetail.noteNumber
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.addItem.detail.subDetail.noteNumber.*}}},
+ ExplanationOfBenefit.addItem.detail.subDetail.noteNumber.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The numbers associated with notes below which apply to the adjudication of this item."},
+ ExplanationOfBenefit.addItem.detail.subDetail.productOrService
+ {:zen/desc
+  "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.addItem.detail.subDetail.quantity
+ {:zen/desc "The number of repetitions of a service or product.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ ExplanationOfBenefit.addItem.detail.subDetail.unitPrice
+ {:zen/desc
+  "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.addItem.detail.unitPrice
+ {:zen/desc
+  "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.addItem.detailSequence
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.detailSequence.*}}},
+ ExplanationOfBenefit.addItem.detailSequence.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The sequence number of the details within the claim item which this line is intended to replace."},
+ ExplanationOfBenefit.addItem.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.extension.*}}},
+ ExplanationOfBenefit.addItem.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.addItem.factor
+ {:zen/desc
+  "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ ExplanationOfBenefit.addItem.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.addItem.itemSequence
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.itemSequence.*}}},
+ ExplanationOfBenefit.addItem.itemSequence.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Claim items which this service line is intended to replace."},
+ ExplanationOfBenefit.addItem.modifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.modifier.*}}},
+ ExplanationOfBenefit.addItem.modifier.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Item typification or modifiers codes to convey additional context for the product or service."},
+ ExplanationOfBenefit.addItem.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.addItem.modifierExtension.*}}},
+ ExplanationOfBenefit.addItem.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.addItem.net
+ {:zen/desc
+  "The quantity times the unit price for an additional service or product or charge.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.addItem.noteNumber
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.noteNumber.*}}},
+ ExplanationOfBenefit.addItem.noteNumber.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The numbers associated with notes below which apply to the adjudication of this item."},
+ ExplanationOfBenefit.addItem.productOrService
+ {:zen/desc
+  "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.addItem.programCode
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.programCode.*}}},
+ ExplanationOfBenefit.addItem.programCode.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Identifies the program under which this may be recovered."},
+ ExplanationOfBenefit.addItem.provider
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.provider.*}}},
+ ExplanationOfBenefit.addItem.provider.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The providers who are authorized for the services rendered to the patient."},
+ ExplanationOfBenefit.addItem.quantity
+ {:zen/desc "The number of repetitions of a service or product.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ ExplanationOfBenefit.addItem.subDetailSequence
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.addItem.subDetailSequence.*}}},
+ ExplanationOfBenefit.addItem.subDetailSequence.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The sequence number of the sub-details woithin the details within the claim item which this line is intended to replace."},
+ ExplanationOfBenefit.addItem.subSite
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.addItem.subSite.*}}},
+ ExplanationOfBenefit.addItem.subSite.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A region or surface of the bodySite, e.g. limb region or tooth surface(s)."},
+ ExplanationOfBenefit.addItem.unitPrice
+ {:zen/desc
+  "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.adjudication
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.adjudication.*}}},
+ ExplanationOfBenefit.adjudication.*
+ #:zen{:tags #{zen/schema},
+       :desc
+       "The adjudication results which are presented at the header level rather than at the line-item or add-item levels."},
+ ExplanationOfBenefit.benefitBalance
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.benefitBalance.*}}},
+ ExplanationOfBenefit.benefitBalance.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category},
+  :type zen/map,
+  :zen/desc "Balance by Benefit Category.",
+  :keys
+  {:description
+   {:confirms #{ExplanationOfBenefit.benefitBalance.description}},
+   :category
+   {:confirms #{ExplanationOfBenefit.benefitBalance.category}},
+   :unit {:confirms #{ExplanationOfBenefit.benefitBalance.unit}},
+   :excluded
+   {:confirms #{ExplanationOfBenefit.benefitBalance.excluded}},
+   :name {:confirms #{ExplanationOfBenefit.benefitBalance.name}},
+   :financial
+   {:confirms #{ExplanationOfBenefit.benefitBalance.financial}},
+   :term {:confirms #{ExplanationOfBenefit.benefitBalance.term}},
+   :extension
+   {:confirms #{ExplanationOfBenefit.benefitBalance.extension}},
+   :id {:confirms #{ExplanationOfBenefit.benefitBalance.id}},
+   :network {:confirms #{ExplanationOfBenefit.benefitBalance.network}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.benefitBalance.modifierExtension}}}},
+ ExplanationOfBenefit.benefitBalance.category
+ {:zen/desc
+  "Code to identify the general type of benefits under which products and services are provided.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.benefitBalance.description
+ {:zen/desc "A richer description of the benefit or services covered.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.benefitBalance.excluded
+ {:zen/desc
+  "True if the indicated class of service is excluded from the plan, missing or False indicates the product or service is included in the coverage.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ ExplanationOfBenefit.benefitBalance.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.benefitBalance.extension.*}}},
+ ExplanationOfBenefit.benefitBalance.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.benefitBalance.financial
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.benefitBalance.financial.*}}},
+ ExplanationOfBenefit.benefitBalance.financial.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type},
+  :type zen/map,
+  :zen/desc "Benefits Used to date.",
+  :keys
+  {:allowedMoney {:confirms #{fhir/Money}},
+   :type
+   {:confirms #{ExplanationOfBenefit.benefitBalance.financial.type}},
+   :allowedUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.benefitBalance.financial.extension}},
+   :id {:confirms #{ExplanationOfBenefit.benefitBalance.financial.id}},
+   :usedUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :allowedString {:confirms #{fhir/string}},
+   :usedMoney {:confirms #{fhir/Money}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.benefitBalance.financial.modifierExtension}}},
+  :exclusive-keys
+  #{#{:usedUnsignedInt :usedMoney}
+    #{:allowedMoney :allowedUnsignedInt :allowedString}}},
+ ExplanationOfBenefit.benefitBalance.financial.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.benefitBalance.financial.extension.*}}},
+ ExplanationOfBenefit.benefitBalance.financial.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.benefitBalance.financial.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.benefitBalance.financial.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.benefitBalance.financial.modifierExtension.*}}},
+ ExplanationOfBenefit.benefitBalance.financial.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.benefitBalance.financial.type
+ {:zen/desc "Classification of benefit being provided.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.benefitBalance.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.benefitBalance.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.benefitBalance.modifierExtension.*}}},
+ ExplanationOfBenefit.benefitBalance.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.benefitBalance.name
+ {:zen/desc "A short name or tag for the benefit.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.benefitBalance.network
+ {:zen/desc
+  "Is a flag to indicate whether the benefits refer to in-network providers or out-of-network providers.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.benefitBalance.term
+ {:zen/desc
+  "The term or period of the values such as 'maximum lifetime benefit' or 'maximum annual visits'.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.benefitBalance.unit
+ {:zen/desc
+  "Indicates if the benefits apply to an individual or to the family.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.benefitPeriod
+ {:zen/desc "The term of the benefits documented in this response.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ ExplanationOfBenefit.billablePeriod
+ {:confirms #{fhir/Period},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "The period for which charges are being submitted.",
+  :keys
+  {:end {:confirms #{ExplanationOfBenefit.billablePeriod.end}},
+   :extension
+   {:confirms #{ExplanationOfBenefit.billablePeriod.extension}},
+   :id {:confirms #{ExplanationOfBenefit.billablePeriod.id}},
+   :start {:confirms #{ExplanationOfBenefit.billablePeriod.start}}}},
+ ExplanationOfBenefit.billablePeriod.end
+ {:zen/desc
+  "The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ ExplanationOfBenefit.billablePeriod.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.billablePeriod.extension.*}},
+  :slicing {:slices {}}},
+ ExplanationOfBenefit.billablePeriod.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.billablePeriod.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.billablePeriod.start
+ {:zen/desc "The start of the period. The boundary is inclusive.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ ExplanationOfBenefit.careTeam
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.careTeam.*}}},
+ ExplanationOfBenefit.careTeam.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:role :sequence :provider},
+  :type zen/map,
+  :zen/desc
+  "The members of the team who provided the products and services.",
+  :keys
+  {:modifierExtension
+   {:confirms #{ExplanationOfBenefit.careTeam.modifierExtension}},
+   :role {:confirms #{ExplanationOfBenefit.careTeam.role}},
+   :extension {:confirms #{ExplanationOfBenefit.careTeam.extension}},
+   :provider {:confirms #{ExplanationOfBenefit.careTeam.provider}},
+   :responsible
+   {:confirms #{ExplanationOfBenefit.careTeam.responsible}},
+   :id {:confirms #{ExplanationOfBenefit.careTeam.id}},
+   :qualification
+   {:confirms #{ExplanationOfBenefit.careTeam.qualification}},
+   :sequence {:confirms #{ExplanationOfBenefit.careTeam.sequence}}}},
+ ExplanationOfBenefit.careTeam.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.careTeam.extension.*}}},
+ ExplanationOfBenefit.careTeam.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.careTeam.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.careTeam.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.careTeam.modifierExtension.*}}},
+ ExplanationOfBenefit.careTeam.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.careTeam.provider
+ {:zen/desc "Member of the team who provided the product or service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.careTeam.qualification
+ {:zen/desc
+  "The qualification of the practitioner which is applicable for this service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.careTeam.responsible
+ {:zen/desc
+  "The party who is billing and/or responsible for the claimed products or services.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ ExplanationOfBenefit.careTeam.role
+ {aidbox-fx/valueset ExplanationOfBenefit.careTeam.role.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The lead, assisting or supervising practitioner and their discipline if a multidisciplinary team."},
+ ExplanationOfBenefit.careTeam.role.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimPharmacyTeamRole"},
+ ExplanationOfBenefit.careTeam.sequence
+ {:zen/desc "A number to uniquely identify care team entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.claim
+ {:zen/desc
+  "The business identifier for the instance of the adjudication request: claim predetermination or preauthorization.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.claimResponse
+ {:zen/desc
+  "The business identifier for the instance of the adjudication response: claim, predetermination or preauthorization response.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.contained.*}}},
+ ExplanationOfBenefit.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ ExplanationOfBenefit.created
+ {:zen/desc "The date this resource was created.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ ExplanationOfBenefit.diagnosis
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.diagnosis.*}}},
+ ExplanationOfBenefit.diagnosis.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require
+  #{:sequence #{:diagnosisCodeableConcept :diagnosisReference}},
+  :type zen/map,
+  :zen/desc "Information about diagnoses relevant to the claim items.",
+  :keys
+  {:packageCode
+   {:confirms #{ExplanationOfBenefit.diagnosis.packageCode}},
+   :diagnosisCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :type {:confirms #{ExplanationOfBenefit.diagnosis.type}},
+   :diagnosisReference {:confirms #{fhir/Reference}},
+   :extension {:confirms #{ExplanationOfBenefit.diagnosis.extension}},
+   :id {:confirms #{ExplanationOfBenefit.diagnosis.id}},
+   :sequence {:confirms #{ExplanationOfBenefit.diagnosis.sequence}},
+   :onAdmission
+   {:confirms #{ExplanationOfBenefit.diagnosis.onAdmission}},
+   :modifierExtension
+   {:confirms #{ExplanationOfBenefit.diagnosis.modifierExtension}}},
+  :exclusive-keys #{#{:diagnosisCodeableConcept :diagnosisReference}}},
+ ExplanationOfBenefit.diagnosis.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.diagnosis.extension.*}}},
+ ExplanationOfBenefit.diagnosis.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.diagnosis.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.diagnosis.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.diagnosis.modifierExtension.*}}},
+ ExplanationOfBenefit.diagnosis.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.diagnosis.onAdmission
+ {:zen/desc
+  "Indication of whether the diagnosis was present on admission to a facility.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.diagnosis.packageCode
+ {:zen/desc
+  "A package billing code or bundle code used to group products and services to a particular health condition (such as heart attack) which is based on a predetermined grouping code system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.diagnosis.sequence
+ {:zen/desc "A number to uniquely identify diagnosis entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.diagnosis.type
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.diagnosis.type.*}}},
+ ExplanationOfBenefit.diagnosis.type.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "When the condition was observed or the relative ranking."},
+ ExplanationOfBenefit.disposition
+ {:zen/desc
+  "A human readable description of the status of the adjudication.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.enterer
+ {:zen/desc
+  "Individual who created the claim, predetermination or preauthorization.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.extension.*}}},
+ ExplanationOfBenefit.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.facility
+ {:zen/desc "Facility where the services were provided.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.form
+ {:zen/desc
+  "The actual form, by reference or inclusion, for printing the content or an EOB.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Attachment}},
+ ExplanationOfBenefit.formCode
+ {:zen/desc "A code for the form to be used for printing the content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.fundsReserve
+ {:zen/desc
+  "A code, used only on a response to a preauthorization, to indicate whether the benefits payable have been reserved and for whom.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.fundsReserveRequested
+ {:zen/desc
+  "A code to indicate whether and for whom funds are to be reserved for future claims.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.identifier
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.identifier.*}}},
+ ExplanationOfBenefit.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :require #{:type},
+  :type zen/map,
+  :zen/desc
+  "A unique identifier assigned to this explanation of benefit.",
+  :keys
+  {:assigner {:confirms #{ExplanationOfBenefit.identifier.assigner}},
+   :system {:confirms #{ExplanationOfBenefit.identifier.system}},
+   :id {:confirms #{ExplanationOfBenefit.identifier.id}},
+   :period {:confirms #{ExplanationOfBenefit.identifier.period}},
+   :type {:confirms #{ExplanationOfBenefit.identifier.type}},
+   :extension {:confirms #{ExplanationOfBenefit.identifier.extension}},
+   :value {:confirms #{ExplanationOfBenefit.identifier.value}},
+   :use {:confirms #{ExplanationOfBenefit.identifier.use}}}},
+ ExplanationOfBenefit.identifier.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.identifier.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.identifier.extension.*}},
+  :slicing {:slices {}}},
+ ExplanationOfBenefit.identifier.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.identifier.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.identifier.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ ExplanationOfBenefit.identifier.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ ExplanationOfBenefit.identifier.type
+ {:zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.identifier.use
+ {aidbox-fx/valueset ExplanationOfBenefit.identifier.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ ExplanationOfBenefit.identifier.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ ExplanationOfBenefit.identifier.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ ExplanationOfBenefit.insurance
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.insurance.*}}},
+ ExplanationOfBenefit.insurance.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:focal :coverage},
+  :type zen/map,
+  :zen/desc
+  "Financial instruments for reimbursement for the health care products and services specified on the claim.",
+  :keys
+  {:modifierExtension
+   {:confirms #{ExplanationOfBenefit.insurance.modifierExtension}},
+   :focal {:confirms #{ExplanationOfBenefit.insurance.focal}},
+   :preAuthRef
+   {:confirms #{ExplanationOfBenefit.insurance.preAuthRef}},
+   :id {:confirms #{ExplanationOfBenefit.insurance.id}},
+   :coverage {:confirms #{ExplanationOfBenefit.insurance.coverage}},
+   :extension
+   {:confirms #{ExplanationOfBenefit.insurance.extension}}}},
+ ExplanationOfBenefit.insurance.coverage
+ {:zen/desc
+  "Reference to the insurance card level information contained in the Coverage resource. The coverage issuing insurer will use these details to locate the patient's actual coverage within the insurer's information system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.insurance.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.insurance.extension.*}}},
+ ExplanationOfBenefit.insurance.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.insurance.focal
+ {:zen/desc
+  "A flag to indicate that this Coverage is to be used for adjudication of this claim when set to true.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ ExplanationOfBenefit.insurance.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.insurance.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.insurance.modifierExtension.*}}},
+ ExplanationOfBenefit.insurance.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.insurance.preAuthRef
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.insurance.preAuthRef.*}}},
+ ExplanationOfBenefit.insurance.preAuthRef.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Reference numbers previously provided by the insurer to the provider to be quoted on subsequent claims containing services or products related to the prior authorization."},
+ ExplanationOfBenefit.insurer
+ {:zen/desc
+  "The party responsible for authorization, adjudication and reimbursement.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.item
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.*}}},
+ ExplanationOfBenefit.item.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:adjudication :productOrService :sequence},
+  :type zen/map,
+  :zen/desc
+  "A claim line. Either a simple (a product or service) or a 'group' of details which can also be a simple items or groups of sub-details.",
+  :keys
+  {:category {:confirms #{ExplanationOfBenefit.item.category}},
+   :diagnosisSequence
+   {:confirms #{ExplanationOfBenefit.item.diagnosisSequence}},
+   :procedureSequence
+   {:confirms #{ExplanationOfBenefit.item.procedureSequence}},
+   :locationAddress {:confirms #{fhir/Address}},
+   :modifier {:confirms #{ExplanationOfBenefit.item.modifier}},
+   :revenue {:confirms #{ExplanationOfBenefit.item.revenue}},
+   :adjudication {:confirms #{ExplanationOfBenefit.item.adjudication}},
+   :encounter {:confirms #{ExplanationOfBenefit.item.encounter}},
+   :locationCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :net {:confirms #{ExplanationOfBenefit.item.net}},
+   :subSite {:confirms #{ExplanationOfBenefit.item.subSite}},
+   :careTeamSequence
+   {:confirms #{ExplanationOfBenefit.item.careTeamSequence}},
+   :productOrService
+   {:confirms #{ExplanationOfBenefit.item.productOrService}},
+   :extension {:confirms #{ExplanationOfBenefit.item.extension}},
+   :locationReference {:confirms #{fhir/Reference}},
+   :udi {:confirms #{ExplanationOfBenefit.item.udi}},
+   :informationSequence
+   {:confirms #{ExplanationOfBenefit.item.informationSequence}},
+   :programCode {:confirms #{ExplanationOfBenefit.item.programCode}},
+   :factor {:confirms #{ExplanationOfBenefit.item.factor}},
+   :id {:confirms #{ExplanationOfBenefit.item.id}},
+   :servicedDate {:confirms #{fhir/date}},
+   :sequence {:confirms #{ExplanationOfBenefit.item.sequence}},
+   :bodySite {:confirms #{ExplanationOfBenefit.item.bodySite}},
+   :quantity {:confirms #{ExplanationOfBenefit.item.quantity}},
+   :noteNumber {:confirms #{ExplanationOfBenefit.item.noteNumber}},
+   :unitPrice {:confirms #{ExplanationOfBenefit.item.unitPrice}},
+   :modifierExtension
+   {:confirms #{ExplanationOfBenefit.item.modifierExtension}},
+   :servicedPeriod {:confirms #{fhir/Period}},
+   :detail {:confirms #{ExplanationOfBenefit.item.detail}}},
+  :exclusive-keys
+  #{#{:locationAddress :locationCodeableConcept :locationReference}
+    #{:servicedDate :servicedPeriod}}},
+ ExplanationOfBenefit.item.adjudication
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.adjudication.*}},
+  :slicing
+  {:slices
+   {"adjudicationamounttype"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.*}}},
+     :schema
+     {:confirms
+      #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype}}},
+    "denialreason"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{ExplanationOfBenefit.item.adjudication:denialreason.*}}},
+     :schema
+     {:confirms
+      #{ExplanationOfBenefit.item.adjudication:denialreason}}}}}},
+ ExplanationOfBenefit.item.adjudication.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category},
+  :type zen/map,
+  :zen/desc
+  "If this item is a group then the values here are a summary of the adjudication of the detail items. If this item is a simple product or service then this is the result of the adjudication of this item.",
+  :keys
+  {:reason
+   {:confirms #{ExplanationOfBenefit.item.adjudication.reason}},
+   :amount
+   {:confirms #{ExplanationOfBenefit.item.adjudication.amount}},
+   :id {:confirms #{ExplanationOfBenefit.item.adjudication.id}},
+   :extension
+   {:confirms #{ExplanationOfBenefit.item.adjudication.extension}},
+   :category
+   {:confirms #{ExplanationOfBenefit.item.adjudication.category}},
+   :value {:confirms #{ExplanationOfBenefit.item.adjudication.value}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication.modifierExtension}}}},
+ ExplanationOfBenefit.item.adjudication.amount
+ {:zen/desc "Monetary amount associated with the category.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.item.adjudication.category
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.item.adjudication.category.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item."},
+ ExplanationOfBenefit.item.adjudication.category.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudicationCategoryDiscriminator"},
+ ExplanationOfBenefit.item.adjudication.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.item.adjudication.extension.*}}},
+ ExplanationOfBenefit.item.adjudication.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.item.adjudication.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.item.adjudication.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.adjudication.modifierExtension.*}}},
+ ExplanationOfBenefit.item.adjudication.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.item.adjudication.reason
+ {:zen/desc
+  "A code supporting the understanding of the adjudication result and explaining variance from expected amount.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.item.adjudication.value
+ {:zen/desc
+  "A non-monetary value associated with the category. Mutually exclusive to the amount element above.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.*}}},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category},
+  :type zen/map,
+  :zen/desc
+  "If this item is a group then the values here are a summary of the adjudication of the detail items. If this item is a simple product or service then this is the result of the adjudication of this item.",
+  :keys
+  {:extension
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.extension}},
+   :value
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.value}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.modifierExtension}},
+   :category
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.category}},
+   :amount
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.amount}},
+   :reason
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.reason}},
+   :id
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.id}}}},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.amount
+ {:zen/desc "Monetary amount associated with the category.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.category
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.item.adjudication:adjudicationamounttype.category.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item."},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.category.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudication"},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.extension.*}}},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.adjudication:adjudicationamounttype.modifierExtension.*}}},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.reason
+ {:zen/desc
+  "A code supporting the understanding of the adjudication result and explaining variance from expected amount.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.item.adjudication:adjudicationamounttype.value
+ {:zen/desc
+  "A non-monetary value associated with the category. Mutually exclusive to the amount element above.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ ExplanationOfBenefit.item.adjudication:denialreason
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.adjudication:denialreason.*}}},
+ ExplanationOfBenefit.item.adjudication:denialreason.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :reason},
+  :type zen/map,
+  :zen/desc
+  "If this item is a group then the values here are a summary of the adjudication of the detail items. If this item is a simple product or service then this is the result of the adjudication of this item.",
+  :keys
+  {:category
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:denialreason.category}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:denialreason.extension}},
+   :value
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:denialreason.value}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:denialreason.modifierExtension}},
+   :amount
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:denialreason.amount}},
+   :id
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:denialreason.id}},
+   :reason
+   {:confirms
+    #{ExplanationOfBenefit.item.adjudication:denialreason.reason}}}},
+ ExplanationOfBenefit.item.adjudication:denialreason.amount
+ {:zen/desc "Monetary amount associated with the category.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.item.adjudication:denialreason.category
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator"}},
+          :code {:const {:value "denialreason"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ ExplanationOfBenefit.item.adjudication:denialreason.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.adjudication:denialreason.extension.*}}},
+ ExplanationOfBenefit.item.adjudication:denialreason.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.item.adjudication:denialreason.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.item.adjudication:denialreason.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.adjudication:denialreason.modifierExtension.*}}},
+ ExplanationOfBenefit.item.adjudication:denialreason.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.item.adjudication:denialreason.reason
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.item.adjudication:denialreason.reason.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A code supporting the understanding of the adjudication result and explaining variance from expected amount."},
+ ExplanationOfBenefit.item.adjudication:denialreason.reason.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPRejectCode"},
+ ExplanationOfBenefit.item.adjudication:denialreason.value
+ {:zen/desc
+  "A non-monetary value associated with the category. Mutually exclusive to the amount element above.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ ExplanationOfBenefit.item.bodySite
+ {:zen/desc
+  "Physical service site on the patient (limb, tooth, etc.).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.item.careTeamSequence
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.careTeamSequence.*}}},
+ ExplanationOfBenefit.item.careTeamSequence.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc "Care team members related to this service or product."},
+ ExplanationOfBenefit.item.category
+ {:zen/desc
+  "Code to identify the general type of benefits under which products and services are provided.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.item.detail
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.detail.*}}},
+ ExplanationOfBenefit.item.detail.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:productOrService :sequence},
+  :type zen/map,
+  :zen/desc "Second-tier of goods and services.",
+  :keys
+  {:category {:confirms #{ExplanationOfBenefit.item.detail.category}},
+   :modifier {:confirms #{ExplanationOfBenefit.item.detail.modifier}},
+   :revenue {:confirms #{ExplanationOfBenefit.item.detail.revenue}},
+   :adjudication
+   {:confirms #{ExplanationOfBenefit.item.detail.adjudication}},
+   :net {:confirms #{ExplanationOfBenefit.item.detail.net}},
+   :productOrService
+   {:confirms #{ExplanationOfBenefit.item.detail.productOrService}},
+   :extension
+   {:confirms #{ExplanationOfBenefit.item.detail.extension}},
+   :udi {:confirms #{ExplanationOfBenefit.item.detail.udi}},
+   :programCode
+   {:confirms #{ExplanationOfBenefit.item.detail.programCode}},
+   :factor {:confirms #{ExplanationOfBenefit.item.detail.factor}},
+   :id {:confirms #{ExplanationOfBenefit.item.detail.id}},
+   :sequence {:confirms #{ExplanationOfBenefit.item.detail.sequence}},
+   :subDetail
+   {:confirms #{ExplanationOfBenefit.item.detail.subDetail}},
+   :quantity {:confirms #{ExplanationOfBenefit.item.detail.quantity}},
+   :noteNumber
+   {:confirms #{ExplanationOfBenefit.item.detail.noteNumber}},
+   :unitPrice
+   {:confirms #{ExplanationOfBenefit.item.detail.unitPrice}},
+   :modifierExtension
+   {:confirms #{ExplanationOfBenefit.item.detail.modifierExtension}}}},
+ ExplanationOfBenefit.item.detail.adjudication
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.item.detail.adjudication.*}}},
+ ExplanationOfBenefit.item.detail.adjudication.*
+ #:zen{:desc "The adjudication results.", :tags #{zen/schema}},
+ ExplanationOfBenefit.item.detail.category
+ {:zen/desc
+  "Code to identify the general type of benefits under which products and services are provided.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.item.detail.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.detail.extension.*}}},
+ ExplanationOfBenefit.item.detail.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.item.detail.factor
+ {:zen/desc
+  "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ ExplanationOfBenefit.item.detail.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.item.detail.modifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.detail.modifier.*}}},
+ ExplanationOfBenefit.item.detail.modifier.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Item typification or modifiers codes to convey additional context for the product or service."},
+ ExplanationOfBenefit.item.detail.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.item.detail.modifierExtension.*}}},
+ ExplanationOfBenefit.item.detail.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.item.detail.net
+ {:zen/desc
+  "The quantity times the unit price for an additional service or product or charge.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.item.detail.noteNumber
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.detail.noteNumber.*}}},
+ ExplanationOfBenefit.item.detail.noteNumber.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The numbers associated with notes below which apply to the adjudication of this item."},
+ ExplanationOfBenefit.item.detail.productOrService
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.item.detail.productOrService.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item."},
+ ExplanationOfBenefit.item.detail.productOrService.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/FDANationalDrugCode"},
+ ExplanationOfBenefit.item.detail.programCode
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.item.detail.programCode.*}}},
+ ExplanationOfBenefit.item.detail.programCode.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Identifies the program under which this may be recovered."},
+ ExplanationOfBenefit.item.detail.quantity
+ {:zen/desc "The number of repetitions of a service or product.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ ExplanationOfBenefit.item.detail.revenue
+ {:zen/desc
+  "The type of revenue or cost center providing the product and/or service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.item.detail.sequence
+ {:zen/desc
+  "A claim detail line. Either a simple (a product or service) or a 'group' of sub-details which are simple items.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.item.detail.subDetail
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.detail.subDetail.*}}},
+ ExplanationOfBenefit.item.detail.subDetail.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:productOrService :sequence},
+  :type zen/map,
+  :zen/desc "Third-tier of goods and services.",
+  :keys
+  {:category
+   {:confirms #{ExplanationOfBenefit.item.detail.subDetail.category}},
+   :modifier
+   {:confirms #{ExplanationOfBenefit.item.detail.subDetail.modifier}},
+   :revenue
+   {:confirms #{ExplanationOfBenefit.item.detail.subDetail.revenue}},
+   :adjudication
+   {:confirms
+    #{ExplanationOfBenefit.item.detail.subDetail.adjudication}},
+   :net {:confirms #{ExplanationOfBenefit.item.detail.subDetail.net}},
+   :productOrService
+   {:confirms
+    #{ExplanationOfBenefit.item.detail.subDetail.productOrService}},
+   :extension
+   {:confirms #{ExplanationOfBenefit.item.detail.subDetail.extension}},
+   :udi {:confirms #{ExplanationOfBenefit.item.detail.subDetail.udi}},
+   :programCode
+   {:confirms
+    #{ExplanationOfBenefit.item.detail.subDetail.programCode}},
+   :factor
+   {:confirms #{ExplanationOfBenefit.item.detail.subDetail.factor}},
+   :id {:confirms #{ExplanationOfBenefit.item.detail.subDetail.id}},
+   :sequence
+   {:confirms #{ExplanationOfBenefit.item.detail.subDetail.sequence}},
+   :quantity
+   {:confirms #{ExplanationOfBenefit.item.detail.subDetail.quantity}},
+   :noteNumber
+   {:confirms
+    #{ExplanationOfBenefit.item.detail.subDetail.noteNumber}},
+   :unitPrice
+   {:confirms #{ExplanationOfBenefit.item.detail.subDetail.unitPrice}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.item.detail.subDetail.modifierExtension}}}},
+ ExplanationOfBenefit.item.detail.subDetail.adjudication
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.detail.subDetail.adjudication.*}}},
+ ExplanationOfBenefit.item.detail.subDetail.adjudication.*
+ #:zen{:desc "The adjudication results.", :tags #{zen/schema}},
+ ExplanationOfBenefit.item.detail.subDetail.category
+ {:zen/desc
+  "Code to identify the general type of benefits under which products and services are provided.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.item.detail.subDetail.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.detail.subDetail.extension.*}}},
+ ExplanationOfBenefit.item.detail.subDetail.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.item.detail.subDetail.factor
+ {:zen/desc
+  "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ ExplanationOfBenefit.item.detail.subDetail.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.item.detail.subDetail.modifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.detail.subDetail.modifier.*}}},
+ ExplanationOfBenefit.item.detail.subDetail.modifier.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Item typification or modifiers codes to convey additional context for the product or service."},
+ ExplanationOfBenefit.item.detail.subDetail.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.detail.subDetail.modifierExtension.*}}},
+ ExplanationOfBenefit.item.detail.subDetail.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.item.detail.subDetail.net
+ {:zen/desc
+  "The quantity times the unit price for an additional service or product or charge.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.item.detail.subDetail.noteNumber
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.detail.subDetail.noteNumber.*}}},
+ ExplanationOfBenefit.item.detail.subDetail.noteNumber.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The numbers associated with notes below which apply to the adjudication of this item."},
+ ExplanationOfBenefit.item.detail.subDetail.productOrService
+ {:zen/desc
+  "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.item.detail.subDetail.programCode
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.item.detail.subDetail.programCode.*}}},
+ ExplanationOfBenefit.item.detail.subDetail.programCode.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Identifies the program under which this may be recovered."},
+ ExplanationOfBenefit.item.detail.subDetail.quantity
+ {:zen/desc "The number of repetitions of a service or product.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ ExplanationOfBenefit.item.detail.subDetail.revenue
+ {:zen/desc
+  "The type of revenue or cost center providing the product and/or service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.item.detail.subDetail.sequence
+ {:zen/desc
+  "A claim detail line. Either a simple (a product or service) or a 'group' of sub-details which are simple items.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.item.detail.subDetail.udi
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.item.detail.subDetail.udi.*}}},
+ ExplanationOfBenefit.item.detail.subDetail.udi.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Unique Device Identifiers associated with this line item."},
+ ExplanationOfBenefit.item.detail.subDetail.unitPrice
+ {:zen/desc
+  "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.item.detail.udi
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.detail.udi.*}}},
+ ExplanationOfBenefit.item.detail.udi.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Unique Device Identifiers associated with this line item."},
+ ExplanationOfBenefit.item.detail.unitPrice
+ {:zen/desc
+  "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.item.diagnosisSequence
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.diagnosisSequence.*}}},
+ ExplanationOfBenefit.item.diagnosisSequence.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc "Diagnoses applicable for this service or product."},
+ ExplanationOfBenefit.item.encounter
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.encounter.*}}},
+ ExplanationOfBenefit.item.encounter.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A billed item may include goods or services provided in multiple encounters."},
+ ExplanationOfBenefit.item.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.extension.*}}},
+ ExplanationOfBenefit.item.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.item.factor
+ {:zen/desc
+  "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ ExplanationOfBenefit.item.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.item.informationSequence
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.item.informationSequence.*}}},
+ ExplanationOfBenefit.item.informationSequence.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Exceptions, special conditions and supporting information applicable for this service or product."},
+ ExplanationOfBenefit.item.modifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.modifier.*}}},
+ ExplanationOfBenefit.item.modifier.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Item typification or modifiers codes to convey additional context for the product or service."},
+ ExplanationOfBenefit.item.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.modifierExtension.*}}},
+ ExplanationOfBenefit.item.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.item.net
+ {:zen/desc
+  "The quantity times the unit price for an additional service or product or charge.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.item.noteNumber
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.noteNumber.*}}},
+ ExplanationOfBenefit.item.noteNumber.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The numbers associated with notes below which apply to the adjudication of this item."},
+ ExplanationOfBenefit.item.procedureSequence
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.procedureSequence.*}}},
+ ExplanationOfBenefit.item.procedureSequence.*
+ {:confirms #{fhir/positiveInt},
+  :zen/tags #{zen/schema},
+  :zen/desc "Procedures applicable for this service or product."},
+ ExplanationOfBenefit.item.productOrService
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.item.productOrService.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item."},
+ ExplanationOfBenefit.item.productOrService.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/FDANDCOrCompound"},
+ ExplanationOfBenefit.item.programCode
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.programCode.*}}},
+ ExplanationOfBenefit.item.programCode.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Identifies the program under which this may be recovered."},
+ ExplanationOfBenefit.item.quantity
+ {:zen/desc "The number of repetitions of a service or product.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ ExplanationOfBenefit.item.revenue
+ {:zen/desc
+  "The type of revenue or cost center providing the product and/or service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.item.sequence
+ {:zen/desc "A number to uniquely identify item entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.item.subSite
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.subSite.*}}},
+ ExplanationOfBenefit.item.subSite.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A region or surface of the bodySite, e.g. limb region or tooth surface(s)."},
+ ExplanationOfBenefit.item.udi
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.item.udi.*}}},
+ ExplanationOfBenefit.item.udi.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Unique Device Identifiers associated with this line item."},
+ ExplanationOfBenefit.item.unitPrice
+ {:zen/desc
+  "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ ExplanationOfBenefit.meta
+ {:confirms #{fhir/Meta},
+  :zen/tags #{zen/schema},
+  :require #{:lastUpdated :profile},
+  :type zen/map,
+  :zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :keys
+  {:lastUpdated {:confirms #{ExplanationOfBenefit.meta.lastUpdated}},
+   :source {:confirms #{ExplanationOfBenefit.meta.source}},
+   :versionId {:confirms #{ExplanationOfBenefit.meta.versionId}},
+   :profile {:confirms #{ExplanationOfBenefit.meta.profile}},
+   :extension {:confirms #{ExplanationOfBenefit.meta.extension}},
+   :security {:confirms #{ExplanationOfBenefit.meta.security}},
+   :id {:confirms #{ExplanationOfBenefit.meta.id}},
+   :tag {:confirms #{ExplanationOfBenefit.meta.tag}}}},
+ ExplanationOfBenefit.meta.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.meta.extension.*}},
+  :slicing {:slices {}}},
+ ExplanationOfBenefit.meta.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.meta.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.meta.lastUpdated
+ {:zen/desc
+  "When the resource last changed - e.g. when the version changed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/instant}},
+ ExplanationOfBenefit.meta.profile
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.meta.profile.*}}},
+ ExplanationOfBenefit.meta.profile.*
+ {:confirms #{fhir/canonical},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A list of profiles (references to [StructureDefinition](http://hl7.org/fhir/R4/structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](http://hl7.org/fhir/R4/structuredefinition-definitions.html#StructureDefinition.url)."},
+ ExplanationOfBenefit.meta.security
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.meta.security.*}}},
+ ExplanationOfBenefit.meta.security.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."},
+ ExplanationOfBenefit.meta.source
+ {:zen/desc
+  "A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](http://hl7.org/fhir/R4/provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ ExplanationOfBenefit.meta.tag
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.meta.tag.*}}},
+ ExplanationOfBenefit.meta.tag.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."},
+ ExplanationOfBenefit.meta.versionId
+ {:zen/desc
+  "The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/id}},
+ ExplanationOfBenefit.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.modifierExtension.*}}},
+ ExplanationOfBenefit.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.originalPrescription
+ {:zen/desc
+  "Original prescription which has been superseded by this prescription to support the dispensing of pharmacy services, medications or products.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.outcome
+ {aidbox-fx/valueset ExplanationOfBenefit.outcome.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The outcome of the claim, predetermination, or preauthorization processing."},
+ ExplanationOfBenefit.outcome.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/remittance-outcome"},
+ ExplanationOfBenefit.patient
+ {:zen/desc
+  "The party to whom the professional services and/or products have been supplied or are being considered and for whom actual for forecast reimbursement is sought.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.payee
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:party :type},
+  :type zen/map,
+  :zen/desc
+  "The party to be reimbursed for cost of the products and services according to the terms of the policy.",
+  :keys
+  {:modifierExtension
+   {:confirms #{ExplanationOfBenefit.payee.modifierExtension}},
+   :extension {:confirms #{ExplanationOfBenefit.payee.extension}},
+   :type {:confirms #{ExplanationOfBenefit.payee.type}},
+   :id {:confirms #{ExplanationOfBenefit.payee.id}},
+   :party {:confirms #{ExplanationOfBenefit.payee.party}}}},
+ ExplanationOfBenefit.payee.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.payee.extension.*}}},
+ ExplanationOfBenefit.payee.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.payee.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.payee.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.payee.modifierExtension.*}}},
+ ExplanationOfBenefit.payee.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.payee.party
+ {:zen/desc
+  "Reference to the individual or organization to whom any payment will be made.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.payee.type
+ {aidbox-fx/valueset ExplanationOfBenefit.payee.type.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Type of Party to be reimbursed: Subscriber, provider, other."},
+ ExplanationOfBenefit.payee.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPayeeType"},
+ ExplanationOfBenefit.payment
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Payment details for the adjudication of the claim.",
+  :keys
+  {:amount {:confirms #{ExplanationOfBenefit.payment.amount}},
+   :date {:confirms #{ExplanationOfBenefit.payment.date}},
+   :type {:confirms #{ExplanationOfBenefit.payment.type}},
+   :adjustment {:confirms #{ExplanationOfBenefit.payment.adjustment}},
+   :adjustmentReason
+   {:confirms #{ExplanationOfBenefit.payment.adjustmentReason}},
+   :extension {:confirms #{ExplanationOfBenefit.payment.extension}},
+   :id {:confirms #{ExplanationOfBenefit.payment.id}},
+   :identifier {:confirms #{ExplanationOfBenefit.payment.identifier}},
+   :modifierExtension
+   {:confirms #{ExplanationOfBenefit.payment.modifierExtension}}}},
+ ExplanationOfBenefit.payment.adjustment
+ {:zen/desc
+  "Total amount of all adjustments to this payment included in this transaction which are not related to this claim's adjudication.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.payment.adjustmentReason
+ {:zen/desc "Reason for the payment adjustment.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.payment.amount
+ {:zen/desc "Benefits payable less any payment adjustment.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.payment.date
+ {:zen/desc
+  "Estimated date the payment will be issued or the actual issue date of payment.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/date}},
+ ExplanationOfBenefit.payment.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.payment.extension.*}}},
+ ExplanationOfBenefit.payment.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.payment.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.payment.identifier
+ {:zen/desc "Issuer's unique identifier for the payment instrument.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Identifier}},
+ ExplanationOfBenefit.payment.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.payment.modifierExtension.*}}},
+ ExplanationOfBenefit.payment.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.payment.type
+ {aidbox-fx/valueset ExplanationOfBenefit.payment.type.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Whether this represents partial or complete payment of the benefits payable."},
+ ExplanationOfBenefit.payment.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPayerClaimPaymentStatusCode"},
+ ExplanationOfBenefit.preAuthRef
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.preAuthRef.*}}},
+ ExplanationOfBenefit.preAuthRef.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Reference from the Insurer which is used in later communications which refers to this adjudication."},
+ ExplanationOfBenefit.preAuthRefPeriod
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.preAuthRefPeriod.*}}},
+ ExplanationOfBenefit.preAuthRefPeriod.*
+ {:confirms #{fhir/Period},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The timeframe during which the supplied preauthorization reference may be quoted on claims to obtain the adjudication as provided."},
+ ExplanationOfBenefit.precedence
+ {:zen/desc
+  "This indicates the relative order of a series of EOBs related to different coverages for the same suite of services.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.prescription
+ {:zen/desc
+  "Prescription to support the dispensing of pharmacy, device or vision products.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.priority
+ {aidbox-fx/valueset ExplanationOfBenefit.priority.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The provider-required urgency of processing the request. Typical values include: stat, routine deferred."},
+ ExplanationOfBenefit.priority.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/process-priority"},
+ ExplanationOfBenefit.procedure
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.procedure.*}}},
+ ExplanationOfBenefit.procedure.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require
+  #{#{:procedureCodeableConcept :procedureReference} :sequence},
+  :type zen/map,
+  :zen/desc
+  "Procedures performed on the patient relevant to the billing items with the claim.",
+  :keys
+  {:date {:confirms #{ExplanationOfBenefit.procedure.date}},
+   :procedureCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :procedureReference {:confirms #{fhir/Reference}},
+   :type {:confirms #{ExplanationOfBenefit.procedure.type}},
+   :extension {:confirms #{ExplanationOfBenefit.procedure.extension}},
+   :udi {:confirms #{ExplanationOfBenefit.procedure.udi}},
+   :id {:confirms #{ExplanationOfBenefit.procedure.id}},
+   :sequence {:confirms #{ExplanationOfBenefit.procedure.sequence}},
+   :modifierExtension
+   {:confirms #{ExplanationOfBenefit.procedure.modifierExtension}}},
+  :exclusive-keys #{#{:procedureCodeableConcept :procedureReference}}},
+ ExplanationOfBenefit.procedure.date
+ {:zen/desc "Date and optionally time the procedure was performed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ ExplanationOfBenefit.procedure.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.procedure.extension.*}}},
+ ExplanationOfBenefit.procedure.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.procedure.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.procedure.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.procedure.modifierExtension.*}}},
+ ExplanationOfBenefit.procedure.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.procedure.sequence
+ {:zen/desc "A number to uniquely identify procedure entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.procedure.type
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.procedure.type.*}}},
+ ExplanationOfBenefit.procedure.type.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "When the condition was observed or the relative ranking."},
+ ExplanationOfBenefit.procedure.udi
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.procedure.udi.*}}},
+ ExplanationOfBenefit.procedure.udi.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Unique Device Identifiers associated with this line item."},
+ ExplanationOfBenefit.processNote
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.processNote.*}}},
+ ExplanationOfBenefit.processNote.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A note that describes or explains adjudication results in a human readable form.",
+  :keys
+  {:extension
+   {:confirms #{ExplanationOfBenefit.processNote.extension}},
+   :id {:confirms #{ExplanationOfBenefit.processNote.id}},
+   :type {:confirms #{ExplanationOfBenefit.processNote.type}},
+   :number {:confirms #{ExplanationOfBenefit.processNote.number}},
+   :language {:confirms #{ExplanationOfBenefit.processNote.language}},
+   :text {:confirms #{ExplanationOfBenefit.processNote.text}},
+   :modifierExtension
+   {:confirms #{ExplanationOfBenefit.processNote.modifierExtension}}}},
+ ExplanationOfBenefit.processNote.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.processNote.extension.*}}},
+ ExplanationOfBenefit.processNote.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.processNote.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.processNote.language
+ {:zen/desc
+  "A code to define the language used in the text of the note.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.processNote.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.processNote.modifierExtension.*}}},
+ ExplanationOfBenefit.processNote.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.processNote.number
+ {:zen/desc "A number to uniquely identify a note entry.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.processNote.text
+ {:zen/desc
+  "The explanation or description associated with the processing.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.processNote.type
+ {aidbox-fx/valueset ExplanationOfBenefit.processNote.type.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The business purpose of the note text."},
+ ExplanationOfBenefit.processNote.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/note-type"},
+ ExplanationOfBenefit.provider
+ {:zen/desc
+  "The provider which is responsible for the claim, predetermination or preauthorization.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.referral
+ {:zen/desc "A reference to a referral resource.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.related
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.related.*}}},
+ ExplanationOfBenefit.related.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:relationship :reference},
+  :type zen/map,
+  :zen/desc
+  "Other claims which are related to this claim such as prior submissions or claims for related services or for the same event.",
+  :keys
+  {:claim {:confirms #{ExplanationOfBenefit.related.claim}},
+   :extension {:confirms #{ExplanationOfBenefit.related.extension}},
+   :id {:confirms #{ExplanationOfBenefit.related.id}},
+   :modifierExtension
+   {:confirms #{ExplanationOfBenefit.related.modifierExtension}},
+   :relationship
+   {:confirms #{ExplanationOfBenefit.related.relationship}},
+   :reference {:confirms #{ExplanationOfBenefit.related.reference}}}},
+ ExplanationOfBenefit.related.claim
+ {:zen/desc "Reference to a related claim.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ ExplanationOfBenefit.related.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.related.extension.*}}},
+ ExplanationOfBenefit.related.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.related.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.related.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.related.modifierExtension.*}}},
+ ExplanationOfBenefit.related.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.related.reference
+ {:zen/desc
+  "An alternate organizational reference to the case or file to which this particular claim pertains.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Identifier}},
+ ExplanationOfBenefit.related.relationship
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.related.relationship.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc "A code to convey how the claims are related."},
+ ExplanationOfBenefit.related.relationship.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBRelatedClaimRelationshipCodes"},
+ ExplanationOfBenefit.status
+ {aidbox-fx/valueset ExplanationOfBenefit.status.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The status of the resource instance."},
+ ExplanationOfBenefit.status.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/ValueSet/explanationofbenefit-status"},
+ ExplanationOfBenefit.subType
+ {:zen/desc
+  "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.supportingInfo
+ {:minItems 3,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.supportingInfo.*}},
+  :slicing
+  {:slices
+   {"dawcode"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms #{ExplanationOfBenefit.supportingInfo:dawcode.*}}},
+     :schema
+     {:confirms #{ExplanationOfBenefit.supportingInfo:dawcode}}},
+    "refillNum"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms #{ExplanationOfBenefit.supportingInfo:refillNum.*}}},
+     :schema
+     {:confirms #{ExplanationOfBenefit.supportingInfo:refillNum}}},
+    "billingnetworkcontractingstatus"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.*}}},
+     :schema
+     {:confirms
+      #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus}}},
+    "clmrecvddate"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{ExplanationOfBenefit.supportingInfo:clmrecvddate.*}}},
+     :schema
+     {:confirms #{ExplanationOfBenefit.supportingInfo:clmrecvddate}}},
+    "dayssupply"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms #{ExplanationOfBenefit.supportingInfo:dayssupply.*}}},
+     :schema
+     {:confirms #{ExplanationOfBenefit.supportingInfo:dayssupply}}},
+    "brandgenericcode"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{ExplanationOfBenefit.supportingInfo:brandgenericcode.*}}},
+     :schema
+     {:confirms
+      #{ExplanationOfBenefit.supportingInfo:brandgenericcode}}},
+    "compoundcode"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{ExplanationOfBenefit.supportingInfo:compoundcode.*}}},
+     :schema
+     {:confirms #{ExplanationOfBenefit.supportingInfo:compoundcode}}},
+    "rxoriginCode"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{ExplanationOfBenefit.supportingInfo:rxoriginCode.*}}},
+     :schema
+     {:confirms
+      #{ExplanationOfBenefit.supportingInfo:rxoriginCode}}}}}},
+ ExplanationOfBenefit.supportingInfo.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :sequence},
+  :type zen/map,
+  :zen/desc
+  "Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+  :keys
+  {:category
+   {:confirms #{ExplanationOfBenefit.supportingInfo.category}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :timingPeriod {:confirms #{fhir/Period}},
+   :valueString {:confirms #{fhir/string}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :reason {:confirms #{ExplanationOfBenefit.supportingInfo.reason}},
+   :extension
+   {:confirms #{ExplanationOfBenefit.supportingInfo.extension}},
+   :id {:confirms #{ExplanationOfBenefit.supportingInfo.id}},
+   :sequence
+   {:confirms #{ExplanationOfBenefit.supportingInfo.sequence}},
+   :code {:confirms #{ExplanationOfBenefit.supportingInfo.code}},
+   :timingDate {:confirms #{fhir/date}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo.modifierExtension}}},
+  :exclusive-keys
+  #{#{:timingPeriod :timingDate}
+    #{:valueReference :valueQuantity :valueString :valueBoolean
+      :valueAttachment}}},
+ ExplanationOfBenefit.supportingInfo.category
+ {:zen/desc
+  "The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.supportingInfo.code
+ {:zen/desc
+  "System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.supportingInfo.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.supportingInfo.extension.*}}},
+ ExplanationOfBenefit.supportingInfo.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.supportingInfo.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.supportingInfo.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo.modifierExtension.*}}},
+ ExplanationOfBenefit.supportingInfo.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.supportingInfo.reason
+ {:zen/desc
+  "Provides the reason in the situation where a reason code is required in addition to the content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ ExplanationOfBenefit.supportingInfo.sequence
+ {:zen/desc
+  "A number to uniquely identify supporting information entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.*}}},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :sequence :code},
+  :type zen/map,
+  :zen/desc
+  "Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+  :keys
+  {:category
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.category}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :timingPeriod {:confirms #{fhir/Period}},
+   :valueString {:confirms #{fhir/string}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :reason
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.reason}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.extension}},
+   :id
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.id}},
+   :sequence
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.sequence}},
+   :code
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.code}},
+   :timingDate {:confirms #{fhir/date}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.modifierExtension}}},
+  :exclusive-keys
+  #{#{:timingPeriod :timingDate}
+    #{:valueReference :valueQuantity :valueString :valueBoolean
+      :valueAttachment}}},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.category
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType"}},
+          :code {:const {:value "billingnetworkcontractingstatus"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.code
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.code.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought."},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.code.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPayerProviderContractingStatus"},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.extension.*}}},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.modifierExtension.*}}},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.reason
+ {:zen/desc
+  "Provides the reason in the situation where a reason code is required in addition to the content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.sequence
+ {:zen/desc
+  "A number to uniquely identify supporting information entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:brandgenericcode.*}}},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :sequence :code},
+  :type zen/map,
+  :zen/desc
+  "Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+  :keys
+  {:category
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:brandgenericcode.category}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :timingPeriod {:confirms #{fhir/Period}},
+   :valueString {:confirms #{fhir/string}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :reason
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:brandgenericcode.reason}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:brandgenericcode.extension}},
+   :id
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:brandgenericcode.id}},
+   :sequence
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:brandgenericcode.sequence}},
+   :code
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:brandgenericcode.code}},
+   :timingDate {:confirms #{fhir/date}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:brandgenericcode.modifierExtension}}},
+  :exclusive-keys
+  #{#{:timingPeriod :timingDate}
+    #{:valueReference :valueQuantity :valueString :valueBoolean
+      :valueAttachment}}},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.category
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType"}},
+          :code {:const {:value "brandgenericcode"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.code
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.supportingInfo:brandgenericcode.code.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought."},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.code.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPBrandGenericCode"},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:brandgenericcode.extension.*}}},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:brandgenericcode.modifierExtension.*}}},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.reason
+ {:zen/desc
+  "Provides the reason in the situation where a reason code is required in addition to the content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ ExplanationOfBenefit.supportingInfo:brandgenericcode.sequence
+ {:zen/desc
+  "A number to uniquely identify supporting information entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.supportingInfo:clmrecvddate.*}}},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :sequence #{:timingDate}},
+  :type zen/map,
+  :zen/desc
+  "Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+  :keys
+  {:category
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:clmrecvddate.category}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueString {:confirms #{fhir/string}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :reason
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:clmrecvddate.reason}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:clmrecvddate.extension}},
+   :id
+   {:confirms #{ExplanationOfBenefit.supportingInfo:clmrecvddate.id}},
+   :sequence
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:clmrecvddate.sequence}},
+   :code
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:clmrecvddate.code}},
+   :timingDate {:confirms #{fhir/date}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:clmrecvddate.modifierExtension}}},
+  :exclusive-keys
+  #{#{:valueReference :valueQuantity :valueString :valueBoolean
+      :valueAttachment}}},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate.category
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType"}},
+          :code {:const {:value "clmrecvddate"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate.code
+ {:zen/desc
+  "System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:clmrecvddate.extension.*}}},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:clmrecvddate.modifierExtension.*}}},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate.reason
+ {:zen/desc
+  "Provides the reason in the situation where a reason code is required in addition to the content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ ExplanationOfBenefit.supportingInfo:clmrecvddate.sequence
+ {:zen/desc
+  "A number to uniquely identify supporting information entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.supportingInfo:compoundcode
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.supportingInfo:compoundcode.*}}},
+ ExplanationOfBenefit.supportingInfo:compoundcode.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :sequence :code},
+  :type zen/map,
+  :zen/desc
+  "Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+  :keys
+  {:category
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:compoundcode.category}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :timingPeriod {:confirms #{fhir/Period}},
+   :valueString {:confirms #{fhir/string}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :reason
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:compoundcode.reason}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:compoundcode.extension}},
+   :id
+   {:confirms #{ExplanationOfBenefit.supportingInfo:compoundcode.id}},
+   :sequence
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:compoundcode.sequence}},
+   :code
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:compoundcode.code}},
+   :timingDate {:confirms #{fhir/date}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:compoundcode.modifierExtension}}},
+  :exclusive-keys
+  #{#{:timingPeriod :timingDate}
+    #{:valueReference :valueQuantity :valueString :valueBoolean
+      :valueAttachment}}},
+ ExplanationOfBenefit.supportingInfo:compoundcode.category
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType"}},
+          :code {:const {:value "compoundcode"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ ExplanationOfBenefit.supportingInfo:compoundcode.code
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.supportingInfo:compoundcode.code.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought."},
+ ExplanationOfBenefit.supportingInfo:compoundcode.code.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPCompoundCode"},
+ ExplanationOfBenefit.supportingInfo:compoundcode.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:compoundcode.extension.*}}},
+ ExplanationOfBenefit.supportingInfo:compoundcode.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.supportingInfo:compoundcode.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.supportingInfo:compoundcode.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:compoundcode.modifierExtension.*}}},
+ ExplanationOfBenefit.supportingInfo:compoundcode.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.supportingInfo:compoundcode.reason
+ {:zen/desc
+  "Provides the reason in the situation where a reason code is required in addition to the content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ ExplanationOfBenefit.supportingInfo:compoundcode.sequence
+ {:zen/desc
+  "A number to uniquely identify supporting information entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.supportingInfo:dawcode
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.supportingInfo:dawcode.*}}},
+ ExplanationOfBenefit.supportingInfo:dawcode.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :sequence :code},
+  :type zen/map,
+  :zen/desc
+  "Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+  :keys
+  {:category
+   {:confirms #{ExplanationOfBenefit.supportingInfo:dawcode.category}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :timingPeriod {:confirms #{fhir/Period}},
+   :valueString {:confirms #{fhir/string}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :reason
+   {:confirms #{ExplanationOfBenefit.supportingInfo:dawcode.reason}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:dawcode.extension}},
+   :id {:confirms #{ExplanationOfBenefit.supportingInfo:dawcode.id}},
+   :sequence
+   {:confirms #{ExplanationOfBenefit.supportingInfo:dawcode.sequence}},
+   :code
+   {:confirms #{ExplanationOfBenefit.supportingInfo:dawcode.code}},
+   :timingDate {:confirms #{fhir/date}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:dawcode.modifierExtension}}},
+  :exclusive-keys
+  #{#{:timingPeriod :timingDate}
+    #{:valueReference :valueQuantity :valueString :valueBoolean
+      :valueAttachment}}},
+ ExplanationOfBenefit.supportingInfo:dawcode.category
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType"}},
+          :code {:const {:value "dawcode"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ ExplanationOfBenefit.supportingInfo:dawcode.code
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.supportingInfo:dawcode.code.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought."},
+ ExplanationOfBenefit.supportingInfo:dawcode.code.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPDispensedAsWrittenOrProductSelectionCode"},
+ ExplanationOfBenefit.supportingInfo:dawcode.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:dawcode.extension.*}}},
+ ExplanationOfBenefit.supportingInfo:dawcode.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.supportingInfo:dawcode.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.supportingInfo:dawcode.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:dawcode.modifierExtension.*}}},
+ ExplanationOfBenefit.supportingInfo:dawcode.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.supportingInfo:dawcode.reason
+ {:zen/desc
+  "Provides the reason in the situation where a reason code is required in addition to the content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ ExplanationOfBenefit.supportingInfo:dawcode.sequence
+ {:zen/desc
+  "A number to uniquely identify supporting information entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.supportingInfo:dayssupply
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.supportingInfo:dayssupply.*}}},
+ ExplanationOfBenefit.supportingInfo:dayssupply.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category #{:valueQuantity} :sequence},
+  :type zen/map,
+  :zen/desc
+  "Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+  :keys
+  {:category
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:dayssupply.category}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :timingPeriod {:confirms #{fhir/Period}},
+   :reason
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:dayssupply.reason}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:dayssupply.extension}},
+   :id
+   {:confirms #{ExplanationOfBenefit.supportingInfo:dayssupply.id}},
+   :sequence
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:dayssupply.sequence}},
+   :code
+   {:confirms #{ExplanationOfBenefit.supportingInfo:dayssupply.code}},
+   :timingDate {:confirms #{fhir/date}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:dayssupply.modifierExtension}}},
+  :exclusive-keys #{#{:timingPeriod :timingDate}}},
+ ExplanationOfBenefit.supportingInfo:dayssupply.category
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType"}},
+          :code {:const {:value "dayssupply"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ ExplanationOfBenefit.supportingInfo:dayssupply.code
+ {:zen/desc
+  "System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.supportingInfo:dayssupply.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:dayssupply.extension.*}}},
+ ExplanationOfBenefit.supportingInfo:dayssupply.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.supportingInfo:dayssupply.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.supportingInfo:dayssupply.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:dayssupply.modifierExtension.*}}},
+ ExplanationOfBenefit.supportingInfo:dayssupply.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.supportingInfo:dayssupply.reason
+ {:zen/desc
+  "Provides the reason in the situation where a reason code is required in addition to the content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ ExplanationOfBenefit.supportingInfo:dayssupply.sequence
+ {:zen/desc
+  "A number to uniquely identify supporting information entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.supportingInfo:refillNum
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.supportingInfo:refillNum.*}}},
+ ExplanationOfBenefit.supportingInfo:refillNum.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category #{:valueQuantity} :sequence},
+  :type zen/map,
+  :zen/desc
+  "Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+  :keys
+  {:category
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:refillNum.category}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :timingPeriod {:confirms #{fhir/Period}},
+   :reason
+   {:confirms #{ExplanationOfBenefit.supportingInfo:refillNum.reason}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:refillNum.extension}},
+   :id {:confirms #{ExplanationOfBenefit.supportingInfo:refillNum.id}},
+   :sequence
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:refillNum.sequence}},
+   :code
+   {:confirms #{ExplanationOfBenefit.supportingInfo:refillNum.code}},
+   :timingDate {:confirms #{fhir/date}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:refillNum.modifierExtension}}},
+  :exclusive-keys #{#{:timingPeriod :timingDate}}},
+ ExplanationOfBenefit.supportingInfo:refillNum.category
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType"}},
+          :code {:const {:value "refillnum"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ ExplanationOfBenefit.supportingInfo:refillNum.code
+ {:zen/desc
+  "System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.supportingInfo:refillNum.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:refillNum.extension.*}}},
+ ExplanationOfBenefit.supportingInfo:refillNum.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.supportingInfo:refillNum.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.supportingInfo:refillNum.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:refillNum.modifierExtension.*}}},
+ ExplanationOfBenefit.supportingInfo:refillNum.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.supportingInfo:refillNum.reason
+ {:zen/desc
+  "Provides the reason in the situation where a reason code is required in addition to the content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ ExplanationOfBenefit.supportingInfo:refillNum.sequence
+ {:zen/desc
+  "A number to uniquely identify supporting information entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.supportingInfo:rxoriginCode.*}}},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :sequence :code},
+  :type zen/map,
+  :zen/desc
+  "Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+  :keys
+  {:category
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:rxoriginCode.category}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :timingPeriod {:confirms #{fhir/Period}},
+   :valueString {:confirms #{fhir/string}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :reason
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:rxoriginCode.reason}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:rxoriginCode.extension}},
+   :id
+   {:confirms #{ExplanationOfBenefit.supportingInfo:rxoriginCode.id}},
+   :sequence
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:rxoriginCode.sequence}},
+   :code
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:rxoriginCode.code}},
+   :timingDate {:confirms #{fhir/date}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.supportingInfo:rxoriginCode.modifierExtension}}},
+  :exclusive-keys
+  #{#{:timingPeriod :timingDate}
+    #{:valueReference :valueQuantity :valueString :valueBoolean
+      :valueAttachment}}},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.category
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType"}},
+          :code {:const {:value "rxorigincode"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.code
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.supportingInfo:rxoriginCode.code.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought."},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.code.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/NCPDPPrescriptionOriginCode"},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:rxoriginCode.extension.*}}},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.supportingInfo:rxoriginCode.modifierExtension.*}}},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.reason
+ {:zen/desc
+  "Provides the reason in the situation where a reason code is required in addition to the content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ ExplanationOfBenefit.supportingInfo:rxoriginCode.sequence
+ {:zen/desc
+  "A number to uniquely identify supporting information entries.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ ExplanationOfBenefit.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}},
+ ExplanationOfBenefit.total
+ {:minItems 2,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.total.*}},
+  :slicing
+  {:slices
+   {"adjudicationamounttype"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{ExplanationOfBenefit.total:adjudicationamounttype.*}}},
+     :schema
+     {:confirms #{ExplanationOfBenefit.total:adjudicationamounttype}}},
+    "inoutnetwork"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{ExplanationOfBenefit.total:inoutnetwork.*}}},
+     :schema
+     {:confirms #{ExplanationOfBenefit.total:inoutnetwork}}}}}},
+ ExplanationOfBenefit.total.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :amount},
+  :type zen/map,
+  :zen/desc "Categorized monetary totals for the adjudication.",
+  :keys
+  {:modifierExtension
+   {:confirms #{ExplanationOfBenefit.total.modifierExtension}},
+   :extension {:confirms #{ExplanationOfBenefit.total.extension}},
+   :amount {:confirms #{ExplanationOfBenefit.total.amount}},
+   :id {:confirms #{ExplanationOfBenefit.total.id}},
+   :category {:confirms #{ExplanationOfBenefit.total.category}}}},
+ ExplanationOfBenefit.total.amount
+ {:zen/desc "Monetary total amount associated with the category.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.total.category
+ {:zen/desc
+  "A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ ExplanationOfBenefit.total.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.total.extension.*}}},
+ ExplanationOfBenefit.total.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.total.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.total.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.total.modifierExtension.*}}},
+ ExplanationOfBenefit.total.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.total:adjudicationamounttype
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.total:adjudicationamounttype.*}}},
+ ExplanationOfBenefit.total:adjudicationamounttype.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :amount},
+  :type zen/map,
+  :zen/desc "Categorized monetary totals for the adjudication.",
+  :keys
+  {:modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.total:adjudicationamounttype.modifierExtension}},
+   :id
+   {:confirms #{ExplanationOfBenefit.total:adjudicationamounttype.id}},
+   :category
+   {:confirms
+    #{ExplanationOfBenefit.total:adjudicationamounttype.category}},
+   :amount
+   {:confirms
+    #{ExplanationOfBenefit.total:adjudicationamounttype.amount}},
+   :extension
+   {:confirms
+    #{ExplanationOfBenefit.total:adjudicationamounttype.extension}}}},
+ ExplanationOfBenefit.total:adjudicationamounttype.amount
+ {:zen/desc "Monetary total amount associated with the category.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.total:adjudicationamounttype.category
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.total:adjudicationamounttype.category.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item."},
+ ExplanationOfBenefit.total:adjudicationamounttype.category.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudication"},
+ ExplanationOfBenefit.total:adjudicationamounttype.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.total:adjudicationamounttype.extension.*}}},
+ ExplanationOfBenefit.total:adjudicationamounttype.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.total:adjudicationamounttype.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.total:adjudicationamounttype.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.total:adjudicationamounttype.modifierExtension.*}}},
+ ExplanationOfBenefit.total:adjudicationamounttype.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.total:inoutnetwork
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{ExplanationOfBenefit.total:inoutnetwork.*}}},
+ ExplanationOfBenefit.total:inoutnetwork.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category :amount},
+  :type zen/map,
+  :zen/desc "Categorized monetary totals for the adjudication.",
+  :keys
+  {:extension
+   {:confirms #{ExplanationOfBenefit.total:inoutnetwork.extension}},
+   :category
+   {:confirms #{ExplanationOfBenefit.total:inoutnetwork.category}},
+   :id {:confirms #{ExplanationOfBenefit.total:inoutnetwork.id}},
+   :modifierExtension
+   {:confirms
+    #{ExplanationOfBenefit.total:inoutnetwork.modifierExtension}},
+   :amount
+   {:confirms #{ExplanationOfBenefit.total:inoutnetwork.amount}}}},
+ ExplanationOfBenefit.total:inoutnetwork.amount
+ {:zen/desc "Monetary total amount associated with the category.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ ExplanationOfBenefit.total:inoutnetwork.category
+ {aidbox-fx/valueset
+  ExplanationOfBenefit.total:inoutnetwork.category.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item."},
+ ExplanationOfBenefit.total:inoutnetwork.category.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPayerBenefitPaymentStatus"},
+ ExplanationOfBenefit.total:inoutnetwork.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{ExplanationOfBenefit.total:inoutnetwork.extension.*}}},
+ ExplanationOfBenefit.total:inoutnetwork.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ ExplanationOfBenefit.total:inoutnetwork.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ ExplanationOfBenefit.total:inoutnetwork.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{ExplanationOfBenefit.total:inoutnetwork.modifierExtension.*}}},
+ ExplanationOfBenefit.total:inoutnetwork.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ ExplanationOfBenefit.type
+ {aidbox-fx/valueset ExplanationOfBenefit.type.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The category of claim, e.g. oral, pharmacy, vision, institutional, professional.",
+  :keys
+  {:coding
+   {:type zen/vector,
+    :slicing
+    {:slices
+     {"RESERVED-aidbox-array-pattern-slicing-0"
+      {:filter
+       {:engine :zen,
+        :zen
+        {:type zen/map,
+         :validation-type :open,
+         :keys
+         {:system
+          {:const
+           {:value
+            "http://terminology.hl7.org/CodeSystem/claim-type"}},
+          :code {:const {:value "pharmacy"}}}}},
+       :schema {:type zen/vector, :minItems 1}}}}}},
+  :validation-type :open},
+ ExplanationOfBenefit.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/claim-type"},
+ ExplanationOfBenefit.use
+ {aidbox-fx/valueset ExplanationOfBenefit.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.",
+  :const {:value "claim"}},
+ ExplanationOfBenefit.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/claim-use"}}

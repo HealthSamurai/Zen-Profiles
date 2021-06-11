@@ -1,0 +1,1256 @@
+{ns drug-formulary.v1.usdf-FormularyDrug,
+ import
+ #{drug-formulary.v1.usdf-QuantityLimit-extension aidbox-fx
+   drug-formulary.v1.usdf-PriorAuthorization-extension fhir
+   drug-formulary.v1.usdf-PlanID-extension
+   drug-formulary.v1.usdf-DrugTierID-extension aidbox
+   drug-formulary.v1.usdf-StepTherapyLimit-extension
+   drug-formulary.v1.usdf-DrugAlternatives-extension},
+ MedicationKnowledge
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:extension :code},
+  :type zen/map,
+  :zen/desc "Drug information which is part of a formulary.",
+  :resourceType "MedicationKnowledge",
+  :keys
+  {:preparationInstruction
+   {:confirms #{MedicationKnowledge.preparationInstruction}},
+   :amount {:confirms #{MedicationKnowledge.amount}},
+   :monograph {:confirms #{MedicationKnowledge.monograph}},
+   :regulatory {:confirms #{MedicationKnowledge.regulatory}},
+   :doseForm {:confirms #{MedicationKnowledge.doseForm}},
+   :meta {:confirms #{MedicationKnowledge.meta}},
+   :intendedRoute {:confirms #{MedicationKnowledge.intendedRoute}},
+   :drugCharacteristic
+   {:confirms #{MedicationKnowledge.drugCharacteristic}},
+   :packaging {:confirms #{MedicationKnowledge.packaging}},
+   :relatedMedicationKnowledge
+   {:confirms #{MedicationKnowledge.relatedMedicationKnowledge}},
+   :medicineClassification
+   {:confirms #{MedicationKnowledge.medicineClassification}},
+   :implicitRules {:confirms #{MedicationKnowledge.implicitRules}},
+   :resourceType
+   {:type zen/string, :const {:value "MedicationKnowledge"}},
+   :kinetics {:confirms #{MedicationKnowledge.kinetics}},
+   :associatedMedication
+   {:confirms #{MedicationKnowledge.associatedMedication}},
+   :extension {:confirms #{MedicationKnowledge.extension}},
+   :contained {:confirms #{MedicationKnowledge.contained}},
+   :ingredient {:confirms #{MedicationKnowledge.ingredient}},
+   :monitoringProgram
+   {:confirms #{MedicationKnowledge.monitoringProgram}},
+   :contraindication
+   {:confirms #{MedicationKnowledge.contraindication}},
+   :status {:confirms #{MedicationKnowledge.status}},
+   :language {:confirms #{MedicationKnowledge.language}},
+   :productType {:confirms #{MedicationKnowledge.productType}},
+   :id {:confirms #{MedicationKnowledge.id}},
+   :synonym {:confirms #{MedicationKnowledge.synonym}},
+   :code {:confirms #{MedicationKnowledge.code}},
+   :administrationGuidelines
+   {:confirms #{MedicationKnowledge.administrationGuidelines}},
+   :manufacturer {:confirms #{MedicationKnowledge.manufacturer}},
+   :cost {:confirms #{MedicationKnowledge.cost}},
+   :modifierExtension
+   {:confirms #{MedicationKnowledge.modifierExtension}},
+   :text {:confirms #{MedicationKnowledge.text}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-drug-formulary/StructureDefinition/usdf-FormularyDrug"},
+ MedicationKnowledge.administrationGuidelines
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{MedicationKnowledge.administrationGuidelines.*}}},
+ MedicationKnowledge.administrationGuidelines.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Guidelines for the administration of the medication.",
+  :keys
+  {:dosage
+   {:confirms #{MedicationKnowledge.administrationGuidelines.dosage}},
+   :id {:confirms #{MedicationKnowledge.administrationGuidelines.id}},
+   :modifierExtension
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.modifierExtension}},
+   :extension
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.extension}},
+   :patientCharacteristics
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.patientCharacteristics}},
+   :indicationCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :indicationReference {:confirms #{fhir/Reference}}},
+  :exclusive-keys
+  #{#{:indicationCodeableConcept :indicationReference}}},
+ MedicationKnowledge.administrationGuidelines.dosage
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.administrationGuidelines.dosage.*}}},
+ MedicationKnowledge.administrationGuidelines.dosage.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:dosage :type},
+  :type zen/map,
+  :zen/desc "Dosage for the medication for the specific guidelines.",
+  :keys
+  {:modifierExtension
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.dosage.modifierExtension}},
+   :id
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.dosage.id}},
+   :extension
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.dosage.extension}},
+   :dosage
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.dosage.dosage}},
+   :type
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.dosage.type}}}},
+ MedicationKnowledge.administrationGuidelines.dosage.dosage
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.administrationGuidelines.dosage.dosage.*}}},
+ MedicationKnowledge.administrationGuidelines.dosage.dosage.*
+ {:confirms #{fhir/Dosage},
+  :zen/tags #{zen/schema},
+  :zen/desc "Dosage for the medication for the specific guidelines."},
+ MedicationKnowledge.administrationGuidelines.dosage.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.administrationGuidelines.dosage.extension.*}}},
+ MedicationKnowledge.administrationGuidelines.dosage.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.administrationGuidelines.dosage.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.administrationGuidelines.dosage.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.administrationGuidelines.dosage.modifierExtension.*}}},
+ MedicationKnowledge.administrationGuidelines.dosage.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.administrationGuidelines.dosage.type
+ {:zen/desc
+  "The type of dosage (for example, prophylaxis, maintenance, therapeutic, etc.).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.administrationGuidelines.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.administrationGuidelines.extension.*}}},
+ MedicationKnowledge.administrationGuidelines.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.administrationGuidelines.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.administrationGuidelines.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.administrationGuidelines.modifierExtension.*}}},
+ MedicationKnowledge.administrationGuidelines.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.administrationGuidelines.patientCharacteristics
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.administrationGuidelines.patientCharacteristics.*}}},
+ MedicationKnowledge.administrationGuidelines.patientCharacteristics.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require
+  #{#{:characteristicQuantity :characteristicCodeableConcept}},
+  :type zen/map,
+  :zen/desc
+  "Characteristics of the patient that are relevant to the administration guidelines (for example, height, weight, gender, etc.).",
+  :keys
+  {:modifierExtension
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.patientCharacteristics.modifierExtension}},
+   :value
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.patientCharacteristics.value}},
+   :extension
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.patientCharacteristics.extension}},
+   :id
+   {:confirms
+    #{MedicationKnowledge.administrationGuidelines.patientCharacteristics.id}},
+   :characteristicCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :characteristicQuantity {:confirms #{fhir/Quantity}}},
+  :exclusive-keys
+  #{#{:characteristicQuantity :characteristicCodeableConcept}}},
+ MedicationKnowledge.administrationGuidelines.patientCharacteristics.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.administrationGuidelines.patientCharacteristics.extension.*}}},
+ MedicationKnowledge.administrationGuidelines.patientCharacteristics.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.administrationGuidelines.patientCharacteristics.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.administrationGuidelines.patientCharacteristics.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.administrationGuidelines.patientCharacteristics.modifierExtension.*}}},
+ MedicationKnowledge.administrationGuidelines.patientCharacteristics.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.administrationGuidelines.patientCharacteristics.value
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.administrationGuidelines.patientCharacteristics.value.*}}},
+ MedicationKnowledge.administrationGuidelines.patientCharacteristics.value.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The specific characteristic (e.g. height, weight, gender, etc.)."},
+ MedicationKnowledge.amount
+ {:zen/desc
+  "Specific amount of the drug in the packaged product.  For example, when specifying a product that has the same strength (For example, Insulin glargine 100 unit per mL solution for injection), this attribute provides additional clarification of the package amount (For example, 3 mL, 10mL, etc.).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ MedicationKnowledge.associatedMedication
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.associatedMedication.*}}},
+ MedicationKnowledge.associatedMedication.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Associated or related medications.  For example, if the medication is a branded product (e.g. Crestor), this is the Therapeutic Moeity (e.g. Rosuvastatin) or if this is a generic medication (e.g. Rosuvastatin), this would link to a branded product (e.g. Crestor)."},
+ MedicationKnowledge.code
+ {aidbox-fx/valueset MedicationKnowledge.code.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A code that specifies this medication, or a textual description if no code is available. Usage note: This could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary code, optionally with translations to other code systems."},
+ MedicationKnowledge.code.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/core/ValueSet/us-core-medication-codes"},
+ MedicationKnowledge.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.contained.*}}},
+ MedicationKnowledge.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ MedicationKnowledge.contraindication
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.contraindication.*}}},
+ MedicationKnowledge.contraindication.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Potential clinical issue with or between medication(s) (for example, drug-drug interaction, drug-disease contraindication, drug-allergy interaction, etc.)."},
+ MedicationKnowledge.cost
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.cost.*}}},
+ MedicationKnowledge.cost.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type :cost},
+  :type zen/map,
+  :zen/desc "The price of the medication.",
+  :keys
+  {:type {:confirms #{MedicationKnowledge.cost.type}},
+   :extension {:confirms #{MedicationKnowledge.cost.extension}},
+   :modifierExtension
+   {:confirms #{MedicationKnowledge.cost.modifierExtension}},
+   :cost {:confirms #{MedicationKnowledge.cost.cost}},
+   :id {:confirms #{MedicationKnowledge.cost.id}},
+   :source {:confirms #{MedicationKnowledge.cost.source}}}},
+ MedicationKnowledge.cost.cost
+ {:zen/desc "The price of the medication.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ MedicationKnowledge.cost.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.cost.extension.*}}},
+ MedicationKnowledge.cost.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.cost.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.cost.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.cost.modifierExtension.*}}},
+ MedicationKnowledge.cost.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.cost.source
+ {:zen/desc
+  "The source or owner that assigns the price to the medication.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.cost.type
+ {:zen/desc
+  "The category of the cost information.  For example, manufacturers' cost, patient cost, claim reimbursement cost, actual acquisition cost.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.doseForm
+ {:zen/desc
+  "Describes the form of the item.  Powder; tablets; capsule.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.drugCharacteristic
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.drugCharacteristic.*}}},
+ MedicationKnowledge.drugCharacteristic.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Specifies descriptive properties of the medicine, such as color, shape, imprints, etc.",
+  :keys
+  {:id {:confirms #{MedicationKnowledge.drugCharacteristic.id}},
+   :modifierExtension
+   {:confirms
+    #{MedicationKnowledge.drugCharacteristic.modifierExtension}},
+   :type {:confirms #{MedicationKnowledge.drugCharacteristic.type}},
+   :extension
+   {:confirms #{MedicationKnowledge.drugCharacteristic.extension}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueString {:confirms #{fhir/string}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueBase64Binary {:confirms #{fhir/base64Binary}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueQuantity :valueString
+      :valueCodeableConcept}}},
+ MedicationKnowledge.drugCharacteristic.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{MedicationKnowledge.drugCharacteristic.extension.*}}},
+ MedicationKnowledge.drugCharacteristic.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.drugCharacteristic.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.drugCharacteristic.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.drugCharacteristic.modifierExtension.*}}},
+ MedicationKnowledge.drugCharacteristic.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.drugCharacteristic.type
+ {:zen/desc
+  "A code specifying which characteristic of the medicine is being described (for example, colour, shape, imprint).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.extension
+ {:minItems 2,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.extension.*}},
+  :slicing
+  {:slices
+   {"usdf-QuantityLimit-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{MedicationKnowledge.extension:usdf-QuantityLimit-extension.*}}},
+     :schema
+     {:confirms
+      #{MedicationKnowledge.extension:usdf-QuantityLimit-extension}}},
+    "usdf-PriorAuthorization-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{MedicationKnowledge.extension:usdf-PriorAuthorization-extension.*}}},
+     :schema
+     {:confirms
+      #{MedicationKnowledge.extension:usdf-PriorAuthorization-extension}}},
+    "usdf-DrugTierID-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{MedicationKnowledge.extension:usdf-DrugTierID-extension.*}}},
+     :schema
+     {:confirms
+      #{MedicationKnowledge.extension:usdf-DrugTierID-extension}}},
+    "usdf-StepTherapyLimit-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{MedicationKnowledge.extension:usdf-StepTherapyLimit-extension.*}}},
+     :schema
+     {:confirms
+      #{MedicationKnowledge.extension:usdf-StepTherapyLimit-extension}}},
+    "usdf-PlanID-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{MedicationKnowledge.extension:usdf-PlanID-extension.*}}},
+     :schema
+     {:confirms
+      #{MedicationKnowledge.extension:usdf-PlanID-extension}}},
+    "usdf-DrugAlternatives-extension"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{MedicationKnowledge.extension:usdf-DrugAlternatives-extension.*}}},
+     :schema
+     {:confirms
+      #{MedicationKnowledge.extension:usdf-DrugAlternatives-extension}}}}}},
+ MedicationKnowledge.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ MedicationKnowledge.extension:usdf-DrugAlternatives-extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.extension:usdf-DrugAlternatives-extension.*}}},
+ MedicationKnowledge.extension:usdf-DrugAlternatives-extension.*
+ {:confirms
+  #{drug-formulary.v1.usdf-DrugAlternatives-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ MedicationKnowledge.extension:usdf-DrugTierID-extension
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.extension:usdf-DrugTierID-extension.*}}},
+ MedicationKnowledge.extension:usdf-DrugTierID-extension.*
+ {:confirms #{drug-formulary.v1.usdf-DrugTierID-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ MedicationKnowledge.extension:usdf-PlanID-extension
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.extension:usdf-PlanID-extension.*}}},
+ MedicationKnowledge.extension:usdf-PlanID-extension.*
+ {:confirms #{drug-formulary.v1.usdf-PlanID-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ MedicationKnowledge.extension:usdf-PriorAuthorization-extension
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.extension:usdf-PriorAuthorization-extension.*}}},
+ MedicationKnowledge.extension:usdf-PriorAuthorization-extension.*
+ {:confirms
+  #{drug-formulary.v1.usdf-PriorAuthorization-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ MedicationKnowledge.extension:usdf-QuantityLimit-extension
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.extension:usdf-QuantityLimit-extension.*}}},
+ MedicationKnowledge.extension:usdf-QuantityLimit-extension.*
+ {:confirms
+  #{drug-formulary.v1.usdf-QuantityLimit-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ MedicationKnowledge.extension:usdf-StepTherapyLimit-extension
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.extension:usdf-StepTherapyLimit-extension.*}}},
+ MedicationKnowledge.extension:usdf-StepTherapyLimit-extension.*
+ {:confirms
+  #{drug-formulary.v1.usdf-StepTherapyLimit-extension/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ MedicationKnowledge.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ MedicationKnowledge.ingredient
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.ingredient.*}}},
+ MedicationKnowledge.ingredient.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{#{:itemReference :itemCodeableConcept}},
+  :type zen/map,
+  :zen/desc
+  "Identifies a particular constituent of interest in the product.",
+  :keys
+  {:isActive {:confirms #{MedicationKnowledge.ingredient.isActive}},
+   :modifierExtension
+   {:confirms #{MedicationKnowledge.ingredient.modifierExtension}},
+   :extension {:confirms #{MedicationKnowledge.ingredient.extension}},
+   :id {:confirms #{MedicationKnowledge.ingredient.id}},
+   :strength {:confirms #{MedicationKnowledge.ingredient.strength}},
+   :itemCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :itemReference {:confirms #{fhir/Reference}}},
+  :exclusive-keys #{#{:itemReference :itemCodeableConcept}}},
+ MedicationKnowledge.ingredient.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.ingredient.extension.*}}},
+ MedicationKnowledge.ingredient.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.ingredient.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.ingredient.isActive
+ {:zen/desc
+  "Indication of whether this ingredient affects the therapeutic action of the drug.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ MedicationKnowledge.ingredient.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{MedicationKnowledge.ingredient.modifierExtension.*}}},
+ MedicationKnowledge.ingredient.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.ingredient.strength
+ {:zen/desc
+  "Specifies how many (or how much) of the items there are in this Medication.  For example, 250 mg per tablet.  This is expressed as a ratio where the numerator is 250mg and the denominator is 1 tablet.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Ratio}},
+ MedicationKnowledge.intendedRoute
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.intendedRoute.*}}},
+ MedicationKnowledge.intendedRoute.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc "The intended or approved route of administration."},
+ MedicationKnowledge.kinetics
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.kinetics.*}}},
+ MedicationKnowledge.kinetics.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The time course of drug absorption, distribution, metabolism and excretion of a medication from the body.",
+  :keys
+  {:id {:confirms #{MedicationKnowledge.kinetics.id}},
+   :lethalDose50
+   {:confirms #{MedicationKnowledge.kinetics.lethalDose50}},
+   :halfLifePeriod
+   {:confirms #{MedicationKnowledge.kinetics.halfLifePeriod}},
+   :modifierExtension
+   {:confirms #{MedicationKnowledge.kinetics.modifierExtension}},
+   :areaUnderCurve
+   {:confirms #{MedicationKnowledge.kinetics.areaUnderCurve}},
+   :extension {:confirms #{MedicationKnowledge.kinetics.extension}}}},
+ MedicationKnowledge.kinetics.areaUnderCurve
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.kinetics.areaUnderCurve.*}}},
+ MedicationKnowledge.kinetics.areaUnderCurve.*
+ {:confirms #{fhir/Quantity},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The drug concentration measured at certain discrete points in time."},
+ MedicationKnowledge.kinetics.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.kinetics.extension.*}}},
+ MedicationKnowledge.kinetics.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.kinetics.halfLifePeriod
+ {:zen/desc
+  "The time required for any specified property (e.g., the concentration of a substance in the body) to decrease by half.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Duration}},
+ MedicationKnowledge.kinetics.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.kinetics.lethalDose50
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.kinetics.lethalDose50.*}}},
+ MedicationKnowledge.kinetics.lethalDose50.*
+ {:confirms #{fhir/Quantity},
+  :zen/tags #{zen/schema},
+  :zen/desc "The median lethal dose of a drug."},
+ MedicationKnowledge.kinetics.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{MedicationKnowledge.kinetics.modifierExtension.*}}},
+ MedicationKnowledge.kinetics.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ MedicationKnowledge.manufacturer
+ {:zen/desc
+  "Describes the details of the manufacturer of the medication product.  This is not intended to represent the distributor of a medication product.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ MedicationKnowledge.medicineClassification
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.medicineClassification.*}}},
+ MedicationKnowledge.medicineClassification.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type},
+  :type zen/map,
+  :zen/desc
+  "Categorization of the medication within a formulary or classification system.",
+  :keys
+  {:id {:confirms #{MedicationKnowledge.medicineClassification.id}},
+   :extension
+   {:confirms #{MedicationKnowledge.medicineClassification.extension}},
+   :type
+   {:confirms #{MedicationKnowledge.medicineClassification.type}},
+   :modifierExtension
+   {:confirms
+    #{MedicationKnowledge.medicineClassification.modifierExtension}},
+   :classification
+   {:confirms
+    #{MedicationKnowledge.medicineClassification.classification}}}},
+ MedicationKnowledge.medicineClassification.classification
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.medicineClassification.classification.*}}},
+ MedicationKnowledge.medicineClassification.classification.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Specific category assigned to the medication (e.g. anti-infective, anti-hypertensive, antibiotic, etc.)."},
+ MedicationKnowledge.medicineClassification.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.medicineClassification.extension.*}}},
+ MedicationKnowledge.medicineClassification.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.medicineClassification.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.medicineClassification.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.medicineClassification.modifierExtension.*}}},
+ MedicationKnowledge.medicineClassification.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.medicineClassification.type
+ {:zen/desc
+  "The type of category for the medication (for example, therapeutic classification, therapeutic sub-classification).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.meta
+ {:zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Meta}},
+ MedicationKnowledge.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.modifierExtension.*}}},
+ MedicationKnowledge.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.monitoringProgram
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.monitoringProgram.*}}},
+ MedicationKnowledge.monitoringProgram.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "The program under which the medication is reviewed.",
+  :keys
+  {:id {:confirms #{MedicationKnowledge.monitoringProgram.id}},
+   :name {:confirms #{MedicationKnowledge.monitoringProgram.name}},
+   :extension
+   {:confirms #{MedicationKnowledge.monitoringProgram.extension}},
+   :type {:confirms #{MedicationKnowledge.monitoringProgram.type}},
+   :modifierExtension
+   {:confirms
+    #{MedicationKnowledge.monitoringProgram.modifierExtension}}}},
+ MedicationKnowledge.monitoringProgram.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{MedicationKnowledge.monitoringProgram.extension.*}}},
+ MedicationKnowledge.monitoringProgram.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.monitoringProgram.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.monitoringProgram.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.monitoringProgram.modifierExtension.*}}},
+ MedicationKnowledge.monitoringProgram.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.monitoringProgram.name
+ {:zen/desc "Name of the reviewing program.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.monitoringProgram.type
+ {:zen/desc "Type of program under which the medication is monitored.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.monograph
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.monograph.*}}},
+ MedicationKnowledge.monograph.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Associated documentation about the medication.",
+  :keys
+  {:source {:confirms #{MedicationKnowledge.monograph.source}},
+   :extension {:confirms #{MedicationKnowledge.monograph.extension}},
+   :type {:confirms #{MedicationKnowledge.monograph.type}},
+   :id {:confirms #{MedicationKnowledge.monograph.id}},
+   :modifierExtension
+   {:confirms #{MedicationKnowledge.monograph.modifierExtension}}}},
+ MedicationKnowledge.monograph.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.monograph.extension.*}}},
+ MedicationKnowledge.monograph.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.monograph.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.monograph.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{MedicationKnowledge.monograph.modifierExtension.*}}},
+ MedicationKnowledge.monograph.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.monograph.source
+ {:zen/desc "Associated documentation about the medication.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ MedicationKnowledge.monograph.type
+ {:zen/desc
+  "The category of documentation about the medication. (e.g. professional monograph, patient education monograph).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.packaging
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Information that only applies to packages (not products).",
+  :keys
+  {:quantity {:confirms #{MedicationKnowledge.packaging.quantity}},
+   :type {:confirms #{MedicationKnowledge.packaging.type}},
+   :extension {:confirms #{MedicationKnowledge.packaging.extension}},
+   :id {:confirms #{MedicationKnowledge.packaging.id}},
+   :modifierExtension
+   {:confirms #{MedicationKnowledge.packaging.modifierExtension}}}},
+ MedicationKnowledge.packaging.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.packaging.extension.*}}},
+ MedicationKnowledge.packaging.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.packaging.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.packaging.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{MedicationKnowledge.packaging.modifierExtension.*}}},
+ MedicationKnowledge.packaging.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.packaging.quantity
+ {:zen/desc
+  "The number of product units the package would contain if fully loaded.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ MedicationKnowledge.packaging.type
+ {:zen/desc
+  "A code that defines the specific type of packaging that the medication can be found in (e.g. blister sleeve, tube, bottle).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.preparationInstruction
+ {:zen/desc "The instructions for preparing the medication.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/markdown}},
+ MedicationKnowledge.productType
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.productType.*}}},
+ MedicationKnowledge.productType.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Category of the medication or product (e.g. branded product, therapeutic moeity, generic product, innovator product, etc.)."},
+ MedicationKnowledge.regulatory
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.regulatory.*}}},
+ MedicationKnowledge.regulatory.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:regulatoryAuthority},
+  :type zen/map,
+  :zen/desc "Regulatory information about a medication.",
+  :keys
+  {:extension {:confirms #{MedicationKnowledge.regulatory.extension}},
+   :modifierExtension
+   {:confirms #{MedicationKnowledge.regulatory.modifierExtension}},
+   :maxDispense
+   {:confirms #{MedicationKnowledge.regulatory.maxDispense}},
+   :id {:confirms #{MedicationKnowledge.regulatory.id}},
+   :schedule {:confirms #{MedicationKnowledge.regulatory.schedule}},
+   :substitution
+   {:confirms #{MedicationKnowledge.regulatory.substitution}},
+   :regulatoryAuthority
+   {:confirms #{MedicationKnowledge.regulatory.regulatoryAuthority}}}},
+ MedicationKnowledge.regulatory.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.regulatory.extension.*}}},
+ MedicationKnowledge.regulatory.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.regulatory.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.regulatory.maxDispense
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:quantity},
+  :type zen/map,
+  :zen/desc
+  "The maximum number of units of the medication that can be dispensed in a period.",
+  :keys
+  {:period
+   {:confirms #{MedicationKnowledge.regulatory.maxDispense.period}},
+   :id {:confirms #{MedicationKnowledge.regulatory.maxDispense.id}},
+   :extension
+   {:confirms #{MedicationKnowledge.regulatory.maxDispense.extension}},
+   :quantity
+   {:confirms #{MedicationKnowledge.regulatory.maxDispense.quantity}},
+   :modifierExtension
+   {:confirms
+    #{MedicationKnowledge.regulatory.maxDispense.modifierExtension}}}},
+ MedicationKnowledge.regulatory.maxDispense.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.regulatory.maxDispense.extension.*}}},
+ MedicationKnowledge.regulatory.maxDispense.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.regulatory.maxDispense.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.regulatory.maxDispense.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.regulatory.maxDispense.modifierExtension.*}}},
+ MedicationKnowledge.regulatory.maxDispense.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.regulatory.maxDispense.period
+ {:zen/desc "The period that applies to the maximum number of units.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Duration}},
+ MedicationKnowledge.regulatory.maxDispense.quantity
+ {:zen/desc
+  "The maximum number of units of the medication that can be dispensed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ MedicationKnowledge.regulatory.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{MedicationKnowledge.regulatory.modifierExtension.*}}},
+ MedicationKnowledge.regulatory.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.regulatory.regulatoryAuthority
+ {:zen/desc "The authority that is specifying the regulations.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ MedicationKnowledge.regulatory.schedule
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.regulatory.schedule.*}}},
+ MedicationKnowledge.regulatory.schedule.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:schedule},
+  :type zen/map,
+  :zen/desc "Specifies the schedule of a medication in jurisdiction.",
+  :keys
+  {:modifierExtension
+   {:confirms
+    #{MedicationKnowledge.regulatory.schedule.modifierExtension}},
+   :id {:confirms #{MedicationKnowledge.regulatory.schedule.id}},
+   :schedule
+   {:confirms #{MedicationKnowledge.regulatory.schedule.schedule}},
+   :extension
+   {:confirms #{MedicationKnowledge.regulatory.schedule.extension}}}},
+ MedicationKnowledge.regulatory.schedule.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{MedicationKnowledge.regulatory.schedule.extension.*}}},
+ MedicationKnowledge.regulatory.schedule.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.regulatory.schedule.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.regulatory.schedule.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.regulatory.schedule.modifierExtension.*}}},
+ MedicationKnowledge.regulatory.schedule.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.regulatory.schedule.schedule
+ {:zen/desc "Specifies the specific drug schedule.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.regulatory.substitution
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.regulatory.substitution.*}}},
+ MedicationKnowledge.regulatory.substitution.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type :allowed},
+  :type zen/map,
+  :zen/desc
+  "Specifies if changes are allowed when dispensing a medication from a regulatory perspective.",
+  :keys
+  {:modifierExtension
+   {:confirms
+    #{MedicationKnowledge.regulatory.substitution.modifierExtension}},
+   :id {:confirms #{MedicationKnowledge.regulatory.substitution.id}},
+   :allowed
+   {:confirms #{MedicationKnowledge.regulatory.substitution.allowed}},
+   :type
+   {:confirms #{MedicationKnowledge.regulatory.substitution.type}},
+   :extension
+   {:confirms
+    #{MedicationKnowledge.regulatory.substitution.extension}}}},
+ MedicationKnowledge.regulatory.substitution.allowed
+ {:zen/desc
+  "Specifies if regulation allows for changes in the medication when dispensing.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ MedicationKnowledge.regulatory.substitution.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.regulatory.substitution.extension.*}}},
+ MedicationKnowledge.regulatory.substitution.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.regulatory.substitution.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.regulatory.substitution.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.regulatory.substitution.modifierExtension.*}}},
+ MedicationKnowledge.regulatory.substitution.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.regulatory.substitution.type
+ {:zen/desc "Specifies the type of substitution allowed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.relatedMedicationKnowledge
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{MedicationKnowledge.relatedMedicationKnowledge.*}}},
+ MedicationKnowledge.relatedMedicationKnowledge.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type :reference},
+  :type zen/map,
+  :zen/desc "Associated or related knowledge about a medication.",
+  :keys
+  {:type
+   {:confirms #{MedicationKnowledge.relatedMedicationKnowledge.type}},
+   :id
+   {:confirms #{MedicationKnowledge.relatedMedicationKnowledge.id}},
+   :extension
+   {:confirms
+    #{MedicationKnowledge.relatedMedicationKnowledge.extension}},
+   :modifierExtension
+   {:confirms
+    #{MedicationKnowledge.relatedMedicationKnowledge.modifierExtension}},
+   :reference
+   {:confirms
+    #{MedicationKnowledge.relatedMedicationKnowledge.reference}}}},
+ MedicationKnowledge.relatedMedicationKnowledge.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.relatedMedicationKnowledge.extension.*}}},
+ MedicationKnowledge.relatedMedicationKnowledge.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ MedicationKnowledge.relatedMedicationKnowledge.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ MedicationKnowledge.relatedMedicationKnowledge.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.relatedMedicationKnowledge.modifierExtension.*}}},
+ MedicationKnowledge.relatedMedicationKnowledge.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ MedicationKnowledge.relatedMedicationKnowledge.reference
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{MedicationKnowledge.relatedMedicationKnowledge.reference.*}}},
+ MedicationKnowledge.relatedMedicationKnowledge.reference.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Associated documentation about the associated medication knowledge."},
+ MedicationKnowledge.relatedMedicationKnowledge.type
+ {:zen/desc
+  "The category of the associated medication knowledge reference.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ MedicationKnowledge.status
+ {aidbox-fx/valueset MedicationKnowledge.status.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A code to indicate if the medication is in active use.  The status refers to the validity about the information of the medication and not to its medicinal properties."},
+ MedicationKnowledge.status.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/ValueSet/medicationknowledge-status"},
+ MedicationKnowledge.synonym
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{MedicationKnowledge.synonym.*}}},
+ MedicationKnowledge.synonym.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Additional names for a medication, for example, the name(s) given to a medication in different countries.  For example, acetaminophen and paracetamol or salbutamol and albuterol."},
+ MedicationKnowledge.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}}}

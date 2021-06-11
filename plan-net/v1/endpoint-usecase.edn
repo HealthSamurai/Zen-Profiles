@@ -1,0 +1,189 @@
+{ns plan-net.v1.endpoint-usecase,
+ import #{aidbox-fx fhir aidbox},
+ Extension
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:extension :url},
+  :type zen/map,
+  :zen/desc
+  "EndpointUseCase is an enumeration of the specific use cases (service descriptions) supported by the endpoint",
+  :keys
+  {:valueBase64Binary {:confirms #{fhir/base64Binary}},
+   :valueAge {:confirms #{fhir/Age}},
+   :valueParameterDefinition {:confirms #{fhir/ParameterDefinition}},
+   :valueTiming {:confirms #{fhir/Timing}},
+   :valueCode {:confirms #{fhir/code}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueContributor {:confirms #{fhir/Contributor}},
+   :valueContactDetail {:confirms #{fhir/ContactDetail}},
+   :valueUri {:confirms #{fhir/uri}},
+   :valueUsageContext {:confirms #{fhir/UsageContext}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueDecimal {:confirms #{fhir/decimal}},
+   :valueCanonical {:confirms #{fhir/canonical}},
+   :valueMarkdown {:confirms #{fhir/markdown}},
+   :valueIdentifier {:confirms #{fhir/Identifier}},
+   :valueTriggerDefinition {:confirms #{fhir/TriggerDefinition}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueCount {:confirms #{fhir/Count}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueInstant {:confirms #{fhir/instant}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :valueDate {:confirms #{fhir/date}},
+   :valueDuration {:confirms #{fhir/Duration}},
+   :valueDataRequirement {:confirms #{fhir/DataRequirement}},
+   :valueMeta {:confirms #{fhir/Meta}},
+   :valueMoney {:confirms #{fhir/Money}},
+   :valueCoding {:confirms #{fhir/Coding}},
+   :valueExpression {:confirms #{fhir/Expression}},
+   :extension {:confirms #{Extension.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Extension.id}},
+   :valueDosage {:confirms #{fhir/Dosage}},
+   :valueContactPoint {:confirms #{fhir/ContactPoint}},
+   :url {:confirms #{Extension.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueAnnotation {:confirms #{fhir/Annotation}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueDistance {:confirms #{fhir/Distance}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueSignature {:confirms #{fhir/Signature}},
+   :valueUuid {:confirms #{fhir/uuid}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :valueHumanName {:confirms #{fhir/HumanName}},
+   :valueUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :valueOid {:confirms #{fhir/oid}},
+   :valueAddress {:confirms #{fhir/Address}},
+   :valueRelatedArtifact {:confirms #{fhir/RelatedArtifact}},
+   :valuePositiveInt {:confirms #{fhir/positiveInt}},
+   :valueId {:confirms #{fhir/id}},
+   :valueUrl {:confirms #{fhir/url}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueAge :valueParameterDefinition
+      :valueTiming :valueCode :valueReference :valueContributor
+      :valueContactDetail :valueUri :valueUsageContext :valueTime
+      :valueDecimal :valueCanonical :valueMarkdown :valueIdentifier
+      :valueTriggerDefinition :valueQuantity :valueCount :valueString
+      :valueRatio :valueBoolean :valueInstant :valueDateTime :valueDate
+      :valueDuration :valueDataRequirement :valueMeta :valueMoney
+      :valueCoding :valueExpression :valueSampledData :valueDosage
+      :valueContactPoint :valueCodeableConcept :valueAnnotation
+      :valuePeriod :valueDistance :valueRange :valueSignature
+      :valueUuid :valueInteger :valueHumanName :valueUnsignedInt
+      :valueAttachment :valueOid :valueAddress :valueRelatedArtifact
+      :valuePositiveInt :valueId :valueUrl}},
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/endpoint-usecase"},
+ Extension.extension
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension.*}},
+  :slicing
+  {:slices
+   {"type"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:type.*}}},
+     :schema {:confirms #{Extension.extension:type}}},
+    "standard"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:standard.*}}},
+     :schema {:confirms #{Extension.extension:standard}}}}}},
+ Extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:standard
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:standard.*}}},
+ Extension.extension:standard.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueUri} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:id {:confirms #{Extension.extension:standard.id}},
+   :extension {:confirms #{Extension.extension:standard.extension}},
+   :url {:confirms #{Extension.extension:standard.url}},
+   :valueUri {:confirms #{fhir/uri}}}},
+ Extension.extension:standard.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:standard.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:standard.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:standard.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:standard.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "standard"}},
+ Extension.extension:type
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:type.*}}},
+ Extension.extension:type.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueCodeableConcept} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:id {:confirms #{Extension.extension:type.id}},
+   :url {:confirms #{Extension.extension:type.url}},
+   :extension {:confirms #{Extension.extension:type.extension}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}}}},
+ Extension.extension:type.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:type.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:type.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:type.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:type.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "type"}},
+ Extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const
+  {:value
+   "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/endpoint-usecase"}}}

@@ -1,0 +1,993 @@
+{ns plan-net.v1.plannet-InsurancePlan,
+ import #{aidbox-fx fhir aidbox},
+ InsurancePlan
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:type :status :administeredBy :ownedBy},
+  :type zen/map,
+  :zen/desc
+  "An InsurancePlan is a discrete package of health insurance coverage benefits that are offered under a particular network type. A given payer’s products typically differ by network type and/or covered benefits. A plan pairs a product’s covered benefits with the particular cost sharing structure offered to a consumer. A given product may comprise multiple plans (i.e. each plan offers different cost sharing requirements for the same set of covered benefits).\n\nInsurancePlan describes a health insurance offering comprised of a list of covered benefits (i.e. the product), costs associated with those benefits (i.e. the plan), and additional information about the offering, such as who it is owned and administered by, a coverage area, contact information, etc.",
+  :resourceType "InsurancePlan",
+  :keys
+  {:coverageArea {:confirms #{InsurancePlan.coverageArea}},
+   :meta {:confirms #{InsurancePlan.meta}},
+   :name {:confirms #{InsurancePlan.name}},
+   :implicitRules {:confirms #{InsurancePlan.implicitRules}},
+   :coverage {:confirms #{InsurancePlan.coverage}},
+   :type {:confirms #{InsurancePlan.type}},
+   :resourceType {:type zen/string, :const {:value "InsurancePlan"}},
+   :extension {:confirms #{InsurancePlan.extension}},
+   :contained {:confirms #{InsurancePlan.contained}},
+   :alias {:confirms #{InsurancePlan.alias}},
+   :status {:confirms #{InsurancePlan.status}},
+   :language {:confirms #{InsurancePlan.language}},
+   :id {:confirms #{InsurancePlan.id}},
+   :identifier {:confirms #{InsurancePlan.identifier}},
+   :administeredBy {:confirms #{InsurancePlan.administeredBy}},
+   :ownedBy {:confirms #{InsurancePlan.ownedBy}},
+   :network {:confirms #{InsurancePlan.network}},
+   :period {:confirms #{InsurancePlan.period}},
+   :plan {:confirms #{InsurancePlan.plan}},
+   :endpoint {:confirms #{InsurancePlan.endpoint}},
+   :contact {:confirms #{InsurancePlan.contact}},
+   :modifierExtension {:confirms #{InsurancePlan.modifierExtension}},
+   :text {:confirms #{InsurancePlan.text}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-InsurancePlan"},
+ InsurancePlan.administeredBy
+ {:zen/desc
+  "An organization which administer other services such as underwriting, customer service and/or claims processing on behalf of the health insurance product owner.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ InsurancePlan.alias
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.alias.*}}},
+ InsurancePlan.alias.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A list of alternate names that the product is known as, or was known as in the past."},
+ InsurancePlan.contact
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.contact.*}}},
+ InsurancePlan.contact.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The contact for the health insurance product for a certain purpose.",
+  :keys
+  {:purpose {:confirms #{InsurancePlan.contact.purpose}},
+   :extension {:confirms #{InsurancePlan.contact.extension}},
+   :modifierExtension
+   {:confirms #{InsurancePlan.contact.modifierExtension}},
+   :name {:confirms #{InsurancePlan.contact.name}},
+   :id {:confirms #{InsurancePlan.contact.id}},
+   :address {:confirms #{InsurancePlan.contact.address}},
+   :telecom {:confirms #{InsurancePlan.contact.telecom}}}},
+ InsurancePlan.contact.address
+ {:zen/desc "Visiting or postal addresses for the contact.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Address}},
+ InsurancePlan.contact.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.contact.extension.*}}},
+ InsurancePlan.contact.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.contact.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.contact.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.contact.modifierExtension.*}}},
+ InsurancePlan.contact.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ InsurancePlan.contact.name
+ {:confirms #{fhir/HumanName},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "A name associated with the contact.",
+  :keys
+  {:suffix {:confirms #{InsurancePlan.contact.name.suffix}},
+   :given {:confirms #{InsurancePlan.contact.name.given}},
+   :family {:confirms #{InsurancePlan.contact.name.family}},
+   :use {:confirms #{InsurancePlan.contact.name.use}},
+   :prefix {:confirms #{InsurancePlan.contact.name.prefix}},
+   :extension {:confirms #{InsurancePlan.contact.name.extension}},
+   :id {:confirms #{InsurancePlan.contact.name.id}},
+   :period {:confirms #{InsurancePlan.contact.name.period}},
+   :text {:confirms #{InsurancePlan.contact.name.text}}}},
+ InsurancePlan.contact.name.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.contact.name.extension.*}},
+  :slicing {:slices {}}},
+ InsurancePlan.contact.name.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.contact.name.family
+ {:zen/desc
+  "The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.contact.name.given
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.contact.name.given.*}}},
+ InsurancePlan.contact.name.given.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc "Given name."},
+ InsurancePlan.contact.name.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.contact.name.period
+ {:zen/desc
+  "Indicates the period of time when this name was valid for the named person.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ InsurancePlan.contact.name.prefix
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.contact.name.prefix.*}}},
+ InsurancePlan.contact.name.prefix.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name."},
+ InsurancePlan.contact.name.suffix
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.contact.name.suffix.*}}},
+ InsurancePlan.contact.name.suffix.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name."},
+ InsurancePlan.contact.name.text
+ {:zen/desc
+  "Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of or as well as the specific parts.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.contact.name.use
+ {aidbox-fx/valueset InsurancePlan.contact.name.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Identifies the purpose for this name."},
+ InsurancePlan.contact.name.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/name-use"},
+ InsurancePlan.contact.purpose
+ {:zen/desc
+  "Indicates a purpose for which the contact can be reached.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ InsurancePlan.contact.telecom
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.contact.telecom.*}}},
+ InsurancePlan.contact.telecom.*
+ {:confirms #{fhir/ContactPoint},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A contact detail (e.g. a telephone number or an email address) by which the party may be contacted.",
+  :keys
+  {:period {:confirms #{InsurancePlan.contact.telecom.period}},
+   :system {:confirms #{InsurancePlan.contact.telecom.system}},
+   :use {:confirms #{InsurancePlan.contact.telecom.use}},
+   :id {:confirms #{InsurancePlan.contact.telecom.id}},
+   :extension {:confirms #{InsurancePlan.contact.telecom.extension}},
+   :rank {:confirms #{InsurancePlan.contact.telecom.rank}},
+   :value {:confirms #{InsurancePlan.contact.telecom.value}}}},
+ InsurancePlan.contact.telecom.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.contact.telecom.extension.*}},
+  :slicing {:slices {}}},
+ InsurancePlan.contact.telecom.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.contact.telecom.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.contact.telecom.period
+ {:zen/desc "Time period when the contact point was/is in use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ InsurancePlan.contact.telecom.rank
+ {:zen/desc
+  "Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred than those with higher rank values.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ InsurancePlan.contact.telecom.system
+ {aidbox-fx/valueset InsurancePlan.contact.telecom.system.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Telecommunications form for contact point - what communications system is required to make use of the contact."},
+ InsurancePlan.contact.telecom.system.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-system"},
+ InsurancePlan.contact.telecom.use
+ {aidbox-fx/valueset InsurancePlan.contact.telecom.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Identifies the purpose for the contact point."},
+ InsurancePlan.contact.telecom.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-use"},
+ InsurancePlan.contact.telecom.value
+ {:zen/desc
+  "The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.contained.*}}},
+ InsurancePlan.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ InsurancePlan.coverage
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.coverage.*}}},
+ InsurancePlan.coverage.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type :benefit},
+  :type zen/map,
+  :zen/desc
+  "Details about the coverage offered by the insurance product.",
+  :keys
+  {:extension {:confirms #{InsurancePlan.coverage.extension}},
+   :benefit {:confirms #{InsurancePlan.coverage.benefit}},
+   :id {:confirms #{InsurancePlan.coverage.id}},
+   :type {:confirms #{InsurancePlan.coverage.type}},
+   :network {:confirms #{InsurancePlan.coverage.network}},
+   :modifierExtension
+   {:confirms #{InsurancePlan.coverage.modifierExtension}}}},
+ InsurancePlan.coverage.benefit
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.coverage.benefit.*}}},
+ InsurancePlan.coverage.benefit.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type},
+  :type zen/map,
+  :zen/desc "Specific benefits under this type of coverage.",
+  :keys
+  {:requirement
+   {:confirms #{InsurancePlan.coverage.benefit.requirement}},
+   :modifierExtension
+   {:confirms #{InsurancePlan.coverage.benefit.modifierExtension}},
+   :extension {:confirms #{InsurancePlan.coverage.benefit.extension}},
+   :limit {:confirms #{InsurancePlan.coverage.benefit.limit}},
+   :id {:confirms #{InsurancePlan.coverage.benefit.id}},
+   :type {:confirms #{InsurancePlan.coverage.benefit.type}}}},
+ InsurancePlan.coverage.benefit.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.coverage.benefit.extension.*}}},
+ InsurancePlan.coverage.benefit.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.coverage.benefit.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.coverage.benefit.limit
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.coverage.benefit.limit.*}}},
+ InsurancePlan.coverage.benefit.limit.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "The specific limits on the benefit.",
+  :keys
+  {:modifierExtension
+   {:confirms
+    #{InsurancePlan.coverage.benefit.limit.modifierExtension}},
+   :id {:confirms #{InsurancePlan.coverage.benefit.limit.id}},
+   :code {:confirms #{InsurancePlan.coverage.benefit.limit.code}},
+   :value {:confirms #{InsurancePlan.coverage.benefit.limit.value}},
+   :extension
+   {:confirms #{InsurancePlan.coverage.benefit.limit.extension}}}},
+ InsurancePlan.coverage.benefit.limit.code
+ {:zen/desc "The specific limit on the benefit.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ InsurancePlan.coverage.benefit.limit.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{InsurancePlan.coverage.benefit.limit.extension.*}}},
+ InsurancePlan.coverage.benefit.limit.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.coverage.benefit.limit.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.coverage.benefit.limit.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{InsurancePlan.coverage.benefit.limit.modifierExtension.*}}},
+ InsurancePlan.coverage.benefit.limit.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ InsurancePlan.coverage.benefit.limit.value
+ {:zen/desc
+  "The maximum amount of a service item a plan will pay for a covered benefit.  For examples. wellness visits, or eyeglasses.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ InsurancePlan.coverage.benefit.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{InsurancePlan.coverage.benefit.modifierExtension.*}}},
+ InsurancePlan.coverage.benefit.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ InsurancePlan.coverage.benefit.requirement
+ {:zen/desc
+  "The referral requirements to have access/coverage for this benefit.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.coverage.benefit.type
+ {:zen/desc
+  "Type of benefit (primary care; speciality care; inpatient; outpatient).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ InsurancePlan.coverage.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.coverage.extension.*}}},
+ InsurancePlan.coverage.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.coverage.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.coverage.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.coverage.modifierExtension.*}}},
+ InsurancePlan.coverage.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ InsurancePlan.coverage.network
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.coverage.network.*}}},
+ InsurancePlan.coverage.network.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Reference to the network that providing the type of coverage."},
+ InsurancePlan.coverage.type
+ {:zen/desc
+  "Type of coverage  (Medical; Dental; Mental Health; Substance Abuse; Vision; Drug; Short Term; Long Term Care; Hospice; Home Health).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ InsurancePlan.coverageArea
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.coverageArea.*}}},
+ InsurancePlan.coverageArea.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The geographic region in which a health insurance product's benefits apply."},
+ InsurancePlan.endpoint
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.endpoint.*}}},
+ InsurancePlan.endpoint.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The technical endpoints providing access to services operated for the health insurance product."},
+ InsurancePlan.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.extension.*}}},
+ InsurancePlan.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.identifier.*}}},
+ InsurancePlan.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Business identifiers assigned to this health insurance product which remain constant as the resource is updated and propagates from server to server.",
+  :keys
+  {:extension {:confirms #{InsurancePlan.identifier.extension}},
+   :value {:confirms #{InsurancePlan.identifier.value}},
+   :type {:confirms #{InsurancePlan.identifier.type}},
+   :id {:confirms #{InsurancePlan.identifier.id}},
+   :assigner {:confirms #{InsurancePlan.identifier.assigner}},
+   :use {:confirms #{InsurancePlan.identifier.use}},
+   :period {:confirms #{InsurancePlan.identifier.period}},
+   :system {:confirms #{InsurancePlan.identifier.system}}}},
+ InsurancePlan.identifier.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ InsurancePlan.identifier.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.identifier.extension.*}},
+  :slicing {:slices {}}},
+ InsurancePlan.identifier.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.identifier.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.identifier.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ InsurancePlan.identifier.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ InsurancePlan.identifier.type
+ {:zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ InsurancePlan.identifier.use
+ {aidbox-fx/valueset InsurancePlan.identifier.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ InsurancePlan.identifier.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ InsurancePlan.identifier.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ InsurancePlan.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ InsurancePlan.meta
+ {:confirms #{fhir/Meta},
+  :zen/tags #{zen/schema},
+  :require #{:lastUpdated},
+  :type zen/map,
+  :zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :keys
+  {:versionId {:confirms #{InsurancePlan.meta.versionId}},
+   :lastUpdated {:confirms #{InsurancePlan.meta.lastUpdated}},
+   :tag {:confirms #{InsurancePlan.meta.tag}},
+   :source {:confirms #{InsurancePlan.meta.source}},
+   :profile {:confirms #{InsurancePlan.meta.profile}},
+   :extension {:confirms #{InsurancePlan.meta.extension}},
+   :security {:confirms #{InsurancePlan.meta.security}},
+   :id {:confirms #{InsurancePlan.meta.id}}}},
+ InsurancePlan.meta.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.meta.extension.*}},
+  :slicing {:slices {}}},
+ InsurancePlan.meta.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.meta.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.meta.lastUpdated
+ {:zen/desc
+  "When the resource last changed - e.g. when the version changed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/instant}},
+ InsurancePlan.meta.profile
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.meta.profile.*}}},
+ InsurancePlan.meta.profile.*
+ {:confirms #{fhir/canonical},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A list of profiles (references to [StructureDefinition](http://hl7.org/fhir/R4/structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](http://hl7.org/fhir/R4/structuredefinition-definitions.html#StructureDefinition.url)."},
+ InsurancePlan.meta.security
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.meta.security.*}}},
+ InsurancePlan.meta.security.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."},
+ InsurancePlan.meta.source
+ {:zen/desc
+  "A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](http://hl7.org/fhir/R4/provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ InsurancePlan.meta.tag
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.meta.tag.*}}},
+ InsurancePlan.meta.tag.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."},
+ InsurancePlan.meta.versionId
+ {:zen/desc
+  "The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/id}},
+ InsurancePlan.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.modifierExtension.*}}},
+ InsurancePlan.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ InsurancePlan.name
+ {:zen/desc
+  "Official name of the health insurance product as designated by the owner.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.network
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.network.*}}},
+ InsurancePlan.network.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Reference to the network included in the health insurance product."},
+ InsurancePlan.ownedBy
+ {:zen/desc
+  "The entity that is providing  the health insurance product and underwriting the risk.  This is typically an insurance carriers, other third-party payers, or health plan sponsors comonly referred to as 'payers'.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ InsurancePlan.period
+ {:zen/desc
+  "The period of time that the health insurance product is available.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ InsurancePlan.plan
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.*}}},
+ InsurancePlan.plan.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Details about an insurance plan.",
+  :keys
+  {:coverageArea {:confirms #{InsurancePlan.plan.coverageArea}},
+   :specificCost {:confirms #{InsurancePlan.plan.specificCost}},
+   :type {:confirms #{InsurancePlan.plan.type}},
+   :generalCost {:confirms #{InsurancePlan.plan.generalCost}},
+   :extension {:confirms #{InsurancePlan.plan.extension}},
+   :id {:confirms #{InsurancePlan.plan.id}},
+   :identifier {:confirms #{InsurancePlan.plan.identifier}},
+   :network {:confirms #{InsurancePlan.plan.network}},
+   :modifierExtension
+   {:confirms #{InsurancePlan.plan.modifierExtension}}}},
+ InsurancePlan.plan.coverageArea
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.coverageArea.*}}},
+ InsurancePlan.plan.coverageArea.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The geographic region in which a health insurance plan's benefits apply."},
+ InsurancePlan.plan.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.extension.*}}},
+ InsurancePlan.plan.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.plan.generalCost
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.generalCost.*}}},
+ InsurancePlan.plan.generalCost.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Overall costs associated with the plan.",
+  :keys
+  {:comment {:confirms #{InsurancePlan.plan.generalCost.comment}},
+   :groupSize {:confirms #{InsurancePlan.plan.generalCost.groupSize}},
+   :id {:confirms #{InsurancePlan.plan.generalCost.id}},
+   :modifierExtension
+   {:confirms #{InsurancePlan.plan.generalCost.modifierExtension}},
+   :extension {:confirms #{InsurancePlan.plan.generalCost.extension}},
+   :cost {:confirms #{InsurancePlan.plan.generalCost.cost}},
+   :type {:confirms #{InsurancePlan.plan.generalCost.type}}}},
+ InsurancePlan.plan.generalCost.comment
+ {:zen/desc
+  "Additional information about the general costs associated with this plan.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.plan.generalCost.cost
+ {:zen/desc "Value of the cost.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Money}},
+ InsurancePlan.plan.generalCost.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.generalCost.extension.*}}},
+ InsurancePlan.plan.generalCost.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.plan.generalCost.groupSize
+ {:zen/desc "Number of participants enrolled in the plan.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ InsurancePlan.plan.generalCost.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.plan.generalCost.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{InsurancePlan.plan.generalCost.modifierExtension.*}}},
+ InsurancePlan.plan.generalCost.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ InsurancePlan.plan.generalCost.type
+ {:zen/desc "Type of cost.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ InsurancePlan.plan.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.plan.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.identifier.*}}},
+ InsurancePlan.plan.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Business identifiers assigned to this health insurance plan which remain constant as the resource is updated and propagates from server to server."},
+ InsurancePlan.plan.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.modifierExtension.*}}},
+ InsurancePlan.plan.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ InsurancePlan.plan.network
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.network.*}}},
+ InsurancePlan.plan.network.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Reference to the network that providing the type of coverage."},
+ InsurancePlan.plan.specificCost
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.specificCost.*}}},
+ InsurancePlan.plan.specificCost.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:category},
+  :type zen/map,
+  :zen/desc
+  "Costs associated with the coverage provided by the product.",
+  :keys
+  {:benefit {:confirms #{InsurancePlan.plan.specificCost.benefit}},
+   :category {:confirms #{InsurancePlan.plan.specificCost.category}},
+   :id {:confirms #{InsurancePlan.plan.specificCost.id}},
+   :extension {:confirms #{InsurancePlan.plan.specificCost.extension}},
+   :modifierExtension
+   {:confirms #{InsurancePlan.plan.specificCost.modifierExtension}}}},
+ InsurancePlan.plan.specificCost.benefit
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.specificCost.benefit.*}}},
+ InsurancePlan.plan.specificCost.benefit.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type},
+  :type zen/map,
+  :zen/desc
+  "List of the specific benefits under this category of benefit.",
+  :keys
+  {:cost {:confirms #{InsurancePlan.plan.specificCost.benefit.cost}},
+   :type {:confirms #{InsurancePlan.plan.specificCost.benefit.type}},
+   :modifierExtension
+   {:confirms
+    #{InsurancePlan.plan.specificCost.benefit.modifierExtension}},
+   :extension
+   {:confirms #{InsurancePlan.plan.specificCost.benefit.extension}},
+   :id {:confirms #{InsurancePlan.plan.specificCost.benefit.id}}}},
+ InsurancePlan.plan.specificCost.benefit.cost
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{InsurancePlan.plan.specificCost.benefit.cost.*}}},
+ InsurancePlan.plan.specificCost.benefit.cost.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:type},
+  :type zen/map,
+  :zen/desc "List of the costs associated with a specific benefit.",
+  :keys
+  {:qualifiers
+   {:confirms
+    #{InsurancePlan.plan.specificCost.benefit.cost.qualifiers}},
+   :applicability
+   {:confirms
+    #{InsurancePlan.plan.specificCost.benefit.cost.applicability}},
+   :value
+   {:confirms #{InsurancePlan.plan.specificCost.benefit.cost.value}},
+   :extension
+   {:confirms
+    #{InsurancePlan.plan.specificCost.benefit.cost.extension}},
+   :type
+   {:confirms #{InsurancePlan.plan.specificCost.benefit.cost.type}},
+   :id {:confirms #{InsurancePlan.plan.specificCost.benefit.cost.id}},
+   :modifierExtension
+   {:confirms
+    #{InsurancePlan.plan.specificCost.benefit.cost.modifierExtension}}}},
+ InsurancePlan.plan.specificCost.benefit.cost.applicability
+ {aidbox-fx/valueset
+  InsurancePlan.plan.specificCost.benefit.cost.applicability.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Whether the cost applies to in-network or out-of-network providers (in-network; out-of-network; other)."},
+ InsurancePlan.plan.specificCost.benefit.cost.applicability.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/ValueSet/insuranceplan-applicability"},
+ InsurancePlan.plan.specificCost.benefit.cost.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{InsurancePlan.plan.specificCost.benefit.cost.extension.*}}},
+ InsurancePlan.plan.specificCost.benefit.cost.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.plan.specificCost.benefit.cost.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.plan.specificCost.benefit.cost.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{InsurancePlan.plan.specificCost.benefit.cost.modifierExtension.*}}},
+ InsurancePlan.plan.specificCost.benefit.cost.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ InsurancePlan.plan.specificCost.benefit.cost.qualifiers
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{InsurancePlan.plan.specificCost.benefit.cost.qualifiers.*}}},
+ InsurancePlan.plan.specificCost.benefit.cost.qualifiers.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Additional information about the cost, such as information about funding sources (e.g. HSA, HRA, FSA, RRA)."},
+ InsurancePlan.plan.specificCost.benefit.cost.type
+ {:zen/desc
+  "Type of cost (copay; individual cap; family cap; coinsurance; deductible).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ InsurancePlan.plan.specificCost.benefit.cost.value
+ {:zen/desc
+  "The actual cost value. (some of the costs may be represented as percentages rather than currency, e.g. 10% coinsurance).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ InsurancePlan.plan.specificCost.benefit.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{InsurancePlan.plan.specificCost.benefit.extension.*}}},
+ InsurancePlan.plan.specificCost.benefit.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.plan.specificCost.benefit.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.plan.specificCost.benefit.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{InsurancePlan.plan.specificCost.benefit.modifierExtension.*}}},
+ InsurancePlan.plan.specificCost.benefit.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ InsurancePlan.plan.specificCost.benefit.type
+ {:zen/desc
+  "Type of specific benefit (preventative; primary care office visit; speciality office visit; hospitalization; emergency room; urgent care).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ InsurancePlan.plan.specificCost.category
+ {:zen/desc
+  "General category of benefit (Medical; Dental; Vision; Drug; Mental Health; Substance Abuse; Hospice, Home Health).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ InsurancePlan.plan.specificCost.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.plan.specificCost.extension.*}}},
+ InsurancePlan.plan.specificCost.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ InsurancePlan.plan.specificCost.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ InsurancePlan.plan.specificCost.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{InsurancePlan.plan.specificCost.modifierExtension.*}}},
+ InsurancePlan.plan.specificCost.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ InsurancePlan.plan.type
+ {:zen/desc
+  "Type of plan. For example, \"Platinum\" or \"High Deductable\".",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ InsurancePlan.status
+ {aidbox-fx/valueset InsurancePlan.status.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The current state of the health insurance product.",
+  :const {:value "active"}},
+ InsurancePlan.status.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/publication-status"},
+ InsurancePlan.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}},
+ InsurancePlan.type
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{InsurancePlan.type.*}}},
+ InsurancePlan.type.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc "The kind of health insurance product."}}

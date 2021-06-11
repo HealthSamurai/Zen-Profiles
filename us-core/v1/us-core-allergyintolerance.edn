@@ -1,0 +1,320 @@
+{ns us-core.v1.us-core-allergyintolerance,
+ import #{aidbox-fx fhir aidbox},
+ AllergyIntolerance
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:patient :code},
+  :type zen/map,
+  :zen/desc
+  "Defines constraints and extensions on the AllergyIntolerance resource for the minimal set of data to query and retrieve allergy information.",
+  :resourceType "AllergyIntolerance",
+  :keys
+  {:patient {:confirms #{AllergyIntolerance.patient}},
+   :category {:confirms #{AllergyIntolerance.category}},
+   :criticality {:confirms #{AllergyIntolerance.criticality}},
+   :clinicalStatus {:confirms #{AllergyIntolerance.clinicalStatus}},
+   :meta {:confirms #{AllergyIntolerance.meta}},
+   :onsetRange {:confirms #{fhir/Range}},
+   :onsetAge {:confirms #{fhir/Age}},
+   :encounter {:confirms #{AllergyIntolerance.encounter}},
+   :implicitRules {:confirms #{AllergyIntolerance.implicitRules}},
+   :onsetPeriod {:confirms #{fhir/Period}},
+   :type {:confirms #{AllergyIntolerance.type}},
+   :resourceType
+   {:type zen/string, :const {:value "AllergyIntolerance"}},
+   :asserter {:confirms #{AllergyIntolerance.asserter}},
+   :note {:confirms #{AllergyIntolerance.note}},
+   :extension {:confirms #{AllergyIntolerance.extension}},
+   :contained {:confirms #{AllergyIntolerance.contained}},
+   :recordedDate {:confirms #{AllergyIntolerance.recordedDate}},
+   :language {:confirms #{AllergyIntolerance.language}},
+   :id {:confirms #{AllergyIntolerance.id}},
+   :onsetString {:confirms #{fhir/string}},
+   :recorder {:confirms #{AllergyIntolerance.recorder}},
+   :code {:confirms #{AllergyIntolerance.code}},
+   :identifier {:confirms #{AllergyIntolerance.identifier}},
+   :onsetDateTime {:confirms #{fhir/dateTime}},
+   :lastOccurrence {:confirms #{AllergyIntolerance.lastOccurrence}},
+   :verificationStatus
+   {:confirms #{AllergyIntolerance.verificationStatus}},
+   :reaction {:confirms #{AllergyIntolerance.reaction}},
+   :modifierExtension
+   {:confirms #{AllergyIntolerance.modifierExtension}},
+   :text {:confirms #{AllergyIntolerance.text}}},
+  :exclusive-keys
+  #{#{:onsetRange :onsetAge :onsetPeriod :onsetString :onsetDateTime}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance"},
+ AllergyIntolerance.asserter
+ {:zen/desc
+  "The source of the information about the allergy that is recorded.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ AllergyIntolerance.category
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{AllergyIntolerance.category.*}}},
+ AllergyIntolerance.category.*
+ {aidbox-fx/valueset AllergyIntolerance.category.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Category of the identified substance."},
+ AllergyIntolerance.category.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/ValueSet/allergy-intolerance-category"},
+ AllergyIntolerance.clinicalStatus
+ {aidbox-fx/valueset AllergyIntolerance.clinicalStatus.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc "The clinical status of the allergy or intolerance."},
+ AllergyIntolerance.clinicalStatus.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/ValueSet/allergyintolerance-clinical"},
+ AllergyIntolerance.code
+ {:zen/desc
+  "Code for an allergy or intolerance statement (either a positive or a negated/excluded statement).  This may be a code for a substance or pharmaceutical product that is considered to be responsible for the adverse reaction risk (e.g., \"Latex\"), an allergy or intolerance condition (e.g., \"Latex allergy\"), or a negated/excluded code for a specific substance or class (e.g., \"No latex allergy\") or a general or categorical negated statement (e.g.,  \"No known allergy\", \"No known drug allergies\").  Note: the substance for a specific reaction may be different from the substance identified as the cause of the risk, but it must be consistent with it. For instance, it may be a more specific substance (e.g. a brand medication) or a composite product that includes the identified substance. It must be clinically safe to only process the 'code' and ignore the 'reaction.substance'.  If a receiving system is unable to confirm that AllergyIntolerance.reaction.substance falls within the semantic scope of AllergyIntolerance.code, then the receiving system should ignore AllergyIntolerance.reaction.substance.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ AllergyIntolerance.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{AllergyIntolerance.contained.*}}},
+ AllergyIntolerance.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ AllergyIntolerance.criticality
+ {aidbox-fx/valueset AllergyIntolerance.criticality.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Estimate of the potential clinical harm, or seriousness, of the reaction to the identified substance."},
+ AllergyIntolerance.criticality.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality"},
+ AllergyIntolerance.encounter
+ {:zen/desc
+  "The encounter when the allergy or intolerance was asserted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ AllergyIntolerance.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{AllergyIntolerance.extension.*}}},
+ AllergyIntolerance.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ AllergyIntolerance.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ AllergyIntolerance.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{AllergyIntolerance.identifier.*}}},
+ AllergyIntolerance.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Business identifiers assigned to this AllergyIntolerance by the performer or other systems which remain constant as the resource is updated and propagates from server to server."},
+ AllergyIntolerance.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ AllergyIntolerance.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ AllergyIntolerance.lastOccurrence
+ {:zen/desc
+  "Represents the date and/or time of the last known occurrence of a reaction event.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ AllergyIntolerance.meta
+ {:zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Meta}},
+ AllergyIntolerance.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{AllergyIntolerance.modifierExtension.*}}},
+ AllergyIntolerance.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ AllergyIntolerance.note
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{AllergyIntolerance.note.*}}},
+ AllergyIntolerance.note.*
+ {:confirms #{fhir/Annotation},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Additional narrative about the propensity for the Adverse Reaction, not captured in other fields."},
+ AllergyIntolerance.patient
+ {:zen/desc "The patient who has the allergy or intolerance.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ AllergyIntolerance.reaction
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{AllergyIntolerance.reaction.*}}},
+ AllergyIntolerance.reaction.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:manifestation},
+  :type zen/map,
+  :zen/desc
+  "Details about each adverse reaction event linked to exposure to the identified substance.",
+  :keys
+  {:description {:confirms #{AllergyIntolerance.reaction.description}},
+   :onset {:confirms #{AllergyIntolerance.reaction.onset}},
+   :manifestation
+   {:confirms #{AllergyIntolerance.reaction.manifestation}},
+   :exposureRoute
+   {:confirms #{AllergyIntolerance.reaction.exposureRoute}},
+   :note {:confirms #{AllergyIntolerance.reaction.note}},
+   :substance {:confirms #{AllergyIntolerance.reaction.substance}},
+   :extension {:confirms #{AllergyIntolerance.reaction.extension}},
+   :id {:confirms #{AllergyIntolerance.reaction.id}},
+   :severity {:confirms #{AllergyIntolerance.reaction.severity}},
+   :modifierExtension
+   {:confirms #{AllergyIntolerance.reaction.modifierExtension}}}},
+ AllergyIntolerance.reaction.description
+ {:zen/desc
+  "Text description about the reaction as a whole, including details of the manifestation if required.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ AllergyIntolerance.reaction.exposureRoute
+ {:zen/desc
+  "Identification of the route by which the subject was exposed to the substance.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ AllergyIntolerance.reaction.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{AllergyIntolerance.reaction.extension.*}}},
+ AllergyIntolerance.reaction.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ AllergyIntolerance.reaction.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ AllergyIntolerance.reaction.manifestation
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{AllergyIntolerance.reaction.manifestation.*}}},
+ AllergyIntolerance.reaction.manifestation.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Clinical symptoms and/or signs that are observed or associated with the adverse reaction event."},
+ AllergyIntolerance.reaction.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{AllergyIntolerance.reaction.modifierExtension.*}}},
+ AllergyIntolerance.reaction.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ AllergyIntolerance.reaction.note
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{AllergyIntolerance.reaction.note.*}}},
+ AllergyIntolerance.reaction.note.*
+ {:confirms #{fhir/Annotation},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Additional text about the adverse reaction event not captured in other fields."},
+ AllergyIntolerance.reaction.onset
+ {:zen/desc
+  "Record of the date and/or time of the onset of the Reaction.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ AllergyIntolerance.reaction.severity
+ {aidbox-fx/valueset AllergyIntolerance.reaction.severity.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Clinical assessment of the severity of the reaction event as a whole, potentially considering multiple different manifestations."},
+ AllergyIntolerance.reaction.severity.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/ValueSet/reaction-event-severity"},
+ AllergyIntolerance.reaction.substance
+ {:zen/desc
+  "Identification of the specific substance (or pharmaceutical product) considered to be responsible for the Adverse Reaction event. Note: the substance for a specific reaction may be different from the substance identified as the cause of the risk, but it must be consistent with it. For instance, it may be a more specific substance (e.g. a brand medication) or a composite product that includes the identified substance. It must be clinically safe to only process the 'code' and ignore the 'reaction.substance'.  If a receiving system is unable to confirm that AllergyIntolerance.reaction.substance falls within the semantic scope of AllergyIntolerance.code, then the receiving system should ignore AllergyIntolerance.reaction.substance.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ AllergyIntolerance.recordedDate
+ {:zen/desc
+  "The recordedDate represents when this particular AllergyIntolerance record was created in the system, which is often a system-generated date.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ AllergyIntolerance.recorder
+ {:zen/desc
+  "Individual who recorded the record and takes responsibility for its content.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ AllergyIntolerance.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}},
+ AllergyIntolerance.type
+ {aidbox-fx/valueset AllergyIntolerance.type.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Identification of the underlying physiological mechanism for the reaction risk."},
+ AllergyIntolerance.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/ValueSet/allergy-intolerance-type"},
+ AllergyIntolerance.verificationStatus
+ {aidbox-fx/valueset AllergyIntolerance.verificationStatus.valueset,
+  :confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified substance (including pharmaceutical product)."},
+ AllergyIntolerance.verificationStatus.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/ValueSet/allergyintolerance-verification"}}

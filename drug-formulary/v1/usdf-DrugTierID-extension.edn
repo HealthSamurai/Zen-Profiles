@@ -1,0 +1,46 @@
+{ns drug-formulary.v1.usdf-DrugTierID-extension,
+ import #{aidbox-fx fhir aidbox},
+ Extension
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{#{:valueCodeableConcept} :url :valueCodeableConcept},
+  :type zen/map,
+  :zen/desc
+  "A code that describes the coverage status of a drug in a health plan (e.g., preferred generic, specialty, etc.)",
+  :keys
+  {:id {:confirms #{Extension.id}},
+   :extension {:confirms #{Extension.extension}},
+   :valueCodeableConcept
+   {:confirms #{Extension.valueCodeableConcept fhir/CodeableConcept}},
+   :url {:confirms #{Extension.url}}},
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-drug-formulary/StructureDefinition/usdf-DrugTierID-extension"},
+ Extension.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const
+  {:value
+   "http://hl7.org/fhir/us/davinci-drug-formulary/StructureDefinition/usdf-DrugTierID-extension"}},
+ Extension.valueCodeableConcept
+ {:zen/desc
+  "Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}}}

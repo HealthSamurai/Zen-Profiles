@@ -1,0 +1,521 @@
+{ns us-core.v1.us-core-ethnicity,
+ import #{aidbox-fx fhir aidbox},
+ Extension
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:url},
+  :type zen/map,
+  :zen/desc
+  "Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or nationality.  The ethnicity codes used to represent these concepts are based upon the [CDC ethnicity and Ethnicity Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and ethnicity of which 43 reference ethnicity.  The ethnicity concepts are grouped by and pre-mapped to the 2 OMB ethnicity categories: - Hispanic or Latino - Not Hispanic or Latino.",
+  :keys
+  {:valueBase64Binary {:confirms #{fhir/base64Binary}},
+   :valueAge {:confirms #{fhir/Age}},
+   :valueParameterDefinition {:confirms #{fhir/ParameterDefinition}},
+   :valueTiming {:confirms #{fhir/Timing}},
+   :valueCode {:confirms #{fhir/code}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueContributor {:confirms #{fhir/Contributor}},
+   :valueContactDetail {:confirms #{fhir/ContactDetail}},
+   :valueUri {:confirms #{fhir/uri}},
+   :valueUsageContext {:confirms #{fhir/UsageContext}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueDecimal {:confirms #{fhir/decimal}},
+   :valueCanonical {:confirms #{fhir/canonical}},
+   :valueMarkdown {:confirms #{fhir/markdown}},
+   :valueIdentifier {:confirms #{fhir/Identifier}},
+   :valueTriggerDefinition {:confirms #{fhir/TriggerDefinition}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueCount {:confirms #{fhir/Count}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueInstant {:confirms #{fhir/instant}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :valueDate {:confirms #{fhir/date}},
+   :valueDuration {:confirms #{fhir/Duration}},
+   :valueDataRequirement {:confirms #{fhir/DataRequirement}},
+   :valueMeta {:confirms #{fhir/Meta}},
+   :valueMoney {:confirms #{fhir/Money}},
+   :valueCoding {:confirms #{fhir/Coding}},
+   :valueExpression {:confirms #{fhir/Expression}},
+   :extension {:confirms #{Extension.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Extension.id}},
+   :valueDosage {:confirms #{fhir/Dosage}},
+   :valueContactPoint {:confirms #{fhir/ContactPoint}},
+   :url {:confirms #{Extension.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueAnnotation {:confirms #{fhir/Annotation}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueDistance {:confirms #{fhir/Distance}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueSignature {:confirms #{fhir/Signature}},
+   :valueUuid {:confirms #{fhir/uuid}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :valueHumanName {:confirms #{fhir/HumanName}},
+   :valueUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :valueOid {:confirms #{fhir/oid}},
+   :valueAddress {:confirms #{fhir/Address}},
+   :valueRelatedArtifact {:confirms #{fhir/RelatedArtifact}},
+   :valuePositiveInt {:confirms #{fhir/positiveInt}},
+   :valueId {:confirms #{fhir/id}},
+   :valueUrl {:confirms #{fhir/url}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueAge :valueParameterDefinition
+      :valueTiming :valueCode :valueReference :valueContributor
+      :valueContactDetail :valueUri :valueUsageContext :valueTime
+      :valueDecimal :valueCanonical :valueMarkdown :valueIdentifier
+      :valueTriggerDefinition :valueQuantity :valueCount :valueString
+      :valueRatio :valueBoolean :valueInstant :valueDateTime :valueDate
+      :valueDuration :valueDataRequirement :valueMeta :valueMoney
+      :valueCoding :valueExpression :valueSampledData :valueDosage
+      :valueContactPoint :valueCodeableConcept :valueAnnotation
+      :valuePeriod :valueDistance :valueRange :valueSignature
+      :valueUuid :valueInteger :valueHumanName :valueUnsignedInt
+      :valueAttachment :valueOid :valueAddress :valueRelatedArtifact
+      :valuePositiveInt :valueId :valueUrl}},
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"},
+ Extension.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension.*}},
+  :slicing
+  {:slices
+   {"text"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:text.*}}},
+     :schema {:confirms #{Extension.extension:text}}},
+    "detailed"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:detailed.*}}},
+     :schema {:confirms #{Extension.extension:detailed}}},
+    "ombCategory"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:ombCategory.*}}},
+     :schema {:confirms #{Extension.extension:ombCategory}}}}}},
+ Extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Extension.extension:detailed
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:detailed.*}}},
+ Extension.extension:detailed.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueCoding} :url},
+  :type zen/map,
+  :zen/desc
+  "The 41 CDC ethnicity codes that are grouped under one of the 2 OMB ethnicity category codes.",
+  :keys
+  {:url {:confirms #{Extension.extension:detailed.url}},
+   :extension {:confirms #{Extension.extension:detailed.extension}},
+   :id {:confirms #{Extension.extension:detailed.id}},
+   :valueCoding {:confirms #{fhir/Coding}}}},
+ Extension.extension:detailed.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:detailed.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:detailed.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url},
+  :type zen/map,
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+  :keys
+  {:valueBase64Binary {:confirms #{fhir/base64Binary}},
+   :valueAge {:confirms #{fhir/Age}},
+   :valueParameterDefinition {:confirms #{fhir/ParameterDefinition}},
+   :valueTiming {:confirms #{fhir/Timing}},
+   :valueCode {:confirms #{fhir/code}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueContributor {:confirms #{fhir/Contributor}},
+   :valueContactDetail {:confirms #{fhir/ContactDetail}},
+   :valueUri {:confirms #{fhir/uri}},
+   :valueUsageContext {:confirms #{fhir/UsageContext}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueDecimal {:confirms #{fhir/decimal}},
+   :valueCanonical {:confirms #{fhir/canonical}},
+   :valueMarkdown {:confirms #{fhir/markdown}},
+   :valueIdentifier {:confirms #{fhir/Identifier}},
+   :valueTriggerDefinition {:confirms #{fhir/TriggerDefinition}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueCount {:confirms #{fhir/Count}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueInstant {:confirms #{fhir/instant}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :valueDate {:confirms #{fhir/date}},
+   :valueDuration {:confirms #{fhir/Duration}},
+   :valueDataRequirement {:confirms #{fhir/DataRequirement}},
+   :valueMeta {:confirms #{fhir/Meta}},
+   :valueMoney {:confirms #{fhir/Money}},
+   :valueCoding {:confirms #{fhir/Coding}},
+   :valueExpression {:confirms #{fhir/Expression}},
+   :extension
+   {:confirms #{Extension.extension:detailed.extension.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Extension.extension:detailed.extension.id}},
+   :valueDosage {:confirms #{fhir/Dosage}},
+   :valueContactPoint {:confirms #{fhir/ContactPoint}},
+   :url {:confirms #{Extension.extension:detailed.extension.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueAnnotation {:confirms #{fhir/Annotation}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueDistance {:confirms #{fhir/Distance}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueSignature {:confirms #{fhir/Signature}},
+   :valueUuid {:confirms #{fhir/uuid}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :valueHumanName {:confirms #{fhir/HumanName}},
+   :valueUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :valueOid {:confirms #{fhir/oid}},
+   :valueAddress {:confirms #{fhir/Address}},
+   :valueRelatedArtifact {:confirms #{fhir/RelatedArtifact}},
+   :valuePositiveInt {:confirms #{fhir/positiveInt}},
+   :valueId {:confirms #{fhir/id}},
+   :valueUrl {:confirms #{fhir/url}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueAge :valueParameterDefinition
+      :valueTiming :valueCode :valueReference :valueContributor
+      :valueContactDetail :valueUri :valueUsageContext :valueTime
+      :valueDecimal :valueCanonical :valueMarkdown :valueIdentifier
+      :valueTriggerDefinition :valueQuantity :valueCount :valueString
+      :valueRatio :valueBoolean :valueInstant :valueDateTime :valueDate
+      :valueDuration :valueDataRequirement :valueMeta :valueMoney
+      :valueCoding :valueExpression :valueSampledData :valueDosage
+      :valueContactPoint :valueCodeableConcept :valueAnnotation
+      :valuePeriod :valueDistance :valueRange :valueSignature
+      :valueUuid :valueInteger :valueHumanName :valueUnsignedInt
+      :valueAttachment :valueOid :valueAddress :valueRelatedArtifact
+      :valuePositiveInt :valueId :valueUrl}}},
+ Extension.extension:detailed.extension.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Extension.extension:detailed.extension.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:detailed.extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Extension.extension:detailed.extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:detailed.extension.url
+ {:zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Extension.extension:detailed.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:detailed.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "detailed"}},
+ Extension.extension:detailed.value_x_.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/core/ValueSet/detailed-ethnicity"},
+ Extension.extension:ombCategory
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:ombCategory.*}}},
+ Extension.extension:ombCategory.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueCoding} :url},
+  :type zen/map,
+  :zen/desc
+  "The 2 ethnicity category codes according to the [OMB Standards for Maintaining, Collecting, and Presenting Federal Data on Race and Ethnicity, Statistical Policy Directive No. 15, as revised, October 30, 1997](https://www.govinfo.gov/content/pkg/FR-1997-10-30/pdf/97-28653.pdf).",
+  :keys
+  {:extension {:confirms #{Extension.extension:ombCategory.extension}},
+   :url {:confirms #{Extension.extension:ombCategory.url}},
+   :id {:confirms #{Extension.extension:ombCategory.id}},
+   :valueCoding {:confirms #{fhir/Coding}}}},
+ Extension.extension:ombCategory.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:ombCategory.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:ombCategory.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url},
+  :type zen/map,
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+  :keys
+  {:valueBase64Binary {:confirms #{fhir/base64Binary}},
+   :valueAge {:confirms #{fhir/Age}},
+   :valueParameterDefinition {:confirms #{fhir/ParameterDefinition}},
+   :valueTiming {:confirms #{fhir/Timing}},
+   :valueCode {:confirms #{fhir/code}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueContributor {:confirms #{fhir/Contributor}},
+   :valueContactDetail {:confirms #{fhir/ContactDetail}},
+   :valueUri {:confirms #{fhir/uri}},
+   :valueUsageContext {:confirms #{fhir/UsageContext}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueDecimal {:confirms #{fhir/decimal}},
+   :valueCanonical {:confirms #{fhir/canonical}},
+   :valueMarkdown {:confirms #{fhir/markdown}},
+   :valueIdentifier {:confirms #{fhir/Identifier}},
+   :valueTriggerDefinition {:confirms #{fhir/TriggerDefinition}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueCount {:confirms #{fhir/Count}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueInstant {:confirms #{fhir/instant}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :valueDate {:confirms #{fhir/date}},
+   :valueDuration {:confirms #{fhir/Duration}},
+   :valueDataRequirement {:confirms #{fhir/DataRequirement}},
+   :valueMeta {:confirms #{fhir/Meta}},
+   :valueMoney {:confirms #{fhir/Money}},
+   :valueCoding {:confirms #{fhir/Coding}},
+   :valueExpression {:confirms #{fhir/Expression}},
+   :extension
+   {:confirms #{Extension.extension:ombCategory.extension.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Extension.extension:ombCategory.extension.id}},
+   :valueDosage {:confirms #{fhir/Dosage}},
+   :valueContactPoint {:confirms #{fhir/ContactPoint}},
+   :url {:confirms #{Extension.extension:ombCategory.extension.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueAnnotation {:confirms #{fhir/Annotation}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueDistance {:confirms #{fhir/Distance}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueSignature {:confirms #{fhir/Signature}},
+   :valueUuid {:confirms #{fhir/uuid}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :valueHumanName {:confirms #{fhir/HumanName}},
+   :valueUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :valueOid {:confirms #{fhir/oid}},
+   :valueAddress {:confirms #{fhir/Address}},
+   :valueRelatedArtifact {:confirms #{fhir/RelatedArtifact}},
+   :valuePositiveInt {:confirms #{fhir/positiveInt}},
+   :valueId {:confirms #{fhir/id}},
+   :valueUrl {:confirms #{fhir/url}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueAge :valueParameterDefinition
+      :valueTiming :valueCode :valueReference :valueContributor
+      :valueContactDetail :valueUri :valueUsageContext :valueTime
+      :valueDecimal :valueCanonical :valueMarkdown :valueIdentifier
+      :valueTriggerDefinition :valueQuantity :valueCount :valueString
+      :valueRatio :valueBoolean :valueInstant :valueDateTime :valueDate
+      :valueDuration :valueDataRequirement :valueMeta :valueMoney
+      :valueCoding :valueExpression :valueSampledData :valueDosage
+      :valueContactPoint :valueCodeableConcept :valueAnnotation
+      :valuePeriod :valueDistance :valueRange :valueSignature
+      :valueUuid :valueInteger :valueHumanName :valueUnsignedInt
+      :valueAttachment :valueOid :valueAddress :valueRelatedArtifact
+      :valuePositiveInt :valueId :valueUrl}}},
+ Extension.extension:ombCategory.extension.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Extension.extension:ombCategory.extension.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:ombCategory.extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Extension.extension:ombCategory.extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:ombCategory.extension.url
+ {:zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Extension.extension:ombCategory.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:ombCategory.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "ombCategory"}},
+ Extension.extension:ombCategory.value_x_.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category"},
+ Extension.extension:text
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:text.*}}},
+ Extension.extension:text.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueString} :url},
+  :type zen/map,
+  :zen/desc "Plain text representation of the ethnicity concept(s).",
+  :keys
+  {:id {:confirms #{Extension.extension:text.id}},
+   :url {:confirms #{Extension.extension:text.url}},
+   :extension {:confirms #{Extension.extension:text.extension}},
+   :valueString {:confirms #{fhir/string}}}},
+ Extension.extension:text.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:text.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:text.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url},
+  :type zen/map,
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+  :keys
+  {:valueBase64Binary {:confirms #{fhir/base64Binary}},
+   :valueAge {:confirms #{fhir/Age}},
+   :valueParameterDefinition {:confirms #{fhir/ParameterDefinition}},
+   :valueTiming {:confirms #{fhir/Timing}},
+   :valueCode {:confirms #{fhir/code}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueContributor {:confirms #{fhir/Contributor}},
+   :valueContactDetail {:confirms #{fhir/ContactDetail}},
+   :valueUri {:confirms #{fhir/uri}},
+   :valueUsageContext {:confirms #{fhir/UsageContext}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueDecimal {:confirms #{fhir/decimal}},
+   :valueCanonical {:confirms #{fhir/canonical}},
+   :valueMarkdown {:confirms #{fhir/markdown}},
+   :valueIdentifier {:confirms #{fhir/Identifier}},
+   :valueTriggerDefinition {:confirms #{fhir/TriggerDefinition}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueCount {:confirms #{fhir/Count}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueInstant {:confirms #{fhir/instant}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :valueDate {:confirms #{fhir/date}},
+   :valueDuration {:confirms #{fhir/Duration}},
+   :valueDataRequirement {:confirms #{fhir/DataRequirement}},
+   :valueMeta {:confirms #{fhir/Meta}},
+   :valueMoney {:confirms #{fhir/Money}},
+   :valueCoding {:confirms #{fhir/Coding}},
+   :valueExpression {:confirms #{fhir/Expression}},
+   :extension
+   {:confirms #{Extension.extension:text.extension.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Extension.extension:text.extension.id}},
+   :valueDosage {:confirms #{fhir/Dosage}},
+   :valueContactPoint {:confirms #{fhir/ContactPoint}},
+   :url {:confirms #{Extension.extension:text.extension.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueAnnotation {:confirms #{fhir/Annotation}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueDistance {:confirms #{fhir/Distance}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueSignature {:confirms #{fhir/Signature}},
+   :valueUuid {:confirms #{fhir/uuid}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :valueHumanName {:confirms #{fhir/HumanName}},
+   :valueUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :valueOid {:confirms #{fhir/oid}},
+   :valueAddress {:confirms #{fhir/Address}},
+   :valueRelatedArtifact {:confirms #{fhir/RelatedArtifact}},
+   :valuePositiveInt {:confirms #{fhir/positiveInt}},
+   :valueId {:confirms #{fhir/id}},
+   :valueUrl {:confirms #{fhir/url}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueAge :valueParameterDefinition
+      :valueTiming :valueCode :valueReference :valueContributor
+      :valueContactDetail :valueUri :valueUsageContext :valueTime
+      :valueDecimal :valueCanonical :valueMarkdown :valueIdentifier
+      :valueTriggerDefinition :valueQuantity :valueCount :valueString
+      :valueRatio :valueBoolean :valueInstant :valueDateTime :valueDate
+      :valueDuration :valueDataRequirement :valueMeta :valueMoney
+      :valueCoding :valueExpression :valueSampledData :valueDosage
+      :valueContactPoint :valueCodeableConcept :valueAnnotation
+      :valuePeriod :valueDistance :valueRange :valueSignature
+      :valueUuid :valueInteger :valueHumanName :valueUnsignedInt
+      :valueAttachment :valueOid :valueAddress :valueRelatedArtifact
+      :valuePositiveInt :valueId :valueUrl}}},
+ Extension.extension:text.extension.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:text.extension.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:text.extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Extension.extension:text.extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:text.extension.url
+ {:zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Extension.extension:text.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:text.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "text"}},
+ Extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const
+  {:value
+   "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"}}}

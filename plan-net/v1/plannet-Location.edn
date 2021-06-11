@@ -1,0 +1,693 @@
+{ns plan-net.v1.plannet-Location,
+ import
+ #{plan-net.v1.location-boundary-geojson aidbox-fx fhir aidbox
+   plan-net.v1.accessibility plan-net.v1.via-intermediary
+   plan-net.v1.newpatients plan-net.v1.contactpoint-availabletime},
+ Location
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:name :status},
+  :type zen/map,
+  :zen/desc
+  "A Location is the physical place where healthcare services are provided, practitioners are employed, \n                 organizations are based, etc. Locations can range in scope from a room in a building to a geographic region/area.",
+  :resourceType "Location",
+  :keys
+  {:description {:confirms #{Location.description}},
+   :address {:confirms #{Location.address}},
+   :meta {:confirms #{Location.meta}},
+   :managingOrganization {:confirms #{Location.managingOrganization}},
+   :name {:confirms #{Location.name}},
+   :implicitRules {:confirms #{Location.implicitRules}},
+   :mode {:confirms #{Location.mode}},
+   :type {:confirms #{Location.type}},
+   :resourceType {:type zen/string, :const {:value "Location"}},
+   :extension {:confirms #{Location.extension}},
+   :contained {:confirms #{Location.contained}},
+   :alias {:confirms #{Location.alias}},
+   :status {:confirms #{Location.status}},
+   :language {:confirms #{Location.language}},
+   :id {:confirms #{Location.id}},
+   :identifier {:confirms #{Location.identifier}},
+   :hoursOfOperation {:confirms #{Location.hoursOfOperation}},
+   :availabilityExceptions
+   {:confirms #{Location.availabilityExceptions}},
+   :position {:confirms #{Location.position}},
+   :telecom {:confirms #{Location.telecom}},
+   :operationalStatus {:confirms #{Location.operationalStatus}},
+   :partOf {:confirms #{Location.partOf}},
+   :physicalType {:confirms #{Location.physicalType}},
+   :endpoint {:confirms #{Location.endpoint}},
+   :modifierExtension {:confirms #{Location.modifierExtension}},
+   :text {:confirms #{Location.text}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Location"},
+ Location.address
+ {:confirms #{fhir/Address},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Physical location.",
+  :keys
+  {:use {:confirms #{Location.address.use}},
+   :city {:confirms #{Location.address.city}},
+   :type {:confirms #{Location.address.type}},
+   :state {:confirms #{Location.address.state}},
+   :extension {:confirms #{Location.address.extension}},
+   :line {:confirms #{Location.address.line}},
+   :id {:confirms #{Location.address.id}},
+   :postalCode {:confirms #{Location.address.postalCode}},
+   :period {:confirms #{Location.address.period}},
+   :country {:confirms #{Location.address.country}},
+   :district {:confirms #{Location.address.district}},
+   :text {:confirms #{Location.address.text}}}},
+ Location.address.city
+ {:zen/desc
+  "The name of the city, town, suburb, village or other community or delivery center.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.address.country
+ {:zen/desc
+  "Country - a nation as commonly understood or generally accepted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.address.district
+ {:zen/desc "The name of the administrative area (county).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.address.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.address.extension.*}},
+  :slicing {:slices {}}},
+ Location.address.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Location.address.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.address.line
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.address.line.*}}},
+ Location.address.line.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information."},
+ Location.address.period
+ {:zen/desc "Time period when address was/is in use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Location.address.postalCode
+ {:zen/desc
+  "A postal code designating a region defined by the postal service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.address.state
+ {:zen/desc
+  "Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (e.g. US 2 letter state codes).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.address.text
+ {:zen/desc
+  "Specifies the entire address as it should be displayed e.g. on a postal label. This may be provided instead of or as well as the specific parts.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.address.type
+ {aidbox-fx/valueset Location.address.type.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both."},
+ Location.address.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/address-type"},
+ Location.address.use
+ {aidbox-fx/valueset Location.address.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this address."},
+ Location.address.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/address-use"},
+ Location.alias
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.alias.*}}},
+ Location.alias.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A list of alternate names that the location is known as, or was known as, in the past."},
+ Location.availabilityExceptions
+ {:zen/desc
+  "A description of when the locations opening ours are different to normal, e.g. public holiday availability. Succinctly describing all possible exceptions to normal site availability as detailed in the opening hours Times.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.contained.*}}},
+ Location.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ Location.description
+ {:zen/desc
+  "Description of the Location, which helps in finding or referencing the place.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.endpoint
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.endpoint.*}}},
+ Location.endpoint.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Technical endpoints providing access to services operated for the location."},
+ Location.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.extension.*}},
+  :slicing
+  {:slices
+   {"region"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Location.extension:region.*}}},
+     :schema {:confirms #{Location.extension:region}}},
+    "accessibility"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Location.extension:accessibility.*}}},
+     :schema {:confirms #{Location.extension:accessibility}}},
+    "newpatients"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Location.extension:newpatients.*}}},
+     :schema {:confirms #{Location.extension:newpatients}}}}}},
+ Location.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Location.extension:accessibility
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.extension:accessibility.*}}},
+ Location.extension:accessibility.*
+ {:confirms #{plan-net.v1.accessibility/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ Location.extension:newpatients
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.extension:newpatients.*}}},
+ Location.extension:newpatients.*
+ {:confirms #{plan-net.v1.newpatients/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An Extension"},
+ Location.extension:region
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.extension:region.*}}},
+ Location.extension:region.*
+ {:confirms #{plan-net.v1.location-boundary-geojson/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A boundary shape that represents the outside edge of the location (in GeoJSON format) This shape may have holes, and disconnected shapes."},
+ Location.hoursOfOperation
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.hoursOfOperation.*}}},
+ Location.hoursOfOperation.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "What days/times during a week is this location usually open.",
+  :keys
+  {:allDay {:confirms #{Location.hoursOfOperation.allDay}},
+   :closingTime {:confirms #{Location.hoursOfOperation.closingTime}},
+   :extension {:confirms #{Location.hoursOfOperation.extension}},
+   :openingTime {:confirms #{Location.hoursOfOperation.openingTime}},
+   :modifierExtension
+   {:confirms #{Location.hoursOfOperation.modifierExtension}},
+   :daysOfWeek {:confirms #{Location.hoursOfOperation.daysOfWeek}},
+   :id {:confirms #{Location.hoursOfOperation.id}}}},
+ Location.hoursOfOperation.allDay
+ {:zen/desc "The Location is open all day.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ Location.hoursOfOperation.closingTime
+ {:zen/desc "Time that the Location closes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/time}},
+ Location.hoursOfOperation.daysOfWeek
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.hoursOfOperation.daysOfWeek.*}}},
+ Location.hoursOfOperation.daysOfWeek.*
+ {aidbox-fx/valueset Location.hoursOfOperation.daysOfWeek.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Indicates which days of the week are available between the start and end Times."},
+ Location.hoursOfOperation.daysOfWeek.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/days-of-week"},
+ Location.hoursOfOperation.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.hoursOfOperation.extension.*}}},
+ Location.hoursOfOperation.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Location.hoursOfOperation.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.hoursOfOperation.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.hoursOfOperation.modifierExtension.*}}},
+ Location.hoursOfOperation.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Location.hoursOfOperation.openingTime
+ {:zen/desc "Time that the Location opens.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/time}},
+ Location.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.identifier.*}}},
+ Location.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Unique code or number identifying the location to its users.",
+  :keys
+  {:type {:confirms #{Location.identifier.type}},
+   :extension {:confirms #{Location.identifier.extension}},
+   :system {:confirms #{Location.identifier.system}},
+   :period {:confirms #{Location.identifier.period}},
+   :use {:confirms #{Location.identifier.use}},
+   :value {:confirms #{Location.identifier.value}},
+   :id {:confirms #{Location.identifier.id}},
+   :assigner {:confirms #{Location.identifier.assigner}}}},
+ Location.identifier.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Location.identifier.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.identifier.extension.*}},
+  :slicing {:slices {}}},
+ Location.identifier.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Location.identifier.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.identifier.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Location.identifier.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Location.identifier.type
+ {:zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Location.identifier.use
+ {aidbox-fx/valueset Location.identifier.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ Location.identifier.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ Location.identifier.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Location.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ Location.managingOrganization
+ {:zen/desc
+  "The organization responsible for the provisioning and upkeep of the location.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Location.meta
+ {:confirms #{fhir/Meta},
+  :zen/tags #{zen/schema},
+  :require #{:lastUpdated},
+  :type zen/map,
+  :zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :keys
+  {:source {:confirms #{Location.meta.source}},
+   :versionId {:confirms #{Location.meta.versionId}},
+   :tag {:confirms #{Location.meta.tag}},
+   :lastUpdated {:confirms #{Location.meta.lastUpdated}},
+   :id {:confirms #{Location.meta.id}},
+   :security {:confirms #{Location.meta.security}},
+   :extension {:confirms #{Location.meta.extension}},
+   :profile {:confirms #{Location.meta.profile}}}},
+ Location.meta.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.meta.extension.*}},
+  :slicing {:slices {}}},
+ Location.meta.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Location.meta.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.meta.lastUpdated
+ {:zen/desc
+  "When the resource last changed - e.g. when the version changed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/instant}},
+ Location.meta.profile
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.meta.profile.*}}},
+ Location.meta.profile.*
+ {:confirms #{fhir/canonical},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A list of profiles (references to [StructureDefinition](http://hl7.org/fhir/R4/structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](http://hl7.org/fhir/R4/structuredefinition-definitions.html#StructureDefinition.url)."},
+ Location.meta.security
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.meta.security.*}}},
+ Location.meta.security.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."},
+ Location.meta.source
+ {:zen/desc
+  "A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](http://hl7.org/fhir/R4/provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Location.meta.tag
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.meta.tag.*}}},
+ Location.meta.tag.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."},
+ Location.meta.versionId
+ {:zen/desc
+  "The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/id}},
+ Location.mode
+ {aidbox-fx/valueset Location.mode.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Indicates whether a resource instance represents a specific location or a class of locations."},
+ Location.mode.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/location-mode"},
+ Location.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.modifierExtension.*}}},
+ Location.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Location.name
+ {:zen/desc
+  "Name of the location as used by humans. Does not need to be unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.operationalStatus
+ {:zen/desc
+  "The operational status covers operation values most relevant to beds (but can also apply to rooms/units/chairs/etc. such as an isolation unit/dialysis chair). This typically covers concepts such as contamination, housekeeping, and other activities like maintenance.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Coding}},
+ Location.partOf
+ {:zen/desc
+  "Another Location of which this Location is physically a part of.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Location.physicalType
+ {:zen/desc
+  "Physical form of the location, e.g. building, room, vehicle, road.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Location.position
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:longitude :latitude},
+  :type zen/map,
+  :zen/desc
+  "The absolute geographic location of the Location, expressed using the WGS84 datum (This is the same co-ordinate system used in KML).",
+  :keys
+  {:id {:confirms #{Location.position.id}},
+   :extension {:confirms #{Location.position.extension}},
+   :latitude {:confirms #{Location.position.latitude}},
+   :modifierExtension
+   {:confirms #{Location.position.modifierExtension}},
+   :longitude {:confirms #{Location.position.longitude}},
+   :altitude {:confirms #{Location.position.altitude}}}},
+ Location.position.altitude
+ {:zen/desc
+  "Altitude. The value domain and the interpretation are the same as for the text of the altitude element in KML (see notes below).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ Location.position.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.position.extension.*}}},
+ Location.position.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Location.position.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.position.latitude
+ {:zen/desc
+  "Latitude. The value domain and the interpretation are the same as for the text of the latitude element in KML (see notes below).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ Location.position.longitude
+ {:zen/desc
+  "Longitude. The value domain and the interpretation are the same as for the text of the longitude element in KML (see notes below).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/decimal}},
+ Location.position.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.position.modifierExtension.*}}},
+ Location.position.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Location.status
+ {aidbox-fx/valueset Location.status.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The status property covers the general availability of the resource, not the current value which may be covered by the operationStatus, or by a schedule/slots if they are configured for the location.",
+  :const {:value "active"}},
+ Location.status.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/location-status"},
+ Location.telecom
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.telecom.*}}},
+ Location.telecom.*
+ {:confirms #{fhir/ContactPoint},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The contact details of communication devices available at the location. This can include phone numbers, fax numbers, mobile numbers, email addresses and web sites.",
+  :keys
+  {:period {:confirms #{Location.telecom.period}},
+   :extension {:confirms #{Location.telecom.extension}},
+   :use {:confirms #{Location.telecom.use}},
+   :id {:confirms #{Location.telecom.id}},
+   :system {:confirms #{Location.telecom.system}},
+   :rank {:confirms #{Location.telecom.rank}},
+   :value {:confirms #{Location.telecom.value}}}},
+ Location.telecom.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.telecom.extension.*}},
+  :slicing
+  {:slices
+   {"contactpoint-availabletime"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{Location.telecom.extension:contactpoint-availabletime.*}}},
+     :schema
+     {:confirms
+      #{Location.telecom.extension:contactpoint-availabletime}}},
+    "via-intermediary"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms #{Location.telecom.extension:via-intermediary.*}}},
+     :schema
+     {:confirms #{Location.telecom.extension:via-intermediary}}}}}},
+ Location.telecom.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Location.telecom.extension:contactpoint-availabletime
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Location.telecom.extension:contactpoint-availabletime.*}}},
+ Location.telecom.extension:contactpoint-availabletime.*
+ {:confirms #{plan-net.v1.contactpoint-availabletime/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ Location.telecom.extension:via-intermediary
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.telecom.extension:via-intermediary.*}}},
+ Location.telecom.extension:via-intermediary.*
+ {:confirms #{plan-net.v1.via-intermediary/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ Location.telecom.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.telecom.period
+ {:zen/desc "Time period when the contact point was/is in use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Location.telecom.rank
+ {:zen/desc
+  "Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred than those with higher rank values.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ Location.telecom.system
+ {aidbox-fx/valueset Location.telecom.system.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Telecommunications form for contact point - what communications system is required to make use of the contact."},
+ Location.telecom.system.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-system"},
+ Location.telecom.use
+ {aidbox-fx/valueset Location.telecom.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Identifies the purpose for the contact point."},
+ Location.telecom.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-use"},
+ Location.telecom.value
+ {:zen/desc
+  "The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Location.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}},
+ Location.type
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Location.type.*}}},
+ Location.type.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Indicates the type of function performed at the location."}}

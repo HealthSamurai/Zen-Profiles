@@ -1,0 +1,40 @@
+{ns drug-formulary.v1.usdf-PriorAuthorization-extension,
+ import #{aidbox-fx fhir aidbox},
+ Extension
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{#{:valueBoolean} :url},
+  :type zen/map,
+  :zen/desc
+  "A Boolean indication of whether the coverage plan imposes a prior authorization requirement on this drug.",
+  :keys
+  {:id {:confirms #{Extension.id}},
+   :extension {:confirms #{Extension.extension}},
+   :url {:confirms #{Extension.url}},
+   :valueBoolean {:confirms #{fhir/boolean}}},
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-drug-formulary/StructureDefinition/usdf-PriorAuthorization-extension"},
+ Extension.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const
+  {:value
+   "http://hl7.org/fhir/us/davinci-drug-formulary/StructureDefinition/usdf-PriorAuthorization-extension"}}}

@@ -1,0 +1,747 @@
+{ns plan-net.v1.plannet-Practitioner,
+ import
+ #{plan-net.v1.communication-proficiency
+   plan-net.v1.practitioner-qualification aidbox-fx fhir aidbox
+   plan-net.v1.via-intermediary plan-net.v1.contactpoint-availabletime
+   plan-net.v1.geolocation},
+ Practitioner
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:name :active :identifier},
+  :type zen/map,
+  :zen/desc
+  "Practitioner is a person who is directly or indirectly involved in the provisioning of healthcare.",
+  :resourceType "Practitioner",
+  :keys
+  {:address {:confirms #{Practitioner.address}},
+   :meta {:confirms #{Practitioner.meta}},
+   :name {:confirms #{Practitioner.name}},
+   :implicitRules {:confirms #{Practitioner.implicitRules}},
+   :birthDate {:confirms #{Practitioner.birthDate}},
+   :resourceType {:type zen/string, :const {:value "Practitioner"}},
+   :extension {:confirms #{Practitioner.extension}},
+   :contained {:confirms #{Practitioner.contained}},
+   :photo {:confirms #{Practitioner.photo}},
+   :language {:confirms #{Practitioner.language}},
+   :active {:confirms #{Practitioner.active}},
+   :communication {:confirms #{Practitioner.communication}},
+   :id {:confirms #{Practitioner.id}},
+   :identifier {:confirms #{Practitioner.identifier}},
+   :qualification {:confirms #{Practitioner.qualification}},
+   :telecom {:confirms #{Practitioner.telecom}},
+   :gender {:confirms #{Practitioner.gender}},
+   :modifierExtension {:confirms #{Practitioner.modifierExtension}},
+   :text {:confirms #{Practitioner.text}}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-pdex-plan-net/StructureDefinition/plannet-Practitioner"},
+ Practitioner.active
+ {:confirms #{fhir/boolean},
+  :zen/tags #{zen/schema},
+  :zen/desc "Whether this practitioner's record is in active use.",
+  :const {:value true}},
+ Practitioner.address
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.address.*}}},
+ Practitioner.address.*
+ {:confirms #{fhir/Address},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Address(es) of the practitioner that are not role specific (typically home address). \rWork addresses are not typically entered in this property as they are usually role dependent.",
+  :keys
+  {:use {:confirms #{Practitioner.address.use}},
+   :city {:confirms #{Practitioner.address.city}},
+   :type {:confirms #{Practitioner.address.type}},
+   :state {:confirms #{Practitioner.address.state}},
+   :extension {:confirms #{Practitioner.address.extension}},
+   :line {:confirms #{Practitioner.address.line}},
+   :id {:confirms #{Practitioner.address.id}},
+   :postalCode {:confirms #{Practitioner.address.postalCode}},
+   :period {:confirms #{Practitioner.address.period}},
+   :country {:confirms #{Practitioner.address.country}},
+   :district {:confirms #{Practitioner.address.district}},
+   :text {:confirms #{Practitioner.address.text}}}},
+ Practitioner.address.city
+ {:zen/desc
+  "The name of the city, town, suburb, village or other community or delivery center.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.address.country
+ {:zen/desc
+  "Country - a nation as commonly understood or generally accepted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.address.district
+ {:zen/desc "The name of the administrative area (county).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.address.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.address.extension.*}},
+  :slicing
+  {:slices
+   {"geolocation"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms #{Practitioner.address.extension:geolocation.*}}},
+     :schema
+     {:confirms #{Practitioner.address.extension:geolocation}}}}}},
+ Practitioner.address.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Practitioner.address.extension:geolocation
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.address.extension:geolocation.*}}},
+ Practitioner.address.extension:geolocation.*
+ {:confirms #{plan-net.v1.geolocation/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "The absolute geographic location of the Location, expressed using the WGS84 datum (This is the same co-ordinate system used in KML)."},
+ Practitioner.address.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.address.line
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.address.line.*}}},
+ Practitioner.address.line.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information."},
+ Practitioner.address.period
+ {:zen/desc "Time period when address was/is in use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Practitioner.address.postalCode
+ {:zen/desc
+  "A postal code designating a region defined by the postal service.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.address.state
+ {:zen/desc
+  "Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (e.g. US 2 letter state codes).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.address.text
+ {:zen/desc
+  "Specifies the entire address as it should be displayed e.g. on a postal label. This may be provided instead of or as well as the specific parts.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.address.type
+ {aidbox-fx/valueset Practitioner.address.type.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both."},
+ Practitioner.address.type.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/address-type"},
+ Practitioner.address.use
+ {aidbox-fx/valueset Practitioner.address.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this address."},
+ Practitioner.address.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/address-use"},
+ Practitioner.birthDate
+ {:zen/desc "The date of birth for the practitioner.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/date}},
+ Practitioner.communication
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.communication.*}}},
+ Practitioner.communication.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A language the practitioner can use in patient communication.",
+  :keys
+  {:extension {:confirms #{Practitioner.communication.extension}},
+   :coding {:confirms #{Practitioner.communication.coding}},
+   :text {:confirms #{Practitioner.communication.text}},
+   :id {:confirms #{Practitioner.communication.id}}}},
+ Practitioner.communication.coding
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.communication.coding.*}}},
+ Practitioner.communication.coding.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc "A reference to a code defined by a terminology system."},
+ Practitioner.communication.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.communication.extension.*}},
+  :slicing
+  {:slices
+   {"communication-proficiency"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{Practitioner.communication.extension:communication-proficiency.*}}},
+     :schema
+     {:confirms
+      #{Practitioner.communication.extension:communication-proficiency}}}}}},
+ Practitioner.communication.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Practitioner.communication.extension:communication-proficiency
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Practitioner.communication.extension:communication-proficiency.*}}},
+ Practitioner.communication.extension:communication-proficiency.*
+ {:confirms #{plan-net.v1.communication-proficiency/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ Practitioner.communication.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.communication.text
+ {:zen/desc
+  "A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.contained.*}}},
+ Practitioner.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ Practitioner.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.extension.*}}},
+ Practitioner.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Practitioner.gender
+ {aidbox-fx/valueset Practitioner.gender.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes."},
+ Practitioner.gender.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/administrative-gender"},
+ Practitioner.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.identifier
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.identifier.*}},
+  :slicing
+  {:slices
+   {"NPI"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Practitioner.identifier:NPI.*}}},
+     :schema {:confirms #{Practitioner.identifier:NPI}}}}}},
+ Practitioner.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :require #{:system :value},
+  :type zen/map,
+  :zen/desc "An identifier that applies to this person in this role.",
+  :keys
+  {:use {:confirms #{Practitioner.identifier.use}},
+   :type {:confirms #{Practitioner.identifier.type}},
+   :extension {:confirms #{Practitioner.identifier.extension}},
+   :assigner {:confirms #{Practitioner.identifier.assigner}},
+   :system {:confirms #{Practitioner.identifier.system}},
+   :value {:confirms #{Practitioner.identifier.value}},
+   :id {:confirms #{Practitioner.identifier.id}},
+   :period {:confirms #{Practitioner.identifier.period}}}},
+ Practitioner.identifier.assigner
+ {:zen/desc "Organization that issued/manages the identifier.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Practitioner.identifier.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.identifier.extension.*}},
+  :slicing {:slices {}}},
+ Practitioner.identifier.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Practitioner.identifier.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.identifier.period
+ {:zen/desc
+  "Time period during which identifier is/was valid for use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Practitioner.identifier.system
+ {:zen/desc
+  "Establishes the namespace for the value - that is, a URL that describes a set values that are unique.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Practitioner.identifier.type
+ {:zen/desc
+  "A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Practitioner.identifier.use
+ {aidbox-fx/valueset Practitioner.identifier.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "The purpose of this identifier."},
+ Practitioner.identifier.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/identifier-use"},
+ Practitioner.identifier.value
+ {:zen/desc
+  "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.identifier:NPI
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.identifier:NPI.*}}},
+ Practitioner.identifier:NPI.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "An identifier that applies to this person in this role.",
+  :keys {:system {:const {:value "http://hl7.org/fhir/sid/us-npi"}}},
+  :validation-type :open},
+ Practitioner.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Practitioner.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ Practitioner.meta
+ {:confirms #{fhir/Meta},
+  :zen/tags #{zen/schema},
+  :require #{:lastUpdated},
+  :type zen/map,
+  :zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :keys
+  {:extension {:confirms #{Practitioner.meta.extension}},
+   :security {:confirms #{Practitioner.meta.security}},
+   :lastUpdated {:confirms #{Practitioner.meta.lastUpdated}},
+   :id {:confirms #{Practitioner.meta.id}},
+   :versionId {:confirms #{Practitioner.meta.versionId}},
+   :source {:confirms #{Practitioner.meta.source}},
+   :profile {:confirms #{Practitioner.meta.profile}},
+   :tag {:confirms #{Practitioner.meta.tag}}}},
+ Practitioner.meta.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.meta.extension.*}},
+  :slicing {:slices {}}},
+ Practitioner.meta.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Practitioner.meta.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.meta.lastUpdated
+ {:zen/desc
+  "When the resource last changed - e.g. when the version changed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/instant}},
+ Practitioner.meta.profile
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.meta.profile.*}}},
+ Practitioner.meta.profile.*
+ {:confirms #{fhir/canonical},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A list of profiles (references to [StructureDefinition](http://hl7.org/fhir/R4/structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](http://hl7.org/fhir/R4/structuredefinition-definitions.html#StructureDefinition.url)."},
+ Practitioner.meta.security
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.meta.security.*}}},
+ Practitioner.meta.security.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure."},
+ Practitioner.meta.source
+ {:zen/desc
+  "A uri that identifies the source system of the resource. This provides a minimal amount of [Provenance](http://hl7.org/fhir/R4/provenance.html#) information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Practitioner.meta.tag
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.meta.tag.*}}},
+ Practitioner.meta.tag.*
+ {:confirms #{fhir/Coding},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."},
+ Practitioner.meta.versionId
+ {:zen/desc
+  "The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/id}},
+ Practitioner.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.modifierExtension.*}}},
+ Practitioner.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Practitioner.name
+ {:minItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.name.*}}},
+ Practitioner.name.*
+ {:confirms #{fhir/HumanName},
+  :zen/tags #{zen/schema},
+  :require #{:family},
+  :type zen/map,
+  :zen/desc "The name(s) associated with the practitioner.",
+  :keys
+  {:suffix {:confirms #{Practitioner.name.suffix}},
+   :given {:confirms #{Practitioner.name.given}},
+   :family {:confirms #{Practitioner.name.family}},
+   :use {:confirms #{Practitioner.name.use}},
+   :prefix {:confirms #{Practitioner.name.prefix}},
+   :extension {:confirms #{Practitioner.name.extension}},
+   :id {:confirms #{Practitioner.name.id}},
+   :period {:confirms #{Practitioner.name.period}},
+   :text {:confirms #{Practitioner.name.text}}}},
+ Practitioner.name.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.name.extension.*}},
+  :slicing {:slices {}}},
+ Practitioner.name.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Practitioner.name.family
+ {:zen/desc
+  "The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.name.given
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.name.given.*}}},
+ Practitioner.name.given.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc "Given name."},
+ Practitioner.name.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.name.period
+ {:zen/desc
+  "Indicates the period of time when this name was valid for the named person.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Practitioner.name.prefix
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.name.prefix.*}}},
+ Practitioner.name.prefix.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name."},
+ Practitioner.name.suffix
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.name.suffix.*}}},
+ Practitioner.name.suffix.*
+ {:confirms #{fhir/string},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name."},
+ Practitioner.name.text
+ {:zen/desc
+  "Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of or as well as the specific parts.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.name.use
+ {aidbox-fx/valueset Practitioner.name.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Identifies the purpose for this name."},
+ Practitioner.name.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/name-use"},
+ Practitioner.photo
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.photo.*}}},
+ Practitioner.photo.*
+ {:confirms #{fhir/Attachment},
+  :zen/tags #{zen/schema},
+  :zen/desc "Image of the person."},
+ Practitioner.qualification
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.qualification.*}}},
+ Practitioner.qualification.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:code},
+  :type zen/map,
+  :zen/desc
+  "The official certifications, training, and licenses that authorize or otherwise pertain to the provision of care by the practitioner.  For example, a medical license issued by a medical board authorizing the practitioner to practice medicine within a certian locality.",
+  :keys
+  {:extension {:confirms #{Practitioner.qualification.extension}},
+   :modifierExtension
+   {:confirms #{Practitioner.qualification.modifierExtension}},
+   :issuer {:confirms #{Practitioner.qualification.issuer}},
+   :identifier {:confirms #{Practitioner.qualification.identifier}},
+   :period {:confirms #{Practitioner.qualification.period}},
+   :id {:confirms #{Practitioner.qualification.id}},
+   :code {:confirms #{Practitioner.qualification.code}}}},
+ Practitioner.qualification.code
+ {:zen/desc "Coded representation of the qualification.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Practitioner.qualification.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.qualification.extension.*}},
+  :slicing
+  {:slices
+   {"practitioner-qualification"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{Practitioner.qualification.extension:practitioner-qualification.*}}},
+     :schema
+     {:confirms
+      #{Practitioner.qualification.extension:practitioner-qualification}}}}}},
+ Practitioner.qualification.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Practitioner.qualification.extension:practitioner-qualification
+ {:maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Practitioner.qualification.extension:practitioner-qualification.*}}},
+ Practitioner.qualification.extension:practitioner-qualification.*
+ {:confirms #{plan-net.v1.practitioner-qualification/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ Practitioner.qualification.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.qualification.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.qualification.identifier.*}}},
+ Practitioner.qualification.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "An identifier that applies to this person's qualification in this role."},
+ Practitioner.qualification.issuer
+ {:zen/desc
+  "Organization that regulates and issues the qualification.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Practitioner.qualification.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Practitioner.qualification.modifierExtension.*}}},
+ Practitioner.qualification.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Practitioner.qualification.period
+ {:zen/desc "Period during which the qualification is valid.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Practitioner.telecom
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.telecom.*}}},
+ Practitioner.telecom.*
+ {:confirms #{fhir/ContactPoint},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "A contact detail for the practitioner, e.g. a telephone number or an email address.",
+  :keys
+  {:system {:confirms #{Practitioner.telecom.system}},
+   :id {:confirms #{Practitioner.telecom.id}},
+   :use {:confirms #{Practitioner.telecom.use}},
+   :extension {:confirms #{Practitioner.telecom.extension}},
+   :period {:confirms #{Practitioner.telecom.period}},
+   :value {:confirms #{Practitioner.telecom.value}},
+   :rank {:confirms #{Practitioner.telecom.rank}}}},
+ Practitioner.telecom.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Practitioner.telecom.extension.*}},
+  :slicing
+  {:slices
+   {"via-intermediary"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{Practitioner.telecom.extension:via-intermediary.*}}},
+     :schema
+     {:confirms #{Practitioner.telecom.extension:via-intermediary}}},
+    "contactpoint-availabletime"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{Practitioner.telecom.extension:contactpoint-availabletime.*}}},
+     :schema
+     {:confirms
+      #{Practitioner.telecom.extension:contactpoint-availabletime}}}}}},
+ Practitioner.telecom.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Practitioner.telecom.extension:contactpoint-availabletime
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Practitioner.telecom.extension:contactpoint-availabletime.*}}},
+ Practitioner.telecom.extension:contactpoint-availabletime.*
+ {:confirms #{plan-net.v1.contactpoint-availabletime/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ Practitioner.telecom.extension:via-intermediary
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Practitioner.telecom.extension:via-intermediary.*}}},
+ Practitioner.telecom.extension:via-intermediary.*
+ {:confirms #{plan-net.v1.via-intermediary/Extension},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc "Optional Extension Element - found in all resources."},
+ Practitioner.telecom.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.telecom.period
+ {:zen/desc "Time period when the contact point was/is in use.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Period}},
+ Practitioner.telecom.rank
+ {:zen/desc
+  "Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred than those with higher rank values.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/positiveInt}},
+ Practitioner.telecom.system
+ {aidbox-fx/valueset Practitioner.telecom.system.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Telecommunications form for contact point - what communications system is required to make use of the contact."},
+ Practitioner.telecom.system.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-system"},
+ Practitioner.telecom.use
+ {aidbox-fx/valueset Practitioner.telecom.use.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Identifies the purpose for the contact point."},
+ Practitioner.telecom.use.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/contact-point-use"},
+ Practitioner.telecom.value
+ {:zen/desc
+  "The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Practitioner.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}}}

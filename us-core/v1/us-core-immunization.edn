@@ -1,0 +1,478 @@
+{ns us-core.v1.us-core-immunization,
+ import #{aidbox-fx fhir aidbox},
+ Immunization
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require
+  #{:patient :vaccineCode #{:occurrenceString :occurrenceDateTime}
+    :primarySource :status},
+  :type zen/map,
+  :zen/desc
+  "Defines constraints and extensions on the Immunization resource for the minimal set of data to query and retrieve  patient's immunization information.",
+  :resourceType "Immunization",
+  :keys
+  {:patient {:confirms #{Immunization.patient}},
+   :isSubpotent {:confirms #{Immunization.isSubpotent}},
+   :reportOrigin {:confirms #{Immunization.reportOrigin}},
+   :protocolApplied {:confirms #{Immunization.protocolApplied}},
+   :meta {:confirms #{Immunization.meta}},
+   :site {:confirms #{Immunization.site}},
+   :encounter {:confirms #{Immunization.encounter}},
+   :vaccineCode {:confirms #{Immunization.vaccineCode}},
+   :doseQuantity {:confirms #{Immunization.doseQuantity}},
+   :implicitRules {:confirms #{Immunization.implicitRules}},
+   :reasonCode {:confirms #{Immunization.reasonCode}},
+   :statusReason {:confirms #{Immunization.statusReason}},
+   :route {:confirms #{Immunization.route}},
+   :resourceType {:type zen/string, :const {:value "Immunization"}},
+   :recorded {:confirms #{Immunization.recorded}},
+   :programEligibility {:confirms #{Immunization.programEligibility}},
+   :note {:confirms #{Immunization.note}},
+   :extension {:confirms #{Immunization.extension}},
+   :contained {:confirms #{Immunization.contained}},
+   :primarySource {:confirms #{Immunization.primarySource}},
+   :status {:confirms #{Immunization.status}},
+   :language {:confirms #{Immunization.language}},
+   :id {:confirms #{Immunization.id}},
+   :lotNumber {:confirms #{Immunization.lotNumber}},
+   :identifier {:confirms #{Immunization.identifier}},
+   :manufacturer {:confirms #{Immunization.manufacturer}},
+   :education {:confirms #{Immunization.education}},
+   :occurrenceString {:confirms #{fhir/string}},
+   :reaction {:confirms #{Immunization.reaction}},
+   :location {:confirms #{Immunization.location}},
+   :occurrenceDateTime {:confirms #{fhir/dateTime}},
+   :fundingSource {:confirms #{Immunization.fundingSource}},
+   :modifierExtension {:confirms #{Immunization.modifierExtension}},
+   :subpotentReason {:confirms #{Immunization.subpotentReason}},
+   :expirationDate {:confirms #{Immunization.expirationDate}},
+   :performer {:confirms #{Immunization.performer}},
+   :reasonReference {:confirms #{Immunization.reasonReference}},
+   :text {:confirms #{Immunization.text}}},
+  :exclusive-keys #{#{:occurrenceString :occurrenceDateTime}},
+  :severity "supported",
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization"},
+ Immunization.contained
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.contained.*}}},
+ Immunization.contained.*
+ {:confirms #{fhir/Resource},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope."},
+ Immunization.doseQuantity
+ {:zen/desc "The quantity of vaccine product that was administered.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Quantity}},
+ Immunization.education
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.education.*}}},
+ Immunization.education.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Educational material presented to the patient (or guardian) at the time of vaccine administration.",
+  :keys
+  {:presentationDate
+   {:confirms #{Immunization.education.presentationDate}},
+   :publicationDate
+   {:confirms #{Immunization.education.publicationDate}},
+   :reference {:confirms #{Immunization.education.reference}},
+   :modifierExtension
+   {:confirms #{Immunization.education.modifierExtension}},
+   :documentType {:confirms #{Immunization.education.documentType}},
+   :extension {:confirms #{Immunization.education.extension}},
+   :id {:confirms #{Immunization.education.id}}}},
+ Immunization.education.documentType
+ {:zen/desc "Identifier of the material presented to the patient.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Immunization.education.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.education.extension.*}}},
+ Immunization.education.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Immunization.education.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Immunization.education.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.education.modifierExtension.*}}},
+ Immunization.education.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Immunization.education.presentationDate
+ {:zen/desc "Date the educational material was given to the patient.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ Immunization.education.publicationDate
+ {:zen/desc "Date the educational material was published.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ Immunization.education.reference
+ {:zen/desc
+  "Reference pointer to the educational material given to the patient if the information was on line.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Immunization.encounter
+ {:zen/desc
+  "The visit or admission or other contact between patient and health care provider the immunization was performed as part of.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Immunization.expirationDate
+ {:zen/desc "Date vaccine batch expires.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/date}},
+ Immunization.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.extension.*}}},
+ Immunization.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Immunization.fundingSource
+ {:zen/desc
+  "Indicates the source of the vaccine actually administered. This may be different than the patient eligibility (e.g. the patient may be eligible for a publically purchased vaccine but due to inventory issues, vaccine purchased with private funds was actually administered).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Immunization.id
+ {:zen/desc
+  "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Immunization.identifier
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.identifier.*}}},
+ Immunization.identifier.*
+ {:confirms #{fhir/Identifier},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "A unique identifier assigned to this immunization record."},
+ Immunization.implicitRules
+ {:zen/desc
+  "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/uri}},
+ Immunization.isSubpotent
+ {:zen/desc
+  "Indication if a dose is considered to be subpotent. By default, a dose should be considered to be potent.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ Immunization.language
+ {:zen/desc "The base language in which the resource is written.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/code}},
+ Immunization.location
+ {:zen/desc
+  "The service delivery location where the vaccine administration occurred.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Immunization.lotNumber
+ {:zen/desc "Lot number of the  vaccine product.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Immunization.manufacturer
+ {:zen/desc "Name of vaccine manufacturer.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Immunization.meta
+ {:zen/desc
+  "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Meta}},
+ Immunization.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.modifierExtension.*}}},
+ Immunization.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Immunization.note
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.note.*}}},
+ Immunization.note.*
+ {:confirms #{fhir/Annotation},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Extra information about the immunization that is not conveyed by the other attributes."},
+ Immunization.patient
+ {:zen/desc
+  "The patient who either received or did not receive the immunization.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Immunization.performer
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.performer.*}}},
+ Immunization.performer.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{:actor},
+  :type zen/map,
+  :zen/desc "Indicates who performed the immunization event.",
+  :keys
+  {:actor {:confirms #{Immunization.performer.actor}},
+   :extension {:confirms #{Immunization.performer.extension}},
+   :function {:confirms #{Immunization.performer.function}},
+   :modifierExtension
+   {:confirms #{Immunization.performer.modifierExtension}},
+   :id {:confirms #{Immunization.performer.id}}}},
+ Immunization.performer.actor
+ {:zen/desc
+  "The practitioner or organization who performed the action.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Immunization.performer.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.performer.extension.*}}},
+ Immunization.performer.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Immunization.performer.function
+ {:zen/desc
+  "Describes the type of performance (e.g. ordering provider, administering provider, etc.).",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Immunization.performer.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Immunization.performer.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.performer.modifierExtension.*}}},
+ Immunization.performer.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Immunization.primarySource
+ {:zen/desc
+  "An indication that the content of the record is based on information from the person who administered the vaccine. This reflects the context under which the data was originally recorded.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ Immunization.programEligibility
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.programEligibility.*}}},
+ Immunization.programEligibility.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Indicates a patient's eligibility for a funding program."},
+ Immunization.protocolApplied
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.protocolApplied.*}}},
+ Immunization.protocolApplied.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :require #{#{:doseNumberPositiveInt :doseNumberString}},
+  :type zen/map,
+  :zen/desc
+  "The protocol (set of recommendations) being followed by the provider who administered the dose.",
+  :keys
+  {:seriesDosesPositiveInt {:confirms #{fhir/positiveInt}},
+   :doseNumberPositiveInt {:confirms #{fhir/positiveInt}},
+   :series {:confirms #{Immunization.protocolApplied.series}},
+   :authority {:confirms #{Immunization.protocolApplied.authority}},
+   :doseNumberString {:confirms #{fhir/string}},
+   :seriesDosesString {:confirms #{fhir/string}},
+   :extension {:confirms #{Immunization.protocolApplied.extension}},
+   :id {:confirms #{Immunization.protocolApplied.id}},
+   :targetDisease
+   {:confirms #{Immunization.protocolApplied.targetDisease}},
+   :modifierExtension
+   {:confirms #{Immunization.protocolApplied.modifierExtension}}},
+  :exclusive-keys
+  #{#{:doseNumberPositiveInt :doseNumberString}
+    #{:seriesDosesPositiveInt :seriesDosesString}}},
+ Immunization.protocolApplied.authority
+ {:zen/desc
+  "Indicates the authority who published the protocol (e.g. ACIP) that is being followed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Immunization.protocolApplied.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.protocolApplied.extension.*}}},
+ Immunization.protocolApplied.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Immunization.protocolApplied.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Immunization.protocolApplied.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms #{Immunization.protocolApplied.modifierExtension.*}}},
+ Immunization.protocolApplied.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Immunization.protocolApplied.series
+ {:zen/desc
+  "One possible path to achieve presumed immunity against a disease - within the context of an authority.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Immunization.protocolApplied.targetDisease
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.protocolApplied.targetDisease.*}}},
+ Immunization.protocolApplied.targetDisease.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "The vaccine preventable disease the dose is being administered against."},
+ Immunization.reaction
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.reaction.*}}},
+ Immunization.reaction.*
+ {:confirms #{fhir/BackboneElement},
+  :zen/tags #{zen/schema},
+  :type zen/map,
+  :zen/desc
+  "Categorical data indicating that an adverse event is associated in time to an immunization.",
+  :keys
+  {:date {:confirms #{Immunization.reaction.date}},
+   :extension {:confirms #{Immunization.reaction.extension}},
+   :reported {:confirms #{Immunization.reaction.reported}},
+   :modifierExtension
+   {:confirms #{Immunization.reaction.modifierExtension}},
+   :id {:confirms #{Immunization.reaction.id}},
+   :detail {:confirms #{Immunization.reaction.detail}}}},
+ Immunization.reaction.date
+ {:zen/desc "Date of reaction to the immunization.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ Immunization.reaction.detail
+ {:zen/desc "Details of the reaction.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Reference}},
+ Immunization.reaction.extension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.reaction.extension.*}}},
+ Immunization.reaction.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."},
+ Immunization.reaction.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Immunization.reaction.modifierExtension
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.reaction.modifierExtension.*}}},
+ Immunization.reaction.modifierExtension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)."},
+ Immunization.reaction.reported
+ {:zen/desc "Self-reported indicator.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/boolean}},
+ Immunization.reasonCode
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.reasonCode.*}}},
+ Immunization.reasonCode.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc "Reasons why the vaccine was administered."},
+ Immunization.reasonReference
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.reasonReference.*}}},
+ Immunization.reasonReference.*
+ {:confirms #{fhir/Reference},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Condition, Observation or DiagnosticReport that supports why the immunization was administered."},
+ Immunization.recorded
+ {:zen/desc
+  "The date the occurrence of the immunization was first captured in the record - potentially significantly after the occurrence of the event.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/dateTime}},
+ Immunization.reportOrigin
+ {:zen/desc
+  "The source of the data when the report of the immunization event is not based on information from the person who administered the vaccine.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Immunization.route
+ {:zen/desc
+  "The path by which the vaccine product is taken into the body.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Immunization.site
+ {:zen/desc "Body site where vaccine was administered.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Immunization.status
+ {aidbox-fx/valueset Immunization.status.valueset,
+  :confirms #{fhir/code},
+  :zen/tags #{zen/schema},
+  :zen/desc "Indicates the current status of the immunization event."},
+ Immunization.status.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url "http://hl7.org/fhir/ValueSet/immunization-status"},
+ Immunization.statusReason
+ {:zen/desc
+  "Indicates the reason the immunization event was not performed.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}},
+ Immunization.subpotentReason
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Immunization.subpotentReason.*}}},
+ Immunization.subpotentReason.*
+ {:confirms #{fhir/CodeableConcept},
+  :zen/tags #{zen/schema},
+  :zen/desc "Reason why a dose is considered to be subpotent."},
+ Immunization.text
+ {:zen/desc
+  "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/Narrative}},
+ Immunization.vaccineCode
+ {:zen/desc "Vaccine that was administered or was to be administered.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/CodeableConcept}}}

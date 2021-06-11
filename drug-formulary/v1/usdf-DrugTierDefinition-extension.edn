@@ -1,0 +1,594 @@
+{ns drug-formulary.v1.usdf-DrugTierDefinition-extension,
+ import #{aidbox-fx fhir aidbox},
+ Extension
+ {:format :fhir,
+  :zen/tags #{zen/schema aidbox/profile},
+  :require #{:extension :url},
+  :type zen/map,
+  :zen/desc
+  "A description of the drug tiers used by the formulary and how those tiers implement copay and coinsurance amounts. Drug tiers do not have any inherent meaning that is consistent across all formularies. Rather, each tier is defined using this element.",
+  :keys
+  {:valueBase64Binary {:confirms #{fhir/base64Binary}},
+   :valueAge {:confirms #{fhir/Age}},
+   :valueParameterDefinition {:confirms #{fhir/ParameterDefinition}},
+   :valueTiming {:confirms #{fhir/Timing}},
+   :valueCode {:confirms #{fhir/code}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueContributor {:confirms #{fhir/Contributor}},
+   :valueContactDetail {:confirms #{fhir/ContactDetail}},
+   :valueUri {:confirms #{fhir/uri}},
+   :valueUsageContext {:confirms #{fhir/UsageContext}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueDecimal {:confirms #{fhir/decimal}},
+   :valueCanonical {:confirms #{fhir/canonical}},
+   :valueMarkdown {:confirms #{fhir/markdown}},
+   :valueIdentifier {:confirms #{fhir/Identifier}},
+   :valueTriggerDefinition {:confirms #{fhir/TriggerDefinition}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueCount {:confirms #{fhir/Count}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueInstant {:confirms #{fhir/instant}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :valueDate {:confirms #{fhir/date}},
+   :valueDuration {:confirms #{fhir/Duration}},
+   :valueDataRequirement {:confirms #{fhir/DataRequirement}},
+   :valueMeta {:confirms #{fhir/Meta}},
+   :valueMoney {:confirms #{fhir/Money}},
+   :valueCoding {:confirms #{fhir/Coding}},
+   :valueExpression {:confirms #{fhir/Expression}},
+   :extension {:confirms #{Extension.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Extension.id}},
+   :valueDosage {:confirms #{fhir/Dosage}},
+   :valueContactPoint {:confirms #{fhir/ContactPoint}},
+   :url {:confirms #{Extension.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueAnnotation {:confirms #{fhir/Annotation}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueDistance {:confirms #{fhir/Distance}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueSignature {:confirms #{fhir/Signature}},
+   :valueUuid {:confirms #{fhir/uuid}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :valueHumanName {:confirms #{fhir/HumanName}},
+   :valueUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :valueOid {:confirms #{fhir/oid}},
+   :valueAddress {:confirms #{fhir/Address}},
+   :valueRelatedArtifact {:confirms #{fhir/RelatedArtifact}},
+   :valuePositiveInt {:confirms #{fhir/positiveInt}},
+   :valueId {:confirms #{fhir/id}},
+   :valueUrl {:confirms #{fhir/url}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueAge :valueParameterDefinition
+      :valueTiming :valueCode :valueReference :valueContributor
+      :valueContactDetail :valueUri :valueUsageContext :valueTime
+      :valueDecimal :valueCanonical :valueMarkdown :valueIdentifier
+      :valueTriggerDefinition :valueQuantity :valueCount :valueString
+      :valueRatio :valueBoolean :valueInstant :valueDateTime :valueDate
+      :valueDuration :valueDataRequirement :valueMeta :valueMoney
+      :valueCoding :valueExpression :valueSampledData :valueDosage
+      :valueContactPoint :valueCodeableConcept :valueAnnotation
+      :valuePeriod :valueDistance :valueRange :valueSignature
+      :valueUuid :valueInteger :valueHumanName :valueUnsignedInt
+      :valueAttachment :valueOid :valueAddress :valueRelatedArtifact
+      :valuePositiveInt :valueId :valueUrl}},
+  :validation-type :open,
+  :profile-definition
+  "http://hl7.org/fhir/us/davinci-drug-formulary/StructureDefinition/usdf-DrugTierDefinition-extension"},
+ Extension.extension
+ {:minItems 2,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension.*}},
+  :slicing
+  {:slices
+   {"mailOrder"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:mailOrder.*}}},
+     :schema {:confirms #{Extension.extension:mailOrder}}},
+    "costSharing"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:costSharing.*}}},
+     :schema {:confirms #{Extension.extension:costSharing}}},
+    "drugTierID"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen {:confirms #{Extension.extension:drugTierID.*}}},
+     :schema {:confirms #{Extension.extension:drugTierID}}}}}},
+ Extension.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:costSharing
+ {:zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:costSharing.*}}},
+ Extension.extension:costSharing.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:extension :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:valueBase64Binary {:confirms #{fhir/base64Binary}},
+   :valueAge {:confirms #{fhir/Age}},
+   :valueParameterDefinition {:confirms #{fhir/ParameterDefinition}},
+   :valueTiming {:confirms #{fhir/Timing}},
+   :valueCode {:confirms #{fhir/code}},
+   :valueReference {:confirms #{fhir/Reference}},
+   :valueContributor {:confirms #{fhir/Contributor}},
+   :valueContactDetail {:confirms #{fhir/ContactDetail}},
+   :valueUri {:confirms #{fhir/uri}},
+   :valueUsageContext {:confirms #{fhir/UsageContext}},
+   :valueTime {:confirms #{fhir/time}},
+   :valueDecimal {:confirms #{fhir/decimal}},
+   :valueCanonical {:confirms #{fhir/canonical}},
+   :valueMarkdown {:confirms #{fhir/markdown}},
+   :valueIdentifier {:confirms #{fhir/Identifier}},
+   :valueTriggerDefinition {:confirms #{fhir/TriggerDefinition}},
+   :valueQuantity {:confirms #{fhir/Quantity}},
+   :valueCount {:confirms #{fhir/Count}},
+   :valueString {:confirms #{fhir/string}},
+   :valueRatio {:confirms #{fhir/Ratio}},
+   :valueBoolean {:confirms #{fhir/boolean}},
+   :valueInstant {:confirms #{fhir/instant}},
+   :valueDateTime {:confirms #{fhir/dateTime}},
+   :valueDate {:confirms #{fhir/date}},
+   :valueDuration {:confirms #{fhir/Duration}},
+   :valueDataRequirement {:confirms #{fhir/DataRequirement}},
+   :valueMeta {:confirms #{fhir/Meta}},
+   :valueMoney {:confirms #{fhir/Money}},
+   :valueCoding {:confirms #{fhir/Coding}},
+   :valueExpression {:confirms #{fhir/Expression}},
+   :extension {:confirms #{Extension.extension:costSharing.extension}},
+   :valueSampledData {:confirms #{fhir/SampledData}},
+   :id {:confirms #{Extension.extension:costSharing.id}},
+   :valueDosage {:confirms #{fhir/Dosage}},
+   :valueContactPoint {:confirms #{fhir/ContactPoint}},
+   :url {:confirms #{Extension.extension:costSharing.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}},
+   :valueAnnotation {:confirms #{fhir/Annotation}},
+   :valuePeriod {:confirms #{fhir/Period}},
+   :valueDistance {:confirms #{fhir/Distance}},
+   :valueRange {:confirms #{fhir/Range}},
+   :valueSignature {:confirms #{fhir/Signature}},
+   :valueUuid {:confirms #{fhir/uuid}},
+   :valueInteger {:confirms #{fhir/integer}},
+   :valueHumanName {:confirms #{fhir/HumanName}},
+   :valueUnsignedInt {:confirms #{fhir/unsignedInt}},
+   :valueAttachment {:confirms #{fhir/Attachment}},
+   :valueOid {:confirms #{fhir/oid}},
+   :valueAddress {:confirms #{fhir/Address}},
+   :valueRelatedArtifact {:confirms #{fhir/RelatedArtifact}},
+   :valuePositiveInt {:confirms #{fhir/positiveInt}},
+   :valueId {:confirms #{fhir/id}},
+   :valueUrl {:confirms #{fhir/url}}},
+  :exclusive-keys
+  #{#{:valueBase64Binary :valueAge :valueParameterDefinition
+      :valueTiming :valueCode :valueReference :valueContributor
+      :valueContactDetail :valueUri :valueUsageContext :valueTime
+      :valueDecimal :valueCanonical :valueMarkdown :valueIdentifier
+      :valueTriggerDefinition :valueQuantity :valueCount :valueString
+      :valueRatio :valueBoolean :valueInstant :valueDateTime :valueDate
+      :valueDuration :valueDataRequirement :valueMeta :valueMoney
+      :valueCoding :valueExpression :valueSampledData :valueDosage
+      :valueContactPoint :valueCodeableConcept :valueAnnotation
+      :valuePeriod :valueDistance :valueRange :valueSignature
+      :valueUuid :valueInteger :valueHumanName :valueUnsignedInt
+      :valueAttachment :valueOid :valueAddress :valueRelatedArtifact
+      :valuePositiveInt :valueId :valueUrl}}},
+ Extension.extension:costSharing.extension
+ {:minItems 5,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:costSharing.extension.*}},
+  :slicing
+  {:slices
+   {"copayAmount"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{Extension.extension:costSharing.extension:copayAmount.*}}},
+     :schema
+     {:confirms
+      #{Extension.extension:costSharing.extension:copayAmount}}},
+    "copayOption"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{Extension.extension:costSharing.extension:copayOption.*}}},
+     :schema
+     {:confirms
+      #{Extension.extension:costSharing.extension:copayOption}}},
+    "pharmacyType"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{Extension.extension:costSharing.extension:pharmacyType.*}}},
+     :schema
+     {:confirms
+      #{Extension.extension:costSharing.extension:pharmacyType}}},
+    "coinsuranceOption"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{Extension.extension:costSharing.extension:coinsuranceOption.*}}},
+     :schema
+     {:confirms
+      #{Extension.extension:costSharing.extension:coinsuranceOption}}},
+    "coinsuranceRate"
+    {:filter
+     {:engine :proto.zen.core/zen,
+      :zen
+      {:confirms
+       #{Extension.extension:costSharing.extension:coinsuranceRate.*}}},
+     :schema
+     {:confirms
+      #{Extension.extension:costSharing.extension:coinsuranceRate}}}}}},
+ Extension.extension:costSharing.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:costSharing.extension:coinsuranceOption
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Extension.extension:costSharing.extension:coinsuranceOption.*}}},
+ Extension.extension:costSharing.extension:coinsuranceOption.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueCodeableConcept} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:url
+   {:confirms
+    #{Extension.extension:costSharing.extension:coinsuranceOption.url}},
+   :extension
+   {:confirms
+    #{Extension.extension:costSharing.extension:coinsuranceOption.extension}},
+   :id
+   {:confirms
+    #{Extension.extension:costSharing.extension:coinsuranceOption.id}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}}}},
+ Extension.extension:costSharing.extension:coinsuranceOption.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Extension.extension:costSharing.extension:coinsuranceOption.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:costSharing.extension:coinsuranceOption.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:costSharing.extension:coinsuranceOption.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:costSharing.extension:coinsuranceOption.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "coinsuranceOption"}},
+ Extension.extension:costSharing.extension:coinsuranceOption.value_x_.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/davinci-drug-formulary/ValueSet/CoinsuranceOptionVS"},
+ Extension.extension:costSharing.extension:coinsuranceRate
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Extension.extension:costSharing.extension:coinsuranceRate.*}}},
+ Extension.extension:costSharing.extension:coinsuranceRate.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{:url #{:valueDecimal}},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:id
+   {:confirms
+    #{Extension.extension:costSharing.extension:coinsuranceRate.id}},
+   :extension
+   {:confirms
+    #{Extension.extension:costSharing.extension:coinsuranceRate.extension}},
+   :url
+   {:confirms
+    #{Extension.extension:costSharing.extension:coinsuranceRate.url}},
+   :valueDecimal {:confirms #{fhir/decimal}}}},
+ Extension.extension:costSharing.extension:coinsuranceRate.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Extension.extension:costSharing.extension:coinsuranceRate.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:costSharing.extension:coinsuranceRate.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:costSharing.extension:coinsuranceRate.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:costSharing.extension:coinsuranceRate.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "coinsuranceRate"}},
+ Extension.extension:costSharing.extension:copayAmount
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Extension.extension:costSharing.extension:copayAmount.*}}},
+ Extension.extension:costSharing.extension:copayAmount.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueMoney} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:url
+   {:confirms
+    #{Extension.extension:costSharing.extension:copayAmount.url}},
+   :extension
+   {:confirms
+    #{Extension.extension:costSharing.extension:copayAmount.extension}},
+   :id
+   {:confirms
+    #{Extension.extension:costSharing.extension:copayAmount.id}},
+   :valueMoney {:confirms #{fhir/Money}}}},
+ Extension.extension:costSharing.extension:copayAmount.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Extension.extension:costSharing.extension:copayAmount.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:costSharing.extension:copayAmount.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:costSharing.extension:copayAmount.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:costSharing.extension:copayAmount.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "copayAmount"}},
+ Extension.extension:costSharing.extension:copayOption
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Extension.extension:costSharing.extension:copayOption.*}}},
+ Extension.extension:costSharing.extension:copayOption.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueCodeableConcept} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:url
+   {:confirms
+    #{Extension.extension:costSharing.extension:copayOption.url}},
+   :id
+   {:confirms
+    #{Extension.extension:costSharing.extension:copayOption.id}},
+   :extension
+   {:confirms
+    #{Extension.extension:costSharing.extension:copayOption.extension}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}}}},
+ Extension.extension:costSharing.extension:copayOption.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Extension.extension:costSharing.extension:copayOption.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:costSharing.extension:copayOption.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:costSharing.extension:copayOption.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:costSharing.extension:copayOption.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "copayOption"}},
+ Extension.extension:costSharing.extension:copayOption.value_x_.valueset
+ {:zen/tags
+  #{aidbox-fx/valueset-definition
+    aidbox-fx/legacy-fhir-valueset-definition},
+  :engine :legacy-fhir-valueset,
+  :valueset-url
+  "http://hl7.org/fhir/us/davinci-drug-formulary/ValueSet/CopayOptionVS"},
+ Extension.extension:costSharing.extension:pharmacyType
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Extension.extension:costSharing.extension:pharmacyType.*}}},
+ Extension.extension:costSharing.extension:pharmacyType.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueCodeableConcept} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:id
+   {:confirms
+    #{Extension.extension:costSharing.extension:pharmacyType.id}},
+   :url
+   {:confirms
+    #{Extension.extension:costSharing.extension:pharmacyType.url}},
+   :extension
+   {:confirms
+    #{Extension.extension:costSharing.extension:pharmacyType.extension}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}}}},
+ Extension.extension:costSharing.extension:pharmacyType.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every
+  {:confirms
+   #{Extension.extension:costSharing.extension:pharmacyType.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:costSharing.extension:pharmacyType.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:costSharing.extension:pharmacyType.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:costSharing.extension:pharmacyType.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "pharmacyType"}},
+ Extension.extension:costSharing.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:costSharing.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "costSharing"}},
+ Extension.extension:drugTierID
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:drugTierID.*}}},
+ Extension.extension:drugTierID.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueCodeableConcept} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:extension {:confirms #{Extension.extension:drugTierID.extension}},
+   :id {:confirms #{Extension.extension:drugTierID.id}},
+   :url {:confirms #{Extension.extension:drugTierID.url}},
+   :valueCodeableConcept {:confirms #{fhir/CodeableConcept}}}},
+ Extension.extension:drugTierID.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:drugTierID.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:drugTierID.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:drugTierID.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:drugTierID.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "drugTierID"}},
+ Extension.extension:mailOrder
+ {:minItems 1,
+  :maxItems 1,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:mailOrder.*}}},
+ Extension.extension:mailOrder.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :require #{#{:valueBoolean} :url},
+  :type zen/map,
+  :zen/desc "An Extension",
+  :keys
+  {:url {:confirms #{Extension.extension:mailOrder.url}},
+   :id {:confirms #{Extension.extension:mailOrder.id}},
+   :extension {:confirms #{Extension.extension:mailOrder.extension}},
+   :valueBoolean {:confirms #{fhir/boolean}}}},
+ Extension.extension:mailOrder.extension
+ {:maxItems 0,
+  :zen/tags #{zen/schema},
+  :type zen/vector,
+  :every {:confirms #{Extension.extension:mailOrder.extension.*}},
+  :slicing {:slices {}}},
+ Extension.extension:mailOrder.extension.*
+ {:confirms #{fhir/Extension},
+  :zen/tags #{zen/schema},
+  :zen/desc "An Extension"},
+ Extension.extension:mailOrder.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.extension:mailOrder.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const {:value "mailOrder"}},
+ Extension.id
+ {:zen/desc
+  "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+  :zen/tags #{zen/schema},
+  :confirms #{fhir/string}},
+ Extension.url
+ {:confirms #{fhir/uri},
+  :zen/tags #{zen/schema},
+  :zen/desc
+  "Source of the definition for the extension code - a logical name or a URL.",
+  :const
+  {:value
+   "http://hl7.org/fhir/us/davinci-drug-formulary/StructureDefinition/usdf-DrugTierDefinition-extension"}}}

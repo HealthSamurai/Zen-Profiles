@@ -1,0 +1,19 @@
+{ns us-core.v1,
+ import
+ #{us-core.v1.us-core-ethnicity us-core.v1.us-core-provenance
+   us-core.v1.us-core-careplan us-core.v1.us-core-encounter
+   us-core.v1.us-core-patient us-core.v1.pediatric-bmi-for-age
+   us-core.v1.us-core-documentreference us-core.v1.us-core-organization
+   us-core.v1.head-occipital-frontal-circumference-percentile
+   us-core.v1.us-core-allergyintolerance
+   us-core.v1.us-core-diagnosticreport-note
+   us-core.v1.us-core-diagnosticreport-lab
+   us-core.v1.us-core-practitionerrole
+   us-core.v1.us-core-pulse-oximetry us-core.v1.us-core-goal
+   us-core.v1.us-core-condition us-core.v1.us-core-immunization
+   us-core.v1.us-core-procedure us-core.v1.pediatric-weight-for-height
+   us-core.v1.us-core-implantable-device us-core.v1.us-core-birthsex
+   us-core.v1.us-core-observation-lab us-core.v1.us-core-smokingstatus
+   us-core.v1.us-core-medicationrequest us-core.v1.us-core-medication
+   us-core.v1.us-core-careteam us-core.v1.us-core-race
+   us-core.v1.us-core-practitioner us-core.v1.us-core-location}}
