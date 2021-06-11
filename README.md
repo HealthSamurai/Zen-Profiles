@@ -14,9 +14,9 @@ Repository currently contains following Zen projects and associated terminology 
 * us-core.v1
   http://hl7.org/fhir/us/core/
 
-Some of the CodeSystems are not yet in bundle.
+Some CodeSystems are not yet in bundle.
 
-List of the missing CodeSystems: 
+List of missing CodeSystems: 
 * http://nucc.org/provider-taxonomy
 * https://www.usps.com/
 * http://unitsofmeasure.org
@@ -25,7 +25,7 @@ List of the missing CodeSystems:
 * http://www.cms.gov/Medicare/Coding/ICD9
 * http://www.nlm.nih.gov/research/umls/rxnorm
 
-List of the missing propietary CodeSystems:
+List of missing propietary CodeSystems:
 * http://hl7.org/fhir/us/carin-bb/STU1/CodeSystem-CMSHCPCSCodes.json
 * https://terminology.hl7.org/1.0.0//CodeSystem-v3-cpt-4.json
 * http://hl7.org/fhir/us/carin-bb/STU1/CodeSystem-CMSRemittanceAdviceRemarkCodes.json
