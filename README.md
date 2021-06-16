@@ -24,8 +24,6 @@ List of missing CodeSystems:
 * http://loinc.org
 * http://www.cms.gov/Medicare/Coding/ICD9
 * http://www.nlm.nih.gov/research/umls/rxnorm
-
-List of missing propietary CodeSystems:
 * http://hl7.org/fhir/us/carin-bb/STU1/CodeSystem-CMSHCPCSCodes.json
 * https://terminology.hl7.org/1.0.0//CodeSystem-v3-cpt-4.json
 * http://hl7.org/fhir/us/carin-bb/STU1/CodeSystem-CMSRemittanceAdviceRemarkCodes.json
