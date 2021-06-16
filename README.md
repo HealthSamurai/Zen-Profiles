@@ -16,7 +16,7 @@ Repository currently contains following Zen projects and associated terminology 
 
 Some CodeSystems are not yet in bundle.
 
-List of missing CodeSystems: 
+List of missing CodeSystems or CodeSystems with missing content: 
 * http://nucc.org/provider-taxonomy
 * https://www.usps.com/
 * http://unitsofmeasure.org
